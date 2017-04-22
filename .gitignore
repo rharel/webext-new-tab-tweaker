@@ -1,0 +1,5 @@
+# Development assets
+dev/
+
+# IntelliJ
+.idea/
