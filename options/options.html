@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Options | Custom New-Tab Background</title>
+
+    <link rel="stylesheet" href="css/options.css">
+
+    <script src="js/options_ui.js"></script>
+    <script src="js/options.js"></script>
+</head>
+<body>
+<div id="content">
+    <!-- Header -->
+    <header>
+        <h1>Custom New-Tab Background Options</h1>
+    </header>
+    <!-- Main form -->
+    <form id="options-form">
+        <!-- Choice of background-type -->
+        <fieldset>
+            <legend>Background-type</legend>
+
+            <div>
+                <input id="solid-bg-radio" type="radio" name="bg-type"
+                       value="solid" checked>
+                <label for="solid-bg-radio">
+                    Solid Color
+                </label>
+            </div>
+            <div>
+                <input id="image-bg-radio" type="radio" name="bg-type"
+                       value="image">
+                <label for="image-bg-radio">
+                    Image
+                </label>
+            </div>
+        </fieldset>
+        <!-- Options for chosen background-type -->
+        <fieldset>
+            <legend>Background</legend>
+
+            <div id="solid-bg-options" class="bg-type-options">
+                <label for="solid-color-input">Color :</label>
+                <input id="solid-color-input" type="color" value="#ff0000">
+            </div>
+            <div id="image-bg-options" class="bg-type-options">
+                <label for="image-url-input">URL :</label>
+                <input id="image-url-input" type="url" size="32"
+                       autocomplete="off">
+            </div>
+        </fieldset>
+        <!-- Submission -->
+        <div id="action-button-container">
+            <input id="reset-button" type="reset" value="Reset">
+            <input id="submit-button" type="submit" value="Save">
+        </div>
+        <div id="error-container">
+            <span id="error-message"></span>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

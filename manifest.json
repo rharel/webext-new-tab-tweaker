@@ -1,0 +1,24 @@
+{
+	"manifest_version": 2,
+
+	"name": "Custom New Tab Background",
+	"version": "0.1",
+
+	"author": "Raoul Harel",
+	"description": "Customize the New Tab page's background.",
+
+	"homepage_url": "https://github.com/rharel/webext-custom-new-tab-bg",
+
+	"icons":
+	{	"16": "icons/main_16.png",
+		"32": "icons/main_32.png",
+		"48": "icons/main_48.png",
+		"64": "icons/main_64.png",
+		"96": "icons/main_96.png",
+		"128": "icons/main_128.png"
+	},
+
+	"permissions": ["storage"],
+
+	"options_ui": {	"page": "options/options.html", "open_in_tab": true }
+}

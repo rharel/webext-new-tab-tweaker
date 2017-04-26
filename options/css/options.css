@@ -1,0 +1,53 @@
+body
+{   font-family: "Segoe UI", sans-serif;
+    background-color: #FAFAFD;
+    color: #282828;
+}
+
+body > #content
+{   margin-left: auto;
+    margin-right: auto;
+    min-width: 600px;
+    width: 50%;
+}
+#content > header
+{   border-bottom: 1px solid #282828;
+    margin-bottom: 20px;
+}
+
+#options-form > fieldset
+{   border: 2px solid lightgrey;
+    border-radius: 5px;
+    padding-top: 10px;
+}
+#options-form > fieldset + fieldset
+{   margin-top: 20px;
+}
+
+.bg-type-options
+{   display: none;
+}
+.bg-type-options > label
+{   margin-right: 10px;
+}
+
+#action-button-container
+{   margin-top: 20px;
+}
+#action-button-container > input
+{   font-size: 14pt;
+}
+#reset-button
+{   float: left;
+}
+#submit-button
+{   float: right;
+}
+
+#error-container
+{   margin-top: 10px;
+    padding: 10px;
+}
+#error-message
+{   color: red;
+}
