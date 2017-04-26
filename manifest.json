@@ -1,13 +1,13 @@
 {
 	"manifest_version": 2,
 
-	"name": "Custom New Tab Background",
+	"name": "Custom New Tab",
 	"version": "0.1",
 
 	"author": "Raoul Harel",
-	"description": "Customize the New Tab page's background.",
+	"description": "Customize the New Tab page.",
 
-	"homepage_url": "https://github.com/rharel/webext-custom-new-tab-bg",
+	"homepage_url": "https://github.com/rharel/webext-custom-new-tab",
 
 	"icons":
 	{	"16": "icons/main_16.png",
@@ -18,7 +18,8 @@
 		"128": "icons/main_128.png"
 	},
 
-	"permissions": ["storage"],
+	"permissions": ["storage", "tabs"],
 
-	"options_ui": {	"page": "options/options.html", "open_in_tab": true }
+	"options_ui": {	"page": "options/options.html", "open_in_tab": true },
+	"chrome_url_overrides": { "newtab": "custom-new-tab/custom-new-tab.html" }
 }

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Options | Custom New-Tab Background</title>
+    <title>Options | Custom New Tab Page</title>
 
     <link rel="stylesheet" href="css/options.css">
 
+    <script src="/common/common.js"></script>
     <script src="js/options_ui.js"></script>
     <script src="js/options.js"></script>
 </head>
@@ -14,53 +15,65 @@
 <div id="content">
     <!-- Header -->
     <header>
-        <h1>Custom New-Tab Background Options</h1>
+        <h1>Custom New-Tab Page</h1>
     </header>
+    <!-- Error reporting -->
+    <div id="error-container">
+        <span id="error-message"></span>
+    </div>
     <!-- Main form -->
     <form id="options-form">
-        <!-- Choice of background-type -->
+        <!-- Choice of tab type -->
         <fieldset>
-            <legend>Background-type</legend>
+            <legend>Tab-type</legend>
 
             <div>
-                <input id="solid-bg-radio" type="radio" name="bg-type"
-                       value="solid" checked>
-                <label for="solid-bg-radio">
-                    Solid Color
+                <input id="redirect-tab-radio" type="radio" name="tab-type"
+                       value="redirect" checked>
+                <label for="redirect-tab-radio">
+                    Redirect
                 </label>
             </div>
             <div>
-                <input id="image-bg-radio" type="radio" name="bg-type"
+                <input id="color-tab-radio" type="radio" name="tab-type"
+                       value="solid" checked>
+                <label for="color-tab-radio">
+                    Color
+                </label>
+            </div>
+            <div>
+                <input id="image-tab-radio" type="radio" name="tab-type"
                        value="image">
-                <label for="image-bg-radio">
+                <label for="image-tab-radio">
                     Image
                 </label>
             </div>
         </fieldset>
-        <!-- Options for chosen background-type -->
+        <!-- Options for chosen tab type -->
         <fieldset>
-            <legend>Background</legend>
+            <legend>Options</legend>
 
-            <div id="solid-bg-options" class="bg-type-options">
-                <label for="solid-color-input">Color :</label>
-                <input id="solid-color-input" type="color" value="#ff0000">
+            <div id="redirect-tab-options" class="tab-options">
+                <label for="redirect-url-input">Redirect-target URL :</label>
+                <input id="redirect-url-input" type="url" size="32"
+                       autocomplete="off">
             </div>
-            <div id="image-bg-options" class="bg-type-options">
-                <label for="image-url-input">URL :</label>
+            <div id="color-tab-options" class="tab-options">
+                <label for="color-background-input">Background color :</label>
+                <input id="color-background-input" type="color" value="#ff0000">
+            </div>
+            <div id="image-tab-options" class="tab-options">
+                <label for="image-url-input">Image-source URL :</label>
                 <input id="image-url-input" type="url" size="32"
                        autocomplete="off">
             </div>
         </fieldset>
-        <!-- Submission -->
+        <!-- Submission and reset -->
         <div id="action-button-container">
             <input id="reset-button" type="reset" value="Reset">
             <input id="submit-button" type="submit" value="Save">
         </div>
-        <div id="error-container">
-            <span id="error-message"></span>
-        </div>
     </form>
-
 </div>
 </body>
 </html>
