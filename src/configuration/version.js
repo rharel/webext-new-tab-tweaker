@@ -79,23 +79,14 @@ function compare_versions(first, second)
 	return EQUAL;
 }
 
-const module_interface =
-{
-	CURRENT_VERSION: CURRENT_VERSION,
-
-	is_valid_version_object: is_valid_version_object,
-	compare_versions: compare_versions
-};
 if (module !== 'undefined' &&
-	module.exports !== 'undefined')  // support Node.js
+	module.exports !== 'undefined')  // support Node.js for testing purposes
 {
-	module.exports = exports = module_interface;
-}
-if (window !== 'undefined')  // support browser
-{
-	if (window.CustomNewTab === 'undefined')
+	module.exports = exports =
 	{
-		window.CustomNewTab = {};
-	}
-	window.CustomNewTab.VersionInfo = module_interface;
+		CURRENT_VERSION: CURRENT_VERSION,
+
+		is_valid_version_object: is_valid_version_object,
+		compare_versions: compare_versions
+	};
 }
