@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "Custom New Tab",
-	"version": "0.1",
+	"version": "1.0.0",
 
 	"author": "Raoul Harel",
 	"description": "Customize the New Tab page.",
@@ -10,7 +10,8 @@
 	"homepage_url": "https://github.com/rharel/webext-custom-new-tab",
 
 	"icons":
-	{	"16": "icons/main_16.png",
+	{
+		"16": "icons/main_16.png",
 		"32": "icons/main_32.png",
 		"48": "icons/main_48.png",
 		"64": "icons/main_64.png",
@@ -18,8 +19,15 @@
 		"128": "icons/main_128.png"
 	},
 
-	"permissions": ["storage", "tabs"],
+	"permissions": ["storage"],
 
-	"options_ui": {	"page": "options/options.html", "open_in_tab": true },
-	"chrome_url_overrides": { "newtab": "custom-new-tab/custom-new-tab.html" }
+	"options_ui":
+	{
+		"page": "options_ui/page.html",
+		"open_in_tab": true
+	},
+	"chrome_url_overrides":
+	{
+		"newtab": "url_overrides/newtab/page.html"
+	}
 }
