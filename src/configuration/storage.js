@@ -12,7 +12,7 @@ const STORAGE_KEY =
  * @returns
  *      A promise which yields a configuration object when fulfilled.
  */
-function load_configuration()
+function load()
 {
 	return browser.storage.local
 		.get(STORAGE_KEY)
@@ -36,7 +36,7 @@ function load_configuration()
  * @returns
  *      A promise.
  */
-function save_configuration(cfg)
+function save(cfg)
 {
 	const item = {};
 	item[STORAGE_KEY] = cfg;
