@@ -1,29 +1,26 @@
 {
-	"name": "webext-custom-new-tab",
-	"version": "1.0.0",
-	"description": "Customize the New Tab page.",
-	"author": "Raoul Harel",
-	"license": "MIT",
-	"keywords":
-	[
-		"webextension",
-		"custom new tab",
-		"firefox",
-		"chrome"
-	],
-	"homepage": "https://github.com/rharel/webext-custom-new-tab",
-	"repository":
-	{
-		"type": "git",
-		"url": "git+https://github.com/rharel/webext-custom-new-tab.git"
-	},
-	"bugs":
-	{
-		"url": "https://github.com/rharel/webext-custom-new-tab/issues"
-	},
-
-	"devDependencies":
-	{
-		"gulp": "^3.9.1"
-	}
+  "name": "webext-custom-new-tab",
+  "version": "1.0.0",
+  "description": "Customize the New Tab page.",
+  "author": "Raoul Harel",
+  "license": "MIT",
+  "keywords": [
+    "webextension",
+    "custom new tab",
+    "firefox",
+    "chrome"
+  ],
+  "homepage": "https://github.com/rharel/webext-custom-new-tab",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rharel/webext-custom-new-tab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rharel/webext-custom-new-tab/issues"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^4.3.1",
+    "mocha": "^3.3.0"
+  }
 }
