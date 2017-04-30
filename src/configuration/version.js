@@ -78,7 +78,7 @@ function compare_versions(first, second)
 	}
 	return EQUAL;
 }
-
+//#begin-dev
 if (module !== 'undefined' &&
 	module.exports !== 'undefined')  // support Node.js for testing purposes
 {
@@ -90,3 +90,4 @@ if (module !== 'undefined' &&
 		compare_versions: compare_versions
 	};
 }
+//#end-dev
