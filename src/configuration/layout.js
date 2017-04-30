@@ -20,11 +20,11 @@ const ImageSource =
 	/**
 	 * The image is retrieved from a direct URL to the image file.
 	 */
-	Direct,
+	Direct: "direct",
 	/**
 	 * The image is a random pick from an Imgur public album.
 	 */
-	ImgurAlbum
+	ImgurAlbum: "imgur-album"
 };
 
 /**
@@ -35,7 +35,7 @@ const DEFAULT_REDIRECTION_CONFIGURATION =
 	/**
 	 * The configuration object's layout version.
 	 */
-	version: VERSION,
+	version: CURRENT_VERSION,
 	/**
 	 * The selected tab behavior.
 	 */
@@ -53,7 +53,7 @@ const DEFAULT_CUSTOM_PAGE_CONFIGURATION =
 	/**
 	 * The configuration object's layout version.
 	 */
-	version: VERSION,
+	version: CURRENT_VERSION,
 	/**
 	 * The selected tab behavior.
 	 */

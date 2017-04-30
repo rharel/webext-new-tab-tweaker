@@ -1,7 +1,7 @@
 /**
  * The configuration object's layout version.
  */
-const VERSION =
+const CURRENT_VERSION =
 {
 	major: 1,
 	minor: 0,
@@ -77,4 +77,25 @@ function compare_versions(first, second)
 		}
 	}
 	return EQUAL;
+}
+
+const module_interface =
+{
+	CURRENT_VERSION: CURRENT_VERSION,
+
+	is_valid_version_object: is_valid_version_object,
+	compare_versions: compare_versions
+};
+if (module !== 'undefined' &&
+	module.exports !== 'undefined')  // support Node.js
+{
+	module.exports = exports = module_interface;
+}
+if (window !== 'undefined')  // support browser
+{
+	if (window.CustomNewTab === 'undefined')
+	{
+		window.CustomNewTab = {};
+	}
+	window.CustomNewTab.VersionInfo = module_interface;
 }

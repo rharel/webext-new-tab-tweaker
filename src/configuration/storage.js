@@ -3,9 +3,9 @@
  */
 const STORAGE_KEY =
 	"configuration@v" +
-	VERSION.major + "." +
-	VERSION.minor + "." +
-	VERSION.patch;
+	CURRENT_VERSION.major + "." +
+	CURRENT_VERSION.minor + "." +
+	CURRENT_VERSION.patch;
 /**
  * Loads the configuration from local storage asynchronously.
  *
