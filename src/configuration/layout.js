@@ -18,6 +18,10 @@ const TabBehavior =
 const ImageSource =
 {
 	/**
+	 * There is no image.
+	 */
+	None: "none",
+	/**
 	 * The image is retrieved from a direct URL to the image file.
 	 */
 	Direct: "direct",
@@ -69,7 +73,7 @@ const DEFAULT_CUSTOM_PAGE_CONFIGURATION =
 	/**
 	 * The source of the background image.
 	 */
-	background_image_source: ImageSource.Direct,
+	background_image_source: ImageSource.None,
 	/**
 	 * The selected background image URL.
 	 */

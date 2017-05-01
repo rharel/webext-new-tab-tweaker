@@ -17,6 +17,7 @@ gulp.task('build configuration.js', () =>
 	([
 		'src/configuration/version.js',
 		'src/configuration/layout.js',
+		'src/configuration/validation.js',
 		'src/configuration/storage.js',
 		'src/configuration/index.js',
 	])

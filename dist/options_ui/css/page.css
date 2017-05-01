@@ -29,22 +29,44 @@ body > #content
     margin-top: 20px;
 }
 
-.tab-options
+.further-options-container
 {
     display: none;
+    max-width: 75%;
 }
-.tab-options > label
+.further-options-container + .further-options-container
 {
-    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.field-container > input, select
+{
+    float: right;
+}
+.field-container > input[type="text"], input[type="color"], select
+{
+    width: 150px;
+    max-width: 150px;
+}
+.field-container > input[type="number"]
+{
+    width: 50px;
+    max-width: 50px;
+}
+.field-container + .field-container
+{
+    margin-top: 10px;
 }
 
 #action-button-container
 {
     margin-top: 20px;
+    min-height: 30px;
 }
 #action-button-container > input
 {
     font-size: 14pt;
+    max-height: 30px;
 }
 #reset-button
 {
@@ -57,10 +79,13 @@ body > #content
 
 #error-container
 {
+    display: none;
     margin-top: 10px;
+    margin-bottom: 10px;
     padding: 10px;
+    background-color: #ffc0c9;
 }
 #error-message
 {
-    color: red;
+    color: #9f0000;
 }

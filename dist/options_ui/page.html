@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Options | Custom New Tab</title>
+
+    <link rel="stylesheet" href="css/page.css">
+
+    <script src="../common/js/configuration.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/page.js"></script>
+</head>
+<body>
+<div id="content">
+    <!-- Header -->
+    <header>
+        <h1>Custom New Tab Options</h1>
+    </header>
+    <!-- Main form -->
+    <form id="options-form">
+        <!-- Choice of tab behavior -->
+        <fieldset>
+            <legend>Tab behavior</legend>
+            <div>
+                <input id="tb-redirect-radio" type="radio" name="tab-behavior"
+                       value="redirect" checked>
+                <label for="tb-redirect-radio">
+                    Redirect to a specified URL
+                </label>
+            </div>
+            <div>
+                <input id="tb-custom-page-radio" type="radio" name="tab-behavior"
+                       value="custom-page" checked>
+                <label for="tb-custom-page-radio">
+                    Display a custom page
+                </label>
+            </div>
+        </fieldset>
+        <!-- Options for chosen tab behavior -->
+        <fieldset>
+            <legend>Further options</legend>
+
+            <div id="tb-redirect-options-panel" class="further-options-container">
+                <div class="field-container">
+                    <label for="tb-redirect-target-url">Redirect-target URL</label>
+                    <input id="tb-redirect-target-url" type="url" maxlength="500"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div id="tb-custom-page-options-panel" class="further-options-container">
+                <div class="field-container">
+                    <label for="tb-cp-bg-color">Background color</label>
+                    <input id="tb-cp-bg-color" type="color" value="#000088">
+                </div>
+                <div class="field-container">
+                    <label for="tb-cp-bg-color-fade-in-duration">
+                        Background color fade-in (seconds)
+                    </label>
+                    <input id="tb-cp-bg-color-fade-in-duration"
+                           type="number" min="0" max="5" step="0.1" value="0">
+                </div>
+                <div class="field-container">
+                    <label for="tb-cp-bg-image-source">Background image</label>
+                    <select id="tb-cp-bg-image-source" name="tb-cp-bg-type">
+                        <option value="none" selected>None</option>
+                        <option value="direct">Direct URL</option>
+                        <option value="imgur-album">Random choice from album: Imgur</option>
+                    </select>
+                </div>
+                <div id="tb-cp-bg-image-options-panel" class="field-container">
+                    <div class="field-container">
+                        <label for="tb-cp-bg-image-url">Image-source URL</label>
+                        <input id="tb-cp-bg-image-url" type="url" maxlength="500"
+                               autocomplete="off">
+                    </div>
+                    <div class="field-container">
+                        <label for="tb-cp-bg-image-fade-in-duration">
+                            Background image fade-in (seconds)
+                        </label>
+                        <input id="tb-cp-bg-image-fade-in-duration"
+                               type="number" min="0" max="5" step="0.1" value="0">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <!-- Submission and reset -->
+        <div id="action-button-container">
+            <input id="reset-button" type="reset" value="Reset">
+            <input id="submit-button" type="submit" value="Save">
+        </div>
+    </form>
+    <!-- Error reporting -->
+    <div id="error-container">
+        <span id="error-message">
+            [error messages are displayed here]
+        </span>
+    </div>
+</div>
+</body>
+</html>

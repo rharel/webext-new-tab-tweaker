@@ -17,7 +17,6 @@ body
     height: 100vh;
 
     opacity: 0;
-    transition: opacity 1s ease;
 }
 #background-image-container
 {
@@ -37,5 +36,4 @@ body
     background-position: center;
 
     opacity: 0;
-    transition: opacity 5s ease;
 }
