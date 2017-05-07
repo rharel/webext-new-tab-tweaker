@@ -94,7 +94,7 @@ const CURRENT =
 {
 	major: 1,
 	minor: 0,
-	patch: 0
+	patch: 2
 };
 /**
  * Determines whether the specified object represents a valid version

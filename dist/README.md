@@ -1,4 +1,4 @@
-# New Tab Tweaker 1.0.0
+# New Tab Tweaker 1.0.2
 
 This WebExtension allows the user to override the browser's behavior when opening a new tab.
 
