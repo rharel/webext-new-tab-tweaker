@@ -21,6 +21,8 @@
 	 */
 	const DOM =
 	{
+		version: null,
+
 		error:
 		{
 			panel: null,
@@ -228,6 +230,9 @@
     {
     	// Populating DOM properties //
 
+		DOM.version =
+			document.getElementById('version');
+
     	DOM.error.panel =
 			document.getElementById('errors');
     	DOM.error.message =
@@ -292,7 +297,8 @@
 		{
 			item.addEventListener('input', save_configuration);
 		});
-		
+
+		// Buttons
 		DOM.advanced
 			.restore_default_options
 			.addEventListener('click', () =>
@@ -300,6 +306,14 @@
 			reset_configuration();
 			save_configuration();
 		});
+
+		// Display version number //
+
+		DOM.version.textContent =
+			NTT.Configuration.Version
+			.as_string(NTT.Configuration.Version.CURRENT);
+
+		// Load & apply settings //
 
 		reset_configuration();
 		NTT.Configuration.Storage.load().then
