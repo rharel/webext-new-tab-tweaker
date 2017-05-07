@@ -4,7 +4,7 @@ const DEFAULT_CONFIGURATION = require('./layout').DEFAULT;
 /**
  * The key to the configuration object in local storage.
  */
-const KEY = `configuration@v${Version.as_string(Version.CURRENT)}`;
+const KEY = "configuration@new-tab-tweaker";
 /**
  * The extension's local storage
  */
