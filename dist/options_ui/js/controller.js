@@ -72,7 +72,7 @@
 		{
 			DOM.error.panel.style.display = "block";
 		}
-        DOM.error.message.innerHTML = message;
+        DOM.error.message.textContent = message;
     }
 	/**
 	 * Hides any previously displayed error message.
