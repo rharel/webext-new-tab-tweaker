@@ -1,7 +1,7 @@
 {
   "name": "webext-new-tab-tweaker",
   "version": "1.0.0",
-  "description": "Customize the New Tab page.",
+  "description": "Have new tabs redirect to a specified URL or display a custom page.",
   "author": "Raoul Harel",
   "license": "MIT",
   "keywords": [
