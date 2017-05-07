@@ -10,21 +10,38 @@
 	};
 
 	/**
-	 * Fades-in the specified panel over the specified duration.
+	 * Fades-in the background color over the specified duration.
 	 *
-	 * @param element
-	 * 		The element to animate.
+	 * @param color
+	 * 		The target color to fade to.
 	 * @param duration
-	 * 		Duration (in seconds) of the animation.
+	 *		Duration (in seconds) of the animation.
 	 */
-	function fade_in(element, duration)
+	function fade_in_background(color, duration)
 	{
 		if (duration > 0)
 		{
-			element.style.transition = `opacity ${duration}s ease`;
+			DOM.bg_color.style.transition = `background-color ${duration}s ease`;
 		}
-		element.style.visibility = "visible";
-		element.style.opacity = 1;
+		DOM.bg_color.style.backgroundColor = color;
+	}
+	/**
+	 * Fades-in the wallpaper image over the specified duration.
+	 *
+	 * @param image_url
+	 * 		Direct URL to the wallpaper image.
+	 * @param duration
+	 * 		Duration (in seconds) of the animation.
+	 */
+	function fade_in_wallpaper(image_url, duration)
+	{
+		if (duration > 0)
+		{
+			DOM.wallpaper.style.transition = `opacity ${duration}s ease`;
+		}
+		DOM.wallpaper.style.visibility = "visible";
+		DOM.wallpaper.style.backgroundImage = `url('${image_url}')`;
+		DOM.wallpaper.style.opacity = 1;
 	}
 
 	/**
@@ -55,15 +72,12 @@
 		else if (cfg.new_tab.behavior === TabBehavior.DisplayCustomPage)
 		{
 			const bg = cfg.new_tab.custom_page.background;
+			fade_in_background(bg.color, bg.animation_duration);
+
 			const wp = cfg.new_tab.custom_page.wallpaper;
-
-			DOM.bg_color.style.backgroundColor = bg.color;
-			fade_in(DOM.bg_color, bg.animation_duration);
-
 			if (wp.source === ImageURL.Direct)
 			{
-				DOM.wallpaper.style.backgroundImage = `url('${wp.url}')`;
-				fade_in(DOM.wallpaper, wp.animation_duration);
+				fade_in_wallpaper(wp.url, wp.animation_duration);
 			}
 		}
 	}

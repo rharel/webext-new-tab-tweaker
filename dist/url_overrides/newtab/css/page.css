@@ -5,9 +5,7 @@ body
 
 #bg-color
 {
-    z-index: 0;
-
-    visibility: hidden;
+    z-index: -10;
 
     position: absolute;
     left: 0;
@@ -15,8 +13,6 @@ body
 
     width: 100vw;
     height: 100vh;
-
-    opacity: 0;
 }
 #wallpaper
 {
