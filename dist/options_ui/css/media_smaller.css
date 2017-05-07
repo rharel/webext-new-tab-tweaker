@@ -1,0 +1,28 @@
+@media (max-width: 350px)
+{
+    #content
+    {
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-bottom: 48px;
+    }
+
+    #option-categories
+    {
+        text-align: center;
+    }
+    #option-categories > .category
+    {
+        font-size: 10pt;
+    }
+
+    #category-options fieldset > div
+    {
+        border-left: 4px solid darkorange;
+        padding-left: 8px;
+    }
+    #category-options fieldset > div + div
+    {
+        margin-top: 10px;
+    }
+}

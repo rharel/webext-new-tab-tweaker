@@ -1,7 +1,9 @@
+const Ordering = require('../common/ordering');
+
 /**
  * The configuration object's layout version.
  */
-const CURRENT_VERSION =
+const CURRENT =
 {
 	major: 1,
 	minor: 0,
@@ -16,7 +18,7 @@ const CURRENT_VERSION =
  * @returns
  *        True iff the object is a valid version object.
  */
-function is_valid_version_object(obj)
+function is_valid(obj)
 {
 	/**
 	 * Determines whether the specified object is a (non-strict) positive
@@ -46,17 +48,10 @@ function is_valid_version_object(obj)
  * @param second
  * 		The second version object.
  * @returns
- * 		A positive integer if first > second,
- *      a negative integer if first < second,
- *      and zero if first == second.
+ * 		An ordering descriptor with relation to 'first' and 'second'.
  */
-function compare_versions(first, second)
+function compare(first, second)
 {
-	const
-		GREATER = 1,
-		LESSER = -1,
-		EQUAL = 0;
-
 	const
 		parts_of_first = [first.major, first.minor, first.patch],
 		parts_of_second = [second.major, second.minor, second.patch];
@@ -69,25 +64,33 @@ function compare_versions(first, second)
 
 		if (first_part > second_part)
 		{
-			return GREATER;
+			return Ordering.Greater;
 		}
 		else if (first_part < second_part)
 		{
-			return LESSER;
+			return Ordering.Less;
 		}
 	}
-	return EQUAL;
+	return Ordering.Equal;
 }
-//#begin-dev
-if (module !== 'undefined' &&
-	module.exports !== 'undefined')  // support Node.js for testing purposes
+/**
+ * Represent the specified version as a string.
+ *
+ * @param version
+ * 		The version object to represent.
+ * @returns
+ *		A human-readable string representing the specified version.
+ */
+function as_string(version)
 {
-	module.exports = exports =
-	{
-		CURRENT_VERSION: CURRENT_VERSION,
-
-		is_valid_version_object: is_valid_version_object,
-		compare_versions: compare_versions
-	};
+	return `${version.major}.${version.minor}.${version.patch}`;
 }
-//#end-dev
+
+module.exports = exports =
+{
+	CURRENT: CURRENT,
+
+	is_valid: is_valid,
+	compare: compare,
+	as_string: as_string
+};

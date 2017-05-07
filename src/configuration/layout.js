@@ -1,3 +1,5 @@
+const Version = require('./version');
+
 /**
  * Enumerates possible tab behaviors.
  */
@@ -10,80 +12,63 @@ const TabBehavior =
 	/**
 	 * The tab displays a customized page.
 	 */
-	CustomPage: "custom-page"
+	DisplayCustomPage: "display-custom-page"
 };
 /**
  * Enumerates possible image sources.
  */
-const ImageSource =
+const ImageURL =
 {
 	/**
 	 * There is no image.
 	 */
 	None: "none",
 	/**
-	 * The image is retrieved from a direct URL to the image file.
+	 * The URL points directly to the image file.
 	 */
-	Direct: "direct",
-	/**
-	 * The image is a random pick from an Imgur public album.
-	 */
-	ImgurAlbum: "imgur-album"
+	Direct: "direct"
 };
 
 /**
- * The default configuration for the "redirect" tab behavior.
+ * The default configuration layout.
  */
-const DEFAULT_REDIRECTION_CONFIGURATION =
+const DEFAULT =
 {
-	/**
-	 * The configuration object's layout version.
-	 */
-	version: CURRENT_VERSION,
-	/**
-	 * The selected tab behavior.
-	 */
-	tab_behavior: TabBehavior.Redirect,
-	/**
-	 * The target URL to redirect to.
-	 */
-	target_url: ""
+	version: Version.CURRENT,
+
+	notification:
+	{
+		new_features: true
+	},
+	new_tab:
+	{
+		behavior: TabBehavior.DisplayCustomPage,
+
+		redirect:
+		{
+			url: ""
+		},
+		custom_page:
+		{
+			background:
+			{
+				color: "#ffffff",
+				animation_duration: 2
+			},
+			wallpaper:
+			{
+				source: ImageURL.None,
+				url: "",
+				animation_duration: 3
+			}
+		}
+	}
 };
-/**
- * The default configuration for the "custom page" tab behavior.
- */
-const DEFAULT_CUSTOM_PAGE_CONFIGURATION =
+
+module.exports = exports =
 {
-	/**
-	 * The configuration object's layout version.
-	 */
-	version: CURRENT_VERSION,
-	/**
-	 * The selected tab behavior.
-	 */
-	tab_behavior: TabBehavior.CustomPage,
-	/**
-	 * The selected background color.
-	 */
-	background_color: "#ffffff",
-	/**
-	 * The fade-in duration (in seconds) of the background color.
-	 */
-	background_color_fade_in_duration: 0,
-	/**
-	 * The source of the background image.
-	 */
-	background_image_source: ImageSource.None,
-	/**
-	 * The selected background image URL.
-	 */
-	background_image_url: "",
-	/**
-	 * The fade-in duration (in seconds) of the background image.
-	 */
-	background_image_fade_in_duration: 0
+	TabBehavior: TabBehavior,
+	ImageURL: ImageURL,
+
+	DEFAULT: DEFAULT
 };
-/**
- * The default configuration.
- */
-const DEFAULT_CONFIGURATION = DEFAULT_CUSTOM_PAGE_CONFIGURATION;

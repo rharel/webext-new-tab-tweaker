@@ -1,13 +1,13 @@
 {
 	"manifest_version": 2,
 
-	"name": "Custom New Tab",
+	"name": "New Tab Tweaker",
 	"version": "1.0.0",
 
 	"author": "Raoul Harel",
-	"description": "Customize the New Tab page.",
+	"description": "Have new tabs redirect to a specified URL or display a custom page.",
 
-	"homepage_url": "https://github.com/rharel/webext-custom-new-tab",
+	"homepage_url": "https://github.com/rharel/webext-new-tab-tweaker",
 
 	"icons":
 	{

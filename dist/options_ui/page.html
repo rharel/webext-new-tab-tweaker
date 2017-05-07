@@ -3,95 +3,171 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Options | Custom New Tab</title>
+    <title>Options | New Tab Tweaker</title>
 
-    <link rel="stylesheet" href="css/page.css">
+    <link rel="stylesheet" href="css/media_large.css">
+    <link rel="stylesheet" href="css/media_small.css">
+    <link rel="stylesheet" href="css/media_smaller.css">
 
-    <script src="../common/js/configuration.js"></script>
-    <script src="js/controls.js"></script>
-    <script src="js/page.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/configuration.js"></script>
+    <script src="js/category_tabs.js"></script>
+    <script src="js/tab_behavior_panels.js"></script>
+    <script src="js/controller.js"></script>
 </head>
 <body>
 <div id="content">
     <!-- Header -->
     <header>
-        <h1>Custom New Tab Options</h1>
+        <h1>New Tab Tweaker <span id="version">1.0.0</span></h1>
     </header>
-    <!-- Main form -->
-    <form id="options-form">
-        <!-- Choice of tab behavior -->
-        <fieldset>
-            <legend>Tab behavior</legend>
-            <div>
-                <input id="tb-redirect-radio" type="radio" name="tab-behavior"
-                       value="redirect" checked>
-                <label for="tb-redirect-radio">
-                    Redirect to a specified URL
-                </label>
-            </div>
-            <div>
-                <input id="tb-custom-page-radio" type="radio" name="tab-behavior"
-                       value="custom-page" checked>
-                <label for="tb-custom-page-radio">
-                    Display a custom page
-                </label>
-            </div>
-        </fieldset>
-        <!-- Options for chosen tab behavior -->
-        <fieldset>
-            <legend>Further options</legend>
-
-            <div id="tb-redirect-options-panel" class="further-options-container">
-                <div class="field-container">
-                    <label for="tb-redirect-target-url">Redirect-target URL</label>
-                    <input id="tb-redirect-target-url" type="url" maxlength="500"
-                           autocomplete="off">
-                </div>
-            </div>
-            <div id="tb-custom-page-options-panel" class="further-options-container">
-                <div class="field-container">
-                    <label for="tb-cp-bg-color">Background color</label>
-                    <input id="tb-cp-bg-color" type="color" value="#000088">
-                </div>
-                <div class="field-container">
-                    <label for="tb-cp-bg-color-fade-in-duration">
-                        Background color fade-in (seconds)
-                    </label>
-                    <input id="tb-cp-bg-color-fade-in-duration"
-                           type="number" min="0" max="5" step="0.1" value="0">
-                </div>
-                <div class="field-container">
-                    <label for="tb-cp-bg-image-source">Background image</label>
-                    <select id="tb-cp-bg-image-source" name="tb-cp-bg-type">
-                        <option value="none" selected>None</option>
-                        <option value="direct">Direct URL</option>
-                        <option value="imgur-album">Random choice from album: Imgur</option>
-                    </select>
-                </div>
-                <div id="tb-cp-bg-image-options-panel" class="field-container">
-                    <div class="field-container">
-                        <label for="tb-cp-bg-image-url">Image-source URL</label>
-                        <input id="tb-cp-bg-image-url" type="url" maxlength="500"
-                               autocomplete="off">
-                    </div>
-                    <div class="field-container">
-                        <label for="tb-cp-bg-image-fade-in-duration">
-                            Background image fade-in (seconds)
-                        </label>
-                        <input id="tb-cp-bg-image-fade-in-duration"
-                               type="number" min="0" max="5" step="0.1" value="0">
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <!-- Submission and reset -->
-        <div id="action-button-container">
-            <input id="reset-button" type="reset" value="Reset">
-            <input id="submit-button" type="submit" value="Save">
+    <!-- Option categories -->
+    <div id="option-categories">
+        <div class="category">
+            <input id="category-tab"
+                   type="radio" name="option-category"
+                   value="tab" checked>
+            <label for="category-tab">
+                New Tab
+            </label>
         </div>
-    </form>
+        <div class="category">
+            <input id="category-notification"
+                   type="radio" name="option-category"
+                   value="notification">
+            <label for="category-notification">
+                Notification
+            </label>
+        </div>
+        <div class="category">
+            <input id="category-advanced"
+                   type="radio" name="option-category"
+                   value="advanced">
+            <label for="category-advanced">
+                Advanced
+            </label>
+        </div>
+    </div>
+    <div id="category-options">
+        <div id="tab-category-options">
+            <fieldset id="tab-behaviors">
+                <legend>When opening a new tab</legend>
+                <div>
+                    <input id="behavior-custom-page"
+                           type="radio" name="tab-behavior"
+                           value="custom-page" checked
+                           title="Open a customized page">
+                    <label for="behavior-custom-page">
+                        Open a customized page
+                    </label>
+                </div>
+                <div>
+                    <input id="behavior-redirection"
+                           type="radio" name="tab-behavior"
+                           value="redirect"
+                           title="Redirect to a specified URL">
+                    <label for="behavior-redirection">
+                        Redirect to a specified URL
+                    </label>
+                </div>
+            </fieldset>
+            <div id="redirection-options">
+                <fieldset id="redirection">
+                    <legend>Redirection</legend>
+                    <div>
+                        <label for="redirection-target">
+                            Go to
+                        </label>
+                        <input id="redirection-target" type="url"
+                               pattern="(https?:\/\/)?.+"
+                               size="32" maxlength="512"
+                               placeholder="https://en.wikipedia.org/"
+                               autocomplete="off" title="Target URL">
+                    </div>
+                </fieldset>
+            </div>
+            <div id="custom-page-options">
+                <fieldset id="custom-page-style">
+                    <legend>Style the page</legend>
+                    <div>
+                        Use
+                        <input id="bg-color" type="color"
+                               size="28" value="#0000ff"
+                               title="Background color">
+                        as background color
+                    </div>
+                    <div>
+                        <input id="do-display-wallpaper" type="checkbox"
+                               title="Display a wallpaper image">
+                        <label for="do-display-wallpaper">
+                            Use
+                            <input id="wallpaper-url" type="url"
+                                   pattern="(https?:\/\/)?.+\.(gif|jpg|png|svg)"
+                                   size="32" maxlength="512"
+                                   placeholder="https://some.image/file.png"
+                                   title="Wallpaper image">
+                            as wallpaper image
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset id="custom-page-animation">
+                    <legend>Animate the page</legend>
+                    <div>
+                        <input id="do-animate-bg-color" type="checkbox"
+                               title="Animate the background color">
+                        <label for="do-animate-bg-color">
+                            Fade the background color in over
+                            <input id="bg-color-animation-duration"
+                                   type="number"
+                                   min="0" max="5" step="0.1" value="1"
+                                   title="Background color animation duration">
+                            seconds
+                        </label>
+                        <span class="note">(max 5)</span>
+                    </div>
+                    <div>
+                        <input id="do-animate-wallpaper" type="checkbox"
+                               title="Animate the wallpaper">
+                        <label for="do-animate-wallpaper">
+                            Fade the wallpaper image in over
+                            <input id="wallpaper-animation-duration"
+                                   type="number"
+                                   min="0" max="5" step="0.1" value="1"
+                                   title="Wallpaper animation duration">
+                            seconds
+                        </label>
+                        <span class="note">(max 5)</span>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div id="notification-category-options">
+            <fieldset id="update-notifications">
+                <legend>Updates</legend>
+                <div>
+                    <input id="do-notify-about-new-features"
+                           type="checkbox"
+                           title="Do notify me about new features"
+                           checked>
+                    <label for="do-notify-about-new-features">
+                        Do notify me about new features proceeding an update
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+        <div id="advanced-category-options">
+            <fieldset id="advanced-options">
+                <legend>Back to basics</legend>
+                <div>
+                    <a id="restore-default-options" class="link-button">
+                        Reset all options back to their default values
+                    </a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
     <!-- Error reporting -->
-    <div id="error-container">
+    <div id="errors">
         <span id="error-message">
             [error messages are displayed here]
         </span>

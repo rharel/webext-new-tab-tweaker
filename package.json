@@ -1,29 +1,32 @@
 {
-  "name": "webext-custom-new-tab",
+  "name": "webext-new-tab-tweaker",
   "version": "1.0.0",
   "description": "Customize the New Tab page.",
   "author": "Raoul Harel",
   "license": "MIT",
   "keywords": [
     "webextension",
+    "new tab tweaker",
     "custom new tab",
     "firefox",
     "chrome"
   ],
-  "homepage": "https://github.com/rharel/webext-custom-new-tab",
+  "homepage": "https://github.com/rharel/webext-new-tab-tweaker",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rharel/webext-custom-new-tab.git"
+    "url": "git+https://github.com/rharel/webext-new-tab-tweaker.git"
   },
   "bugs": {
-    "url": "https://github.com/rharel/webext-custom-new-tab/issues"
+    "url": "https://github.com/rharel/webext-new-tab-tweaker/issues"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "mocha --recursive"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-iife": "^0.3.0",
     "gulp-mocha": "^4.3.1",
-    "gulp-replace": "^0.5.4",
-    "mocha": "^3.3.0"
+    "mocha": "^3.3.0",
+    "webpack": "^2.5.0"
   }
 }

@@ -3,7 +3,7 @@ body
     overflow: hidden;
 }
 
-#background-color-container
+#bg-color
 {
     z-index: 0;
 
@@ -18,7 +18,7 @@ body
 
     opacity: 0;
 }
-#background-image-container
+#wallpaper
 {
     z-index: 1;
 

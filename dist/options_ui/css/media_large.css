@@ -1,0 +1,119 @@
+body
+{
+    font-family: "Segoe UI", sans-serif;
+    background-color: #FAFAFD;
+    color: #282828;
+}
+
+#content
+{
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+#option-categories
+{
+    min-height: 48px;
+}
+#option-categories > .category
+{
+    display: inline-block;
+    border: 1px solid dimgrey;
+    border-bottom: 2px solid darkorange;
+    max-width: 256px;
+    width: 30%;
+    height: 48px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 48px;
+    background-color: #e8e8e8;
+}
+#option-categories > .category:hover
+{
+    background-color: #dddddd;
+}
+#option-categories > .category:active
+{
+    background-color: #cacaca;
+}
+#option-categories > .category > input[type="radio"]
+{
+    display: none;
+}
+#option-categories > .category > input[type="radio"]:checked + label
+{
+    border-bottom: 8px solid darkorange;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+#option-categories > .category > label
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#category-options
+{
+    padding-top: 28px;
+}
+#category-options fieldset
+{
+    border: none;
+}
+#category-options fieldset > legend
+{
+    font-weight: bold;
+}
+#category-options fieldset > div
+{
+    padding-left: 28px;
+}
+
+#custom-page-style input[type="color"]
+{
+    height: 1.2em;
+}
+#custom-page-animation input[type="number"]
+{
+    width: 48px;
+}
+
+#errors
+{
+    display: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffc0c9;
+}
+#error-message
+{
+    color: #9f0000;
+}
+
+.link-button
+{
+    color: dodgerblue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.link-button:hover
+{
+    color: #61b3ff;
+}
+.link-button:active
+{
+    color: #1e77e1;
+}
+
+.note
+{
+    font-size: 10pt;
+    color: grey;
+    cursor: default;
+}
+.note:hover
+{
+    color: inherit;
+}

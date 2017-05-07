@@ -1,11 +1,18 @@
+const Version = require('./version');
+const DEFAULT_CONFIGURATION = require('./layout').DEFAULT;
+
 /**
  * The key to the configuration object in local storage.
  */
-const STORAGE_KEY =
-	"configuration@v" +
-	CURRENT_VERSION.major + "." +
-	CURRENT_VERSION.minor + "." +
-	CURRENT_VERSION.patch;
+const KEY = `configuration@v${Version.as_string(Version.CURRENT)}`;
+/**
+ * The extension's local storage
+ */
+const LocalStorage =
+	browser !== undefined ?
+		browser.storage.local :
+		null;
+
 /**
  * Loads the configuration from local storage asynchronously.
  *
@@ -14,19 +21,24 @@ const STORAGE_KEY =
  */
 function load()
 {
-	return browser.storage.local
-		.get(STORAGE_KEY)
-		.then(item =>
+	if (LocalStorage === null)
+	{
+		return DEFAULT_CONFIGURATION;
+	}
+	else
+	{
+		return LocalStorage.get(KEY).then(item =>
 		{
-			if (item.hasOwnProperty(STORAGE_KEY))
+			if (item.hasOwnProperty(KEY))
 			{
-				return item[STORAGE_KEY];
+				return item[KEY];
 			}
 			else
 			{
 				return DEFAULT_CONFIGURATION;
 			}
 		});
+	}
 }
 /**
  * Saves a configuration to local storage asynchronously.
@@ -38,8 +50,23 @@ function load()
  */
 function save(cfg)
 {
-	const item = {};
-	item[STORAGE_KEY] = cfg;
+	if (LocalStorage === null)
+	{
+		return Promise.reject();
+	}
+	else
+	{
+		const item = {};
+		item[KEY] = cfg;
 
-	return browser.storage.local.set(item);
+		return LocalStorage.set(item);
+	}
 }
+
+module.exports = exports =
+{
+	KEY: KEY,
+
+	load: load,
+	save: save
+};

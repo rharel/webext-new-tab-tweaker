@@ -1,0 +1,27 @@
+@media (max-width: 600px)
+{
+    #content
+    {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    #option-categories
+    {
+        text-align: center;
+    }
+    #option-categories > .category
+    {
+        max-width: none;
+    }
+
+    #category-options fieldset > div
+    {
+        border-left: 4px solid darkorange;
+        padding-left: 8px;
+    }
+    #category-options fieldset > div + div
+    {
+        margin-top: 10px;
+    }
+}
