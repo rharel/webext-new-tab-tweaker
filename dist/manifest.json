@@ -19,6 +19,14 @@
 		"128": "icons/main_128.png"
 	},
 
+	"applications":
+	{
+		"gecko":
+		{
+			"id": "new-tab-tweaker@rharel"
+		}
+	},
+
 	"permissions": ["storage"],
 
 	"options_ui":
