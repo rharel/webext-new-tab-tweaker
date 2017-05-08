@@ -8,8 +8,8 @@ describe('current version descriptor', function()
 	it ('should have the correct major, minor, and patch fields', function()
 	{
 		assert.strictEqual(1, Version.CURRENT.major);
-		assert.strictEqual(0, Version.CURRENT.minor);
-		assert.strictEqual(2, Version.CURRENT.patch);
+		assert.strictEqual(1, Version.CURRENT.minor);
+		assert.strictEqual(0, Version.CURRENT.patch);
 	});
 });
 describe('valid version-object determination', function()

@@ -93,8 +93,8 @@ const Ordering = __webpack_require__(0);
 const CURRENT =
 {
 	major: 1,
-	minor: 0,
-	patch: 2
+	minor: 1,
+	patch: 0
 };
 /**
  * Determines whether the specified object represents a valid version
