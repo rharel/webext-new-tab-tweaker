@@ -10,6 +10,10 @@ body
     margin-left: 32px;
     margin-right: 32px;
 }
+#content > header
+{
+	cursor: default;
+}
 
 #option-categories
 {
@@ -60,6 +64,7 @@ body
 #category-options fieldset
 {
     border: none;
+	cursor: default;
 }
 #category-options fieldset > legend
 {
