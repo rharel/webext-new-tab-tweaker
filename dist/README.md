@@ -8,6 +8,15 @@ Currently there are two main behavior types:
 
 The extension's settings persist in `storage.local`.
 
+## Changelog
+
+### 1.1.0
+ * Wallpaper image URL
+    * Increased maximum character-length to `2048`, up from `512`.
+    * No longer complains about values that do not end with one of: `.gif`, `.jpg`, `.png`, or `.svg`.
+### 1.0.2
+ * Initial experimental public release.
+
 ## Project structure
 
 ### `icons/`
