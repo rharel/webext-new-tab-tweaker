@@ -5,7 +5,7 @@ body
 
 #bg-color
 {
-    z-index: -10;
+    z-index: -1;
 
     position: absolute;
     left: 0;
