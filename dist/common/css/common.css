@@ -1,0 +1,18 @@
+body
+{
+    font-family: "Segoe UI", sans-serif;
+}
+
+.link-button
+{
+    color: dodgerblue;
+    cursor: pointer;
+}
+.link-button:hover
+{
+    color: #61b3ff;
+}
+.link-button:active
+{
+    color: #1e77e1;
+}
