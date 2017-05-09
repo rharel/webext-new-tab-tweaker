@@ -102,7 +102,7 @@
 		};
 	}
 	/**
-	 * Gets selected background image options.
+	 * Gets selected wallpaper options.
 	 */
 	function get_wallpaper_options()
 	{
@@ -122,7 +122,7 @@
 		};
 	}
 	/**
-	 * Gets selected extension options.
+	 * Gets selected notification options.
 	 */
 	function get_notification_options()
 	{
@@ -297,7 +297,6 @@
 		{
 			item.addEventListener('input', save_configuration);
 		});
-
 		// Buttons
 		DOM.advanced
 			.restore_default_options
