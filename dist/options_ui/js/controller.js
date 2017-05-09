@@ -106,7 +106,7 @@
 	 */
 	function get_wallpaper_options()
 	{
-		const ImageURL = NTT.Configuration.Layout.ImageURL;
+		const ImageURL = NTT.Configuration.ImageURL;
 		const wp = DOM.new_tab.custom_page.wallpaper;
 
 		return {
@@ -190,7 +190,7 @@
 		ui_bg.animation_duration.value = cfg_bg.animation_duration;
 
 		// new-tab custom page wallpaper
-		const ImageURL = NTT.Configuration.Layout.ImageURL;
+		const ImageURL = NTT.Configuration.ImageURL;
 		const ui_wp = DOM.new_tab.custom_page.wallpaper;
 		const cfg_wp = cfg.new_tab.custom_page.wallpaper;
 
@@ -206,7 +206,7 @@
      */
     function reset_configuration()
     {
-        set_configuration(NTT.Configuration.Layout.DEFAULT);
+        set_configuration(NTT.Configuration.DEFAULT);
         display_success();
     }
     /**

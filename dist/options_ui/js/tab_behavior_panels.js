@@ -42,7 +42,7 @@
 	 */
 	function get_selected_behavior()
 	{
-		const TabBehavior = NTT.Configuration.Layout.TabBehavior;
+		const TabBehavior = NTT.Configuration.TabBehavior;
 
 		if (DOM.redirection.radio.checked)
 		{
@@ -61,7 +61,7 @@
 	 */
 	function set_selected_behavior(value)
 	{
-		const TabBehavior = NTT.Configuration.Layout.TabBehavior;
+		const TabBehavior = NTT.Configuration.TabBehavior;
 
 		if (value === TabBehavior.Redirect)
 		{

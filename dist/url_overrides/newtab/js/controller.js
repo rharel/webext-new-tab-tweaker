@@ -54,8 +54,8 @@
 	 */
 	function apply_configuration(cfg)
 	{
-		const TabBehavior = NTT.Configuration.Layout.TabBehavior;
-		const ImageURL = NTT.Configuration.Layout.ImageURL;
+		const TabBehavior = NTT.Configuration.TabBehavior;
+		const ImageURL = NTT.Configuration.ImageURL;
 
 		if (cfg.new_tab.behavior === TabBehavior.Redirect &&
 		    cfg.new_tab.redirect.url !== window.location)
