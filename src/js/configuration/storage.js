@@ -1,17 +1,11 @@
-const Version = require('./version');
-const DEFAULT_CONFIGURATION = require('./layout').DEFAULT;
-
 /**
  * The key to the configuration object in local storage.
  */
 const KEY = "configuration@new-tab-tweaker";
 /**
- * The extension's local storage
+ * Just a shorthand.
  */
-const LocalStorage =
-	browser !== undefined ?
-		browser.storage.local :
-		null;
+const LocalStorage = browser.storage.local;
 
 /**
  * Loads the configuration from local storage asynchronously.
@@ -21,6 +15,8 @@ const LocalStorage =
  */
 function load()
 {
+	const DEFAULT_CONFIGURATION = NTT.Configuration.DEFAULT;
+
 	if (LocalStorage === null)
 	{
 		return DEFAULT_CONFIGURATION;
@@ -63,7 +59,7 @@ function save(cfg)
 	}
 }
 
-module.exports = exports =
+window.NTT.Configuration.Storage =
 {
 	KEY: KEY,
 

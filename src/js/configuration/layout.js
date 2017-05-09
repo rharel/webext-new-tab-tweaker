@@ -1,5 +1,3 @@
-const Version = require('./version');
-
 /**
  * Enumerates possible tab behaviors.
  */
@@ -34,7 +32,7 @@ const ImageURL =
  */
 const DEFAULT =
 {
-	version: Version.CURRENT,
+	version: NTT.Configuration.Version.CURRENT,
 
 	notification:
 	{
@@ -53,22 +51,18 @@ const DEFAULT =
 			background:
 			{
 				color: "#ffffff",
-				animation_duration: 2
+				animation_duration: 0.5
 			},
 			wallpaper:
 			{
 				source: ImageURL.None,
 				url: "",
-				animation_duration: 3
+				animation_duration: 1.5
 			}
 		}
 	}
 };
 
-module.exports = exports =
-{
-	TabBehavior: TabBehavior,
-	ImageURL: ImageURL,
-
-	DEFAULT: DEFAULT
-};
+window.NTT.Configuration.DEFAULT = DEFAULT;
+window.NTT.Configuration.TabBehavior = TabBehavior;
+window.NTT.Configuration.ImageURL = ImageURL;

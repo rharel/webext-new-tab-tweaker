@@ -1,5 +1,3 @@
-const Ordering = require('../common/ordering');
-
 /**
  * The configuration object's layout version.
  */
@@ -52,6 +50,7 @@ function is_valid(obj)
  */
 function compare(first, second)
 {
+	const Ordering = NTT.Ordering;
 	const
 		parts_of_first = [first.major, first.minor, first.patch],
 		parts_of_second = [second.major, second.minor, second.patch];
@@ -86,7 +85,7 @@ function as_string(version)
 	return `${version.major}.${version.minor}.${version.patch}`;
 }
 
-module.exports = exports =
+window.NTT.Configuration.Version =
 {
 	CURRENT: CURRENT,
 

@@ -1,7 +1,7 @@
 /**
  * Enumerates potential ordering between two items.
  */
-const Ordering =
+window.NTT.Ordering =
 {
 	Greater: 1,
 	Less: -1,
