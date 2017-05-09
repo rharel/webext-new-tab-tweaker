@@ -1,91 +1,5 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
-
-/**
- * Enumerates potential ordering between two items.
- */
-module.exports = exports =
-{
-	Greater: 1,
-	Less: -1,
-	Equal: 0
-};
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const Ordering = __webpack_require__(0);
+(function() {
+"use strict";
 
 /**
  * The configuration object's layout version.
@@ -94,7 +8,7 @@ const CURRENT =
 {
 	major: 1,
 	minor: 1,
-	patch: 0
+	patch: 1
 };
 /**
  * Determines whether the specified object represents a valid version
@@ -139,6 +53,7 @@ function is_valid(obj)
  */
 function compare(first, second)
 {
+	const Ordering = NTT.Ordering;
 	const
 		parts_of_first = [first.major, first.minor, first.patch],
 		parts_of_second = [second.major, second.minor, second.patch];
@@ -173,7 +88,7 @@ function as_string(version)
 	return `${version.major}.${version.minor}.${version.patch}`;
 }
 
-module.exports = exports =
+window.NTT.Configuration.Version =
 {
 	CURRENT: CURRENT,
 
@@ -181,13 +96,10 @@ module.exports = exports =
 	compare: compare,
 	as_string: as_string
 };
+}());
 
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const Version = __webpack_require__(1);
+(function() {
+"use strict";
 
 /**
  * Enumerates possible tab behaviors.
@@ -223,7 +135,7 @@ const ImageURL =
  */
 const DEFAULT =
 {
-	version: Version.CURRENT,
+	version: NTT.Configuration.Version.CURRENT,
 
 	notification:
 	{
@@ -242,45 +154,34 @@ const DEFAULT =
 			background:
 			{
 				color: "#ffffff",
-				animation_duration: 2
+				animation_duration: 0.5
 			},
 			wallpaper:
 			{
 				source: ImageURL.None,
 				url: "",
-				animation_duration: 3
+				animation_duration: 1.5
 			}
 		}
 	}
 };
 
-module.exports = exports =
-{
-	TabBehavior: TabBehavior,
-	ImageURL: ImageURL,
+window.NTT.Configuration.DEFAULT = DEFAULT;
+window.NTT.Configuration.TabBehavior = TabBehavior;
+window.NTT.Configuration.ImageURL = ImageURL;
+}());
 
-	DEFAULT: DEFAULT
-};
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const Version = __webpack_require__(1);
-const DEFAULT_CONFIGURATION = __webpack_require__(2).DEFAULT;
+(function() {
+"use strict";
 
 /**
  * The key to the configuration object in local storage.
  */
 const KEY = "configuration@new-tab-tweaker";
 /**
- * The extension's local storage
+ * Just a shorthand.
  */
-const LocalStorage =
-	browser !== undefined ?
-		browser.storage.local :
-		null;
+const LocalStorage = browser.storage.local;
 
 /**
  * Loads the configuration from local storage asynchronously.
@@ -290,6 +191,8 @@ const LocalStorage =
  */
 function load()
 {
+	const DEFAULT_CONFIGURATION = NTT.Configuration.DEFAULT;
+
 	if (LocalStorage === null)
 	{
 		return DEFAULT_CONFIGURATION;
@@ -332,32 +235,11 @@ function save(cfg)
 	}
 }
 
-module.exports = exports =
+window.NTT.Configuration.Storage =
 {
 	KEY: KEY,
 
 	load: load,
 	save: save
 };
-
-
-/***/ }),
-/* 4 */,
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = exports =
-{
-	Version: __webpack_require__(1),
-	Layout: __webpack_require__(2),
-	Storage: __webpack_require__(3)
-};
-if (window !== undefined)
-{
-	if (window.NTT === undefined) { window.NTT = {}; }
-	window.NTT.Configuration = exports;
-}
-
-
-/***/ })
-/******/ ]);
+}());
