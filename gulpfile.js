@@ -11,8 +11,13 @@ const iife_settings = {prependSemicolon: false};
 
 gulp.task('clean', () =>
 {
+	const sources =
+	[
+		'./dist/common/js',
+		'./bin'
+	];
 	return (
-		gulp.src('./dist/common/js', {read: false})
+		gulp.src(sources, {read: false})
 			.pipe(clean())
 	);
 });
@@ -67,8 +72,8 @@ gulp.task('test', ['build'], () =>
 gulp.task('build and pack', ['build'], () =>
 {
 	return (
-		gulp.src('./dist/*')
+		gulp.src('./dist/**/*')
 			.pipe(zip('new-tab-tweaker.zip'))
-			.pipe(gulp.dest('./'))
+			.pipe(gulp.dest('./bin/'))
 	);
 });
