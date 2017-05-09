@@ -25,6 +25,9 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.1.1
+ * Removed all debug logs to console.
+
 ### 1.1.0
  * Extension no longer marked as experimental.
  * Looser restrictions on wallpaper image URLs:

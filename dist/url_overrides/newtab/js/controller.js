@@ -68,7 +68,6 @@
 				url = `https://${url}`
 			}
 
-			console.log(`[new-tab-tweaker]: Redirecting to: ${url}`);
 			window.location.assign(url);
 		}
 		else if (cfg.new_tab.behavior === TabBehavior.DisplayCustomPage)
