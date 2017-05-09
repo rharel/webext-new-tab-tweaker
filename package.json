@@ -20,7 +20,10 @@
     "url": "https://github.com/rharel/webext-new-tab-tweaker/issues"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-iife": "^0.3.0",
     "mocha": "^3.3.0"
   }
 }
