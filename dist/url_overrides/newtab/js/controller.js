@@ -6,7 +6,9 @@
 	const DOM =
 	{
 		bg_color: null,
-		wallpaper: null
+		wallpaper: null,
+
+		customize_page_button: null
 	};
 
 	/**
@@ -93,6 +95,13 @@
 		NTT.Configuration.Storage
 			.load()
 			.then(apply_configuration);
+
+		DOM.customize_page_button =
+			document.getElementById('customize-page-button');
+		DOM.customize_page_button.addEventListener('click', () =>
+		{
+			browser.runtime.openOptionsPage();
+		});
 	}
 
 	document.addEventListener('DOMContentLoaded', initialize);

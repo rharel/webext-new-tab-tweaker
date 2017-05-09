@@ -33,3 +33,38 @@ body
 
     opacity: 0;
 }
+
+#options-referral
+{
+    z-index: 2;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100vw;
+    height: 20vh;
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease;
+
+    text-align: center;
+}
+#options-referral:hover
+{
+    opacity: 1;
+}
+
+#customize-page-button
+{
+    position: absolute;
+    bottom: 0;
+
+    margin-bottom: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 100%;
+
+    background-color: rgba(0, 0, 0, 0.75);
+}
