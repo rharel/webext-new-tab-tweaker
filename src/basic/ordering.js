@@ -1,7 +1,7 @@
 /**
  * Enumerates potential ordering between two items.
  */
-module.exports = exports =
+const Ordering =
 {
 	Greater: 1,
 	Less: -1,

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test/basic/ordering</title>
+
+    <link rel="stylesheet" href="../../node_modules/mocha/mocha.css">
+
+    <script src="../../node_modules/mocha/mocha.js"></script>
+    <script src="../../node_modules/chai/chai.js"></script>
+
+    <script src="../../src/basic/ordering.js"></script>
+</head>
+<body>
+<div id="mocha"></div>
+<script>
+	const assert = chai.assert;
+
+	mocha.setup('bdd');
+
+	describe('ordering enumeration', function()
+	{
+		it ('should have the correct relations between members', function()
+		{
+			assert.strictEqual(0, Ordering.Equal);
+			assert(Ordering.Greater > Ordering.Equal);
+			assert(Ordering.Less < Ordering.Equal);
+		});
+	});
+
+	mocha.run();
+</script>
+</body>
+</html>
