@@ -9,12 +9,14 @@
     <script src="../../node_modules/mocha/mocha.js"></script>
     <script src="../../node_modules/chai/chai.js"></script>
 
-    <script src="../../src/basic/ordering.js"></script>
+    <script src="../../dist/common/js/ntt.js"></script>
+    <script src="../../dist/common/js/basic.js"></script>
 </head>
 <body>
 <div id="mocha"></div>
 <script>
 	const assert = chai.assert;
+    const Ordering = NTT.Ordering;
 
 	mocha.setup('bdd');
 
