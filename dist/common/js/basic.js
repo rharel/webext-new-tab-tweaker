@@ -95,7 +95,7 @@ module.exports = exports =
 if (window !== undefined)
 {
 	if (window.NTT === undefined) { window.NTT = {}; }
-	window.NTT.Common = exports;
+	window.NTT.Basic = exports;
 }
 
 
