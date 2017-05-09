@@ -9,7 +9,7 @@ describe('current version descriptor', function()
 	{
 		assert.strictEqual(1, Version.CURRENT.major);
 		assert.strictEqual(1, Version.CURRENT.minor);
-		assert.strictEqual(0, Version.CURRENT.patch);
+		assert.strictEqual(1, Version.CURRENT.patch);
 	});
 });
 describe('valid version-object determination', function()
