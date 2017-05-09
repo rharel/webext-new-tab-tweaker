@@ -1,0 +1,7 @@
+Remember to update the following when bumping up a version:
+
+package.json
+test/configuration/version.test.html
+src/js/configuration/version.js
+dist/manifest.json
+dist/README.md
