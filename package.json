@@ -19,14 +19,8 @@
   "bugs": {
     "url": "https://github.com/rharel/webext-new-tab-tweaker/issues"
   },
-  "scripts": {
-    "build": "webpack",
-    "test": "mocha --recursive"
-  },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-mocha": "^4.3.1",
-    "mocha": "^3.3.0",
-    "webpack": "^2.5.0"
+    "mocha": "^3.3.0"
   }
 }
