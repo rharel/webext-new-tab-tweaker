@@ -5,7 +5,7 @@ const CURRENT =
 {
 	major: 1,
 	minor: 1,
-	patch: 1
+	patch: 2
 };
 /**
  * Determines whether the specified object represents a valid version

@@ -25,6 +25,9 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.1.2
+ * Dispose of webpack from build process.
+ 
 ### 1.1.1
  * Removed all debug logs to console.
 
