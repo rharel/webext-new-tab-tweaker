@@ -25,6 +25,9 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.1.3
+ * Fixes a bug where images that took longer to load disregard the fade-in animation duration setting.
+ 
 ### 1.1.2
  * Dispose of webpack from build process.
  
