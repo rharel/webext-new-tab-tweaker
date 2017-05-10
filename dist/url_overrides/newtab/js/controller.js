@@ -5,7 +5,7 @@
 	 */
 	const DOM =
 	{
-		bg_color: null,
+		background: null,
 		wallpaper: null,
 
 		customize_page_button: null
@@ -23,27 +23,65 @@
 	{
 		if (duration > 0)
 		{
-			DOM.bg_color.style.transition = `background-color ${duration}s ease`;
+			DOM.background.style.transition =
+				`background-color ${duration}s ease`;
+
+			// Allow the DOM some time to update before initiating animation,
+			// otherwise it may be skipped.
+			setTimeout(() =>
+			{
+				DOM.background.style.backgroundColor = color;
+			}, 50);
 		}
-		DOM.bg_color.style.backgroundColor = color;
+		else
+		{
+			DOM.background.style.backgroundColor = color;
+		}
+	}
+
+	/**
+	 * Loads the specified image and invokes a callback when done.
+	 *
+	 * @param url
+	 * 		The image URL to load.
+ 	 * @param on_load
+	 * 		The callback to invoke once the image is loaded.
+	 * 	    It is given the Image object as a parameter.
+	 */
+	function load_wallpaper(url, on_load)
+	{
+		DOM.wallpaper.addEventListener('load', () =>
+		{
+			if (DOM.wallpaper.src === url)
+			{
+				on_load(DOM.wallpaper);
+			}
+		});
+		DOM.wallpaper.src = url;
 	}
 	/**
 	 * Fades-in the wallpaper image over the specified duration.
 	 *
-	 * @param image_url
-	 * 		Direct URL to the wallpaper image.
 	 * @param duration
 	 * 		Duration (in seconds) of the animation.
 	 */
-	function fade_in_wallpaper(image_url, duration)
+	function fade_in_wallpaper(duration)
 	{
 		if (duration > 0)
 		{
 			DOM.wallpaper.style.transition = `opacity ${duration}s ease`;
+
+			// Allow the DOM some time to update before initiating animation,
+			// otherwise it may be skipped.
+			setTimeout(() =>
+			{
+				DOM.wallpaper.style.opacity = 1;
+			}, 50);
 		}
-		DOM.wallpaper.style.visibility = "visible";
-		DOM.wallpaper.style.backgroundImage = `url('${image_url}')`;
-		DOM.wallpaper.style.opacity = 1;
+		else
+		{
+			DOM.wallpaper.style.opacity = 1;
+		}
 	}
 
 	/**
@@ -76,9 +114,21 @@
 			fade_in_background(bg.color, bg.animation_duration);
 
 			const wp = cfg.new_tab.custom_page.wallpaper;
+			if (wp.source !== ImageURL.None)
+			{
+				DOM.wallpaper = new Image();
+				DOM.wallpaper.id = "wallpaper";
+				DOM.wallpaper.src = "/icons/main_128.png";
+				DOM.background.appendChild(DOM.wallpaper);
+			}
 			if (wp.source === ImageURL.Direct)
 			{
-				fade_in_wallpaper(wp.url, wp.animation_duration);
+				load_wallpaper
+				(
+					wp.url,
+					// On load:
+					() => fade_in_wallpaper(wp.animation_duration)
+				);
 			}
 		}
 	}
@@ -88,7 +138,7 @@
 	 */
 	function initialize()
 	{
-		DOM.bg_color = document.getElementById('bg-color');
+		DOM.background = document.getElementById('background');
 		DOM.wallpaper = document.getElementById('wallpaper');
 
 		NTT.Configuration.Storage
@@ -96,7 +146,7 @@
 			.then(apply_configuration);
 
 		DOM.customize_page_button =
-			document.getElementById('customize-page-button');
+			document.getElementById('customize-button');
 		DOM.customize_page_button.addEventListener('click', () =>
 		{
 			browser.runtime.openOptionsPage();
