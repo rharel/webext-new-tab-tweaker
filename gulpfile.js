@@ -61,7 +61,7 @@ gulp.task('build',
 	'build configuration.js'
 ], () => {});
 
-gulp.task('test', ['build'], () =>
+gulp.task('build and test', ['build'], () =>
 {
 	return (
 		gulp.src('./test/**/*.test.html')
