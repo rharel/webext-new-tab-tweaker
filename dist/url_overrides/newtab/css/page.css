@@ -3,7 +3,7 @@ body
     overflow: hidden;
 }
 
-#bg-color
+#background
 {
     z-index: -1;
 
@@ -13,55 +13,42 @@ body
 
     width: 100vw;
     height: 100vh;
+
+    text-align: center;
 }
 #wallpaper
 {
-    z-index: 1;
-
-    visibility: hidden;
-
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: auto;
+    height: 100%;
 
     opacity: 0;
 }
 
-#options-referral
+#options-ribbon
 {
-    z-index: 2;
+    z-index: 1;
 
     position: absolute;
     left: 0;
     bottom: 0;
 
-    width: 100vw;
-    height: 20vh;
+    width: 100%;
+    height: 20%;
 
     opacity: 0;
 
     transition: opacity 0.25s ease;
-
-    text-align: center;
 }
-#options-referral:hover
+#options-ribbon:hover
 {
     opacity: 1;
 }
 
-#customize-page-button
+#customize-button
 {
     position: absolute;
-    bottom: 0;
+    bottom: 32px;
 
-    margin-bottom: 32px;
     padding-top: 16px;
     padding-bottom: 16px;
     width: 100%;
