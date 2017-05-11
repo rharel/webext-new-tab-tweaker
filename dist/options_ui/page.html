@@ -15,6 +15,7 @@
     <script src="../common/js/configuration.js"></script>
     <script src="js/category_tabs.js"></script>
     <script src="js/tab_behavior_panels.js"></script>
+    <script src="js/wallpaper_url_list.js"></script>
     <script src="js/controller.js"></script>
 </head>
 <body>
@@ -102,14 +103,14 @@
                         <input id="do-display-wallpaper" type="checkbox"
                                title="Display a wallpaper image">
                         <label for="do-display-wallpaper">
-                            Use
-                            <input id="wallpaper-url" type="url"
-                                   pattern="(https?:\/\/)?.+"
-                                   size="32" maxlength="2048"
-                                   placeholder="https://some.image/file.png"
-                                   title="Wallpaper image">
-                            as wallpaper image
+                            Display a wallpaper image
                         </label>
+                        <div class="indented-twice">
+                            <div id="wallpaper-urls"></div>
+                            <a id="add-wallpaper-url" class="link-button">
+                                Add
+                            </a>
+                        </div>
                     </div>
                 </fieldset>
                 <fieldset id="custom-page-animation">

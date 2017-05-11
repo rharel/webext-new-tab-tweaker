@@ -120,9 +120,11 @@
 				DOM.wallpaper.src = "/icons/main_128.png";
 				DOM.background.appendChild(DOM.wallpaper);
 
+				const random_index =
+					NTT.RNG.integer_in_range(0, wp.urls.length - 1);
 				load_wallpaper
 				(
-					wp.urls[0],
+					wp.urls[random_index],
 					// On load:
 					() => fade_in_wallpaper(wp.animation_duration)
 				);

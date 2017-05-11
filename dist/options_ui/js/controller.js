@@ -46,7 +46,6 @@
 				wallpaper:
 				{
 					is_enabled: null,
-					url: null,
 					animation_enabled: null,
 					animation_duration: null
 				}
@@ -112,7 +111,7 @@
 
 			is_enabled: wp.is_enabled.checked,
 			urls:
-				[wp.url.value],
+				NTT.OptionsUI.new_tab.wallpaper.get_urls(),
 			animation_duration:
 				wp.animation_enabled.checked ?
 				parseFloat(wp.animation_duration.value) : 0
@@ -191,7 +190,7 @@
 		const cfg_wp = cfg.new_tab.custom_page.wallpaper;
 
 		ui_wp.is_enabled.checked = cfg_wp.is_enabled;
-		ui_wp.url.value = cfg_wp.urls.length > 0 ? cfg_wp.urls[0] : "";
+		NTT.OptionsUI.new_tab.wallpaper.set_urls(cfg_wp.urls);
 		ui_wp.animation_enabled.checked = cfg_wp.animation_duration > 0;
 		ui_wp.animation_duration.value = cfg_wp.animation_duration;
     }
@@ -246,8 +245,6 @@
 
 		DOM.new_tab.custom_page.wallpaper.is_enabled =
 			document.getElementById('do-display-wallpaper');
-		DOM.new_tab.custom_page.wallpaper.url =
-			document.getElementById('wallpaper-url');
 		DOM.new_tab.custom_page.wallpaper.animation_enabled =
 			document.getElementById('do-animate-wallpaper');
 		DOM.new_tab.custom_page.wallpaper.animation_duration =
@@ -262,37 +259,35 @@
 		// Hooking up events //
 
 		// Checkboxes
-		[
-			DOM.notification.new_features,
-			DOM.new_tab.custom_page.background.animation_enabled,
-			DOM.new_tab.custom_page.wallpaper.is_enabled,
-			DOM.new_tab.custom_page.wallpaper.animation_enabled
-		]
+		document
+			.querySelectorAll('fieldset input[type="checkbox"]')
 			.forEach(item =>
 		{
 			item.addEventListener('click', save_configuration);
 		});
 		// Radios
-		[
-			NTT.OptionsUI.new_tab.behavior_radio.redirect,
-			NTT.OptionsUI.new_tab.behavior_radio.custom_page
-		]
+		document
+			.querySelectorAll('fieldset input[type="radio"]')
 			.forEach(item =>
 		{
 			item.addEventListener('click', save_configuration)
 		});
 		// Value inputs
-		[
-		 	DOM.new_tab.redirect.url,
-			DOM.new_tab.custom_page.background.color,
-			DOM.new_tab.custom_page.background.animation_duration,
-			DOM.new_tab.custom_page.wallpaper.url,
-			DOM.new_tab.custom_page.wallpaper.animation_duration
-		]
+		document
+			.querySelectorAll('fieldset input[type="color"], input[type="url"]')
 			.forEach(item =>
 		{
 			item.addEventListener('input', save_configuration);
 		});
+		// Wallpaper url fields
+		NTT.OptionsUI.new_tab
+			.wallpaper.on_url_field_addition = field =>
+		{
+			field.addEventListener('input', save_configuration);
+		};
+		NTT.OptionsUI.new_tab
+			.wallpaper.on_url_field_removal = save_configuration;
+
 		// Buttons
 		DOM.advanced
 			.restore_default_options
