@@ -4,8 +4,8 @@
 const CURRENT =
 {
 	major: 1,
-	minor: 1,
-	patch: 3
+	minor: 2,
+	patch: 0
 };
 /**
  * Determines whether the specified object represents a valid version
