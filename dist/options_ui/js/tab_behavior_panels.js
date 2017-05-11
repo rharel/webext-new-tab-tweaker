@@ -105,10 +105,10 @@
 		window.NTT.OptionsUI.new_tab =
 		{
 			behavior_radio:
-				{
-					redirect: DOM.redirection.radio,
-					custom_page: DOM.custom_page.radio
-				},
+			{
+				redirect: DOM.redirection.radio,
+				custom_page: DOM.custom_page.radio
+			},
 
 			get_selected_behavior: get_selected_behavior,
 			set_selected_behavior: set_selected_behavior,
