@@ -4,6 +4,7 @@
 window.NTT =
 {
 	Ordering: null,
+	RNG: null,
 
 	Configuration:
 	{

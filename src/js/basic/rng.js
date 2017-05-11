@@ -1,20 +1,3 @@
-(function() {
-"use strict";
-
-/**
- * Enumerates potential ordering between two items.
- */
-window.NTT.Ordering =
-{
-	Greater: 1,
-	Less: -1,
-	Equal: 0
-};
-}());
-
-(function() {
-"use strict";
-
 /**
  * Generates a random integer on the interval [min, max].
  *
@@ -41,4 +24,3 @@ window.NTT.RNG =
 {
 	integer_in_range: integer_in_range
 };
-}());

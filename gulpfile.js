@@ -32,10 +32,15 @@ gulp.task('build ntt.js', ['clean'], () =>
 });
 gulp.task('build basic.js', ['clean'], () =>
 {
+	const sources =
+	[
+		'./src/js/basic/ordering.js',
+		'./src/js/basic/rng.js',
+	];
 	return (
-		gulp.src('./src/js/basic/ordering.js')
-			.pipe(rename('basic.js'))
+		gulp.src(sources)
 			.pipe(iife(iife_settings))
+			.pipe(concat('basic.js'))
 			.pipe(gulp.dest('./dist/common/js/'))
 	);
 });
