@@ -10,9 +10,10 @@ window.NTT =
 		DEFAULT: null,
 
 		TabBehavior: null,
-		ImageURL: null,
 
 		Version: null,
-		Storage: null
+		Storage: null,
+
+		update: null
 	}
 };

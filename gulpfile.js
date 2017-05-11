@@ -45,6 +45,7 @@ gulp.task('build configuration.js', ['clean'], () =>
 	[
 		'./src/js/configuration/version.js',
 		'./src/js/configuration/layout.js',
+		'./src/js/configuration/migration.js',
 		'./src/js/configuration/storage.js'
 	];
 	return (

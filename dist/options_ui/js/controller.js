@@ -106,16 +106,13 @@
 	 */
 	function get_wallpaper_options()
 	{
-		const ImageURL = NTT.Configuration.ImageURL;
 		const wp = DOM.new_tab.custom_page.wallpaper;
 
 		return {
 
-			source:
-				wp.is_enabled.checked ?
-				ImageURL.Direct : ImageURL.None,
-			url:
-				wp.url.value,
+			is_enabled: wp.is_enabled.checked,
+			urls:
+				[wp.url.value],
 			animation_duration:
 				wp.animation_enabled.checked ?
 				parseFloat(wp.animation_duration.value) : 0
@@ -190,12 +187,11 @@
 		ui_bg.animation_duration.value = cfg_bg.animation_duration;
 
 		// new-tab custom page wallpaper
-		const ImageURL = NTT.Configuration.ImageURL;
 		const ui_wp = DOM.new_tab.custom_page.wallpaper;
 		const cfg_wp = cfg.new_tab.custom_page.wallpaper;
 
-		ui_wp.is_enabled.checked = cfg_wp.source !== ImageURL.None;
-		ui_wp.url.value = cfg_wp.url;
+		ui_wp.is_enabled.checked = cfg_wp.is_enabled;
+		ui_wp.url.value = cfg_wp.urls.length > 0 ? cfg_wp.urls[0] : "";
 		ui_wp.animation_enabled.checked = cfg_wp.animation_duration > 0;
 		ui_wp.animation_duration.value = cfg_wp.animation_duration;
     }
