@@ -111,7 +111,9 @@
 
 			is_enabled: wp.is_enabled.checked,
 			urls:
-				NTT.OptionsUI.new_tab.wallpaper.get_urls(),
+				NTT.OptionsUI.new_tab
+					.wallpaper.get_urls()
+					.filter(item => item.trim().length > 0),
 			animation_duration:
 				wp.animation_enabled.checked ?
 				parseFloat(wp.animation_duration.value) : 0
