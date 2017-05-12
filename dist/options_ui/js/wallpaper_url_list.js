@@ -116,7 +116,7 @@
 		DOM.wallpaper_urls =
 			document.getElementById('wallpaper-urls');
 		DOM.add_url_button =
-			document.getElementById('add-wallpaper-url');
+			document.getElementById('add-wallpaper-url-button');
 
 		DOM.add_url_button.addEventListener('click', add_url_field);
 

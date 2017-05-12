@@ -25,7 +25,7 @@
 	/**
 	 * Displays the panel which corresponds to the selected radio button.
 	 */
-	function update()
+	function update_active_panel()
 	{
 		DOM.radio_buttons.forEach(item =>
 		{
@@ -47,16 +47,20 @@
 	 */
 	function initialize()
 	{
-		DOM.new_tab.radio = document.getElementById('category-tab');
-		DOM.new_tab.panel = document.getElementById('tab-category-options');
+		DOM.new_tab.radio =
+			document.getElementById('new-tab-option-category-button');
+		DOM.new_tab.panel =
+			document.getElementById('new-tab-options');
 
 		DOM.notification.radio =
-			document.getElementById('category-notification');
+			document.getElementById('notification-option-category-button');
 		DOM.notification.panel =
-			document.getElementById('notification-category-options');
+			document.getElementById('notification-options');
 
-		DOM.advanced.radio = document.getElementById('category-advanced');
-		DOM.advanced.panel = document.getElementById('advanced-category-options');
+		DOM.advanced.radio =
+			document.getElementById('advanced-option-category-button');
+		DOM.advanced.panel =
+			document.getElementById('advanced-options');
 
 		DOM.radio_buttons =
 		[
@@ -69,10 +73,12 @@
 		DOM.panel_of[DOM.notification.radio.id] = DOM.notification.panel;
 		DOM.panel_of[DOM.advanced.radio.id] = DOM.advanced.panel;
 
-		DOM.radio_buttons
-			.forEach(item => item.addEventListener('click', update));
+		DOM.radio_buttons.forEach(item =>
+		{
+			item.addEventListener('click', update_active_panel);
+		});
 
-		update();
+		update_active_panel();
 	}
 
 	document.addEventListener('DOMContentLoaded', initialize);

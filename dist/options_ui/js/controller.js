@@ -236,7 +236,7 @@
 			document.getElementById('error-message');
 
 		DOM.new_tab.redirect.url =
-			document.getElementById('redirection-target');
+			document.getElementById('redirection-url');
 
 		DOM.new_tab.custom_page.background.color =
 			document.getElementById('bg-color');
@@ -256,7 +256,7 @@
 			document.getElementById('do-notify-about-new-features');
 
 		DOM.advanced.restore_default_options =
-			document.getElementById('restore-default-options');
+			document.getElementById('restore-default-options-button');
 
 		// Hooking up events //
 

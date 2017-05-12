@@ -80,11 +80,15 @@
 	 */
 	function initialize()
 	{
-		DOM.redirection.radio = document.getElementById('behavior-redirection');
-		DOM.redirection.panel = document.getElementById('redirection-options');
+		DOM.redirection.radio =
+			document.getElementById('redirect-button');
+		DOM.redirection.panel =
+			document.getElementById('redirection-options');
 
-		DOM.custom_page.radio = document.getElementById('behavior-custom-page');
-		DOM.custom_page.panel = document.getElementById('custom-page-options');
+		DOM.custom_page.radio =
+			document.getElementById('display-custom-page-button');
+		DOM.custom_page.panel =
+			document.getElementById('custom-page-options');
 
 		DOM.radio_buttons =
 		[

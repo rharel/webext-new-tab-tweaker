@@ -27,68 +27,66 @@
     <!-- Option categories -->
     <div id="option-categories">
         <div class="category">
-            <input id="category-tab"
-                   type="radio" name="option-category"
-                   value="tab" checked>
-            <label for="category-tab">
+            <input id="new-tab-option-category-button"
+                   type="radio" name="option-category-buttons"
+                   value="new-tab" checked>
+            <label for="new-tab-option-category-button">
                 New Tab
             </label>
         </div>
         <div class="category">
-            <input id="category-notification"
-                   type="radio" name="option-category"
+            <input id="notification-option-category-button"
+                   type="radio" name="option-category-buttons"
                    value="notification">
-            <label for="category-notification">
+            <label for="notification-option-category-button">
                 Notification
             </label>
         </div>
         <div class="category">
-            <input id="category-advanced"
-                   type="radio" name="option-category"
+            <input id="advanced-option-category-button"
+                   type="radio" name="option-category-buttons"
                    value="advanced">
-            <label for="category-advanced">
+            <label for="advanced-option-category-button">
                 Advanced
             </label>
         </div>
     </div>
-    <div id="category-options">
-        <div id="tab-category-options">
-            <fieldset id="tab-behaviors">
+    <div id="options">
+        <div id="new-tab-options">
+            <fieldset id="tab-behavior-selection">
                 <legend>When opening a new tab</legend>
                 <div>
-                    <input id="behavior-custom-page"
-                           type="radio" name="tab-behavior"
-                           value="custom-page" checked
+                    <input id="display-custom-page-button"
+                           type="radio" name="tab-behaviors"
+                           value="display-custom-page" checked
                            title="Display a custom page">
-                    <label for="behavior-custom-page">
+                    <label for="display-custom-page-button">
                         Display a custom page
                     </label>
                 </div>
                 <div>
-                    <input id="behavior-redirection"
-                           type="radio" name="tab-behavior"
+                    <input id="redirect-button"
+                           type="radio" name="tab-behaviors"
                            value="redirect"
                            title="Redirect to a specified URL">
-                    <label for="behavior-redirection">
+                    <label for="redirect-button">
                         Redirect to a specified URL
                     </label>
                 </div>
             </fieldset>
-            <div id="redirection-options">
-                <fieldset id="redirection">
-                    <legend>Redirection</legend>
-                    <div>
-                        <label for="redirection-target">
-                            Go to
-                        </label>
-                        <input id="redirection-target" type="url"
-                               pattern="(https?:\/\/)?.+"
-                               size="32" maxlength="512"
-                               placeholder="https://en.wikipedia.org/"
-                               autocomplete="off" title="Target URL">
-                    </div>
-                </fieldset>
-            </div>
+            <fieldset id="redirection-options">
+                <legend>Redirection</legend>
+                <div>
+                    <label for="redirection-url">
+                        Go to
+                    </label>
+                    <input id="redirection-url" type="url"
+                           pattern="(https?:\/\/)?.+"
+                           size="32" maxlength="512"
+                           placeholder="https://en.wikipedia.org/"
+                           autocomplete="off" title="Target URL">
+                </div>
+            </fieldset>
             <div id="custom-page-options">
                 <fieldset id="custom-page-style">
                     <legend>Style the page</legend>
@@ -111,9 +109,9 @@
                                 display one chosen at random)
                             </span>
                             <div id="wallpaper-urls"></div>
-                            <a id="add-wallpaper-url" class="link-button"
+                            <a id="add-wallpaper-url-button" class="link-button"
                                title="Add another wallpaper URL">
-                                Add
+                                Add another
                             </a>
                             <br>
                             <a id="import-wallpaper-urls" class="link-button"
@@ -154,8 +152,8 @@
                 </fieldset>
             </div>
         </div>
-        <div id="notification-category-options">
-            <fieldset id="update-notifications">
+        <div id="notification-options">
+            <fieldset id="update-notifications-options">
                 <legend>Updates</legend>
                 <div>
                     <input id="do-notify-about-new-features"
@@ -168,16 +166,14 @@
                 </div>
             </fieldset>
         </div>
-        <div id="advanced-category-options">
-            <fieldset id="advanced-options">
-                <legend>Back to basics</legend>
-                <div>
-                    <a id="restore-default-options" class="link-button">
-                        Reset all options back to their default values
-                    </a>
-                </div>
-            </fieldset>
-        </div>
+        <fieldset id="advanced-options">
+            <legend>Back to basics</legend>
+            <div>
+                <a id="restore-default-options-button" class="link-button">
+                    Reset all options back to their default values
+                </a>
+            </div>
+        </fieldset>
     </div>
     <!-- Error reporting -->
     <div id="errors">
