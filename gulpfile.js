@@ -22,14 +22,6 @@ gulp.task('clean', () =>
 	);
 });
 
-gulp.task('build ntt.js', ['clean'], () =>
-{
-	return (
-		gulp.src('./src/js/ntt.js')
-			.pipe(iife(iife_settings))
-			.pipe(gulp.dest('./dist/common/js/'))
-	)
-});
 gulp.task('build basic.js', ['clean'], () =>
 {
 	const sources =
@@ -60,13 +52,31 @@ gulp.task('build configuration.js', ['clean'], () =>
 			.pipe(gulp.dest('./dist/common/js/'))
 	);
 });
-gulp.task('build',
+gulp.task('build common/js/',
 [
-	'build ntt.js',
 	'build basic.js',
 	'build configuration.js'
-], () => {});
+], () =>
+{
+	const sources =
+	[
+		'./src/js/ntt.js',
+		'./src/js/api/imgur.js'
+	];
+	return (
+		gulp.src(sources)
+			.pipe(iife(iife_settings))
+			.pipe(gulp.dest('./dist/common/js/'))
+	)
+});
 
+gulp.task('build',
+[
+	'build common/js/'
+], () =>
+{
+
+});
 gulp.task('build and test', ['build'], () =>
 {
 	return (
@@ -74,7 +84,6 @@ gulp.task('build and test', ['build'], () =>
 			.pipe(open())
 	);
 });
-
 gulp.task('build and pack', ['build'], () =>
 {
 	return (

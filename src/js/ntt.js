@@ -16,5 +16,7 @@ window.NTT =
 		Storage: null,
 
 		update: null
-	}
+	},
+
+	Imgur: null
 };
