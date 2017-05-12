@@ -27,7 +27,11 @@
 		}
 	},
 
-	"permissions": ["storage"],
+	"permissions":
+	[
+		"storage",
+		"https://api.imgur.com/3/album/*"
+	],
 
 	"options_ui":
 	{
