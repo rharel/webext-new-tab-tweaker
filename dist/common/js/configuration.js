@@ -129,11 +129,12 @@ const TabBehavior =
 	 */
 	DisplayCustomPage: "display-custom-page"
 };
+window.NTT.Configuration.TabBehavior = TabBehavior;
 
 /**
  * The default configuration layout.
  */
-const DEFAULT =
+window.NTT.Configuration.DEFAULT =
 {
 	version: NTT.Configuration.Version.CURRENT,
 
@@ -165,9 +166,6 @@ const DEFAULT =
 		}
 	}
 };
-
-window.NTT.Configuration.DEFAULT = DEFAULT;
-window.NTT.Configuration.TabBehavior = TabBehavior;
 }());
 
 (function() {
