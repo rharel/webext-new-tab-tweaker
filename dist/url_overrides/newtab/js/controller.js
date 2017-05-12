@@ -10,6 +10,13 @@
 
 		customize_page_button: null
 	};
+	/**
+	 * The storage key associated with the URL of the last picked wallpaper.
+	 *
+	 * It is used to avoid displaying the same wallpaper consecutively,
+	 * when the wallpaper URL list contains more than one item.
+	 */
+	const LAST_WALLPAPER_URL_STORAGE_KEY = "last-wallpaper-url";
 
 	/**
 	 * Fades-in the background color over the specified duration.
@@ -120,14 +127,25 @@
 				DOM.wallpaper.src = "/icons/main_128.png";
 				DOM.background.appendChild(DOM.wallpaper);
 
-				const random_index =
+				const last_url =
+					localStorage.getItem(LAST_WALLPAPER_URL_STORAGE_KEY);
+				if (last_url !== null)
+				{
+					const index = wp.urls.indexOf(last_url);
+					wp.urls.splice(index, 1);
+				}
+				const url_index =
 					NTT.RNG.integer_in_range(0, wp.urls.length - 1);
+				const url =
+					wp.urls[url_index];
+
 				load_wallpaper
 				(
-					wp.urls[random_index],
+					url,
 					// On load:
 					() => fade_in_wallpaper(wp.animation_duration)
 				);
+				localStorage.setItem(LAST_WALLPAPER_URL_STORAGE_KEY, url);
 			}
 		}
 	}
