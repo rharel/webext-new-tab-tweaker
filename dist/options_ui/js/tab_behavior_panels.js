@@ -98,11 +98,7 @@
 		DOM.radio_buttons
 			.forEach(item => item.addEventListener('click', update));
 
-		if (window.NTT.OptionsUI === undefined)
-		{
-			window.NTT.OptionsUI = {};
-		}
-		window.NTT.OptionsUI.new_tab =
+		window.NTT.OptionsUI.NewTab =
 		{
 			behavior_radio:
 			{

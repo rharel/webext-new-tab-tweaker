@@ -61,7 +61,7 @@
 		DOM.wallpaper_urls.appendChild(field);
 		url_input.focus();
 
-		NTT.OptionsUI.new_tab.wallpaper.on_url_field_addition(field);
+		NTT.OptionsUI.NewTab.wallpaper.on_url_field_addition(field);
 
 		return field;
 	}
@@ -75,7 +75,7 @@
 	{
 		DOM.wallpaper_urls.removeChild(field);
 
-		NTT.OptionsUI.new_tab.wallpaper.on_url_field_removal(field);
+		NTT.OptionsUI.NewTab.wallpaper.on_url_field_removal(field);
 	}
 
 	/**
@@ -120,7 +120,7 @@
 
 		DOM.add_url_button.addEventListener('click', add_url_field);
 
-		window.NTT.OptionsUI.new_tab.wallpaper =
+		window.NTT.OptionsUI.NewTab.wallpaper =
 		{
 			get_urls: get_urls,
 			set_urls: set_urls,
