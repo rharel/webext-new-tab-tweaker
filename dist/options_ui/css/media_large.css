@@ -101,7 +101,8 @@ body
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     padding-top: 10px;
-    max-width: 330px;
+    min-width: 150px;
+    max-width: 350px;
     max-height: 85px;
 
     overflow-x: hidden;
