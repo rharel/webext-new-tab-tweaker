@@ -91,6 +91,17 @@ body
 {
     margin-top: 8px;
     margin-bottom: 4px;
+    border-top: 2px solid darkorange;
+    border-bottom: 2px solid darkorange;
+    padding-top: 10px;
+    max-width: 330px;
+    max-height: 85px;
+
+    overflow-y: auto;
+}
+#wallpaper-urls > :last-child
+{
+    margin-bottom: 10px;
 }
 #wallpaper-urls > div > a.link-button
 {
