@@ -41,7 +41,6 @@
 		const url_input = document.createElement('input');
 		url_input.type = "url";
 		url_input.pattern = "(https?:\/\/)?.+";
-		url_input.size = "32";
 		url_input.maxLength = "2048";
 		url_input.placeholder = "https://some.image/file.png";
 		url_input.title = "Wallpaper image URL";

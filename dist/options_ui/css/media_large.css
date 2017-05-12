@@ -8,6 +8,7 @@ body
 {
     margin-left: 32px;
     margin-right: 32px;
+    margin-bottom: 16px;
 }
 #content > header
 {
@@ -32,6 +33,7 @@ body
     vertical-align: middle;
     line-height: 48px;
 
+    font-size: large;
     background-color: #e8e8e8;
 }
 #option-categories > .category:hover
@@ -75,7 +77,12 @@ body
 }
 #category-options fieldset > div
 {
+    border-left: 4px solid darkorange;
     padding-left: 28px;
+}
+#category-options fieldset > div + div
+{
+    margin-top: 4px;
 }
 
 #custom-page-style input[type="color"]
@@ -91,17 +98,26 @@ body
 {
     margin-top: 8px;
     margin-bottom: 4px;
-    border-top: 2px solid darkorange;
-    border-bottom: 2px solid darkorange;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
     padding-top: 10px;
     max-width: 330px;
     max-height: 85px;
 
+    overflow-x: hidden;
     overflow-y: auto;
 }
 #wallpaper-urls > :last-child
 {
     margin-bottom: 10px;
+}
+#wallpaper-urls > div
+{
+    white-space: nowrap;
+}
+#wallpaper-urls > div > input[type="url"]
+{
+    width: 256px;
 }
 #wallpaper-urls > div > a.link-button
 {
@@ -134,7 +150,7 @@ body
 
 .note
 {
-    font-size: 10pt;
+    font-size: small;
     color: grey;
     cursor: default;
 }
