@@ -60,6 +60,7 @@
 		}
 
 		DOM.wallpaper_urls.appendChild(field);
+		url_input.focus();
 
 		NTT.OptionsUI.new_tab.wallpaper.on_url_field_addition(field);
 
