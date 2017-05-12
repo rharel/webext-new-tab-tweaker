@@ -93,7 +93,6 @@
 	function apply_configuration(cfg)
 	{
 		const TabBehavior = NTT.Configuration.TabBehavior;
-		const ImageURL = NTT.Configuration.ImageURL;
 
 		if (cfg.new_tab.behavior === TabBehavior.Redirect &&
 		    cfg.new_tab.redirect.url !== window.location)
@@ -114,18 +113,18 @@
 			fade_in_background(bg.color, bg.animation_duration);
 
 			const wp = cfg.new_tab.custom_page.wallpaper;
-			if (wp.source !== ImageURL.None)
+			if (wp.is_enabled)
 			{
 				DOM.wallpaper = new Image();
 				DOM.wallpaper.id = "wallpaper";
 				DOM.wallpaper.src = "/icons/main_128.png";
 				DOM.background.appendChild(DOM.wallpaper);
-			}
-			if (wp.source === ImageURL.Direct)
-			{
+
+				const random_index =
+					NTT.RNG.integer_in_range(0, wp.urls.length - 1);
 				load_wallpaper
 				(
-					wp.url,
+					wp.urls[random_index],
 					// On load:
 					() => fade_in_wallpaper(wp.animation_duration)
 				);

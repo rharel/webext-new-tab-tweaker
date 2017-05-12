@@ -15,26 +15,30 @@ const LocalStorage = browser.storage.local;
  */
 function load()
 {
+	const Ordering = NTT.Ordering;
+	const Version = NTT.Configuration.Version;
 	const DEFAULT_CONFIGURATION = NTT.Configuration.DEFAULT;
 
-	if (LocalStorage === null)
+	return LocalStorage.get(KEY).then(item =>
 	{
-		return DEFAULT_CONFIGURATION;
-	}
-	else
-	{
-		return LocalStorage.get(KEY).then(item =>
+		if (item.hasOwnProperty(KEY))
 		{
-			if (item.hasOwnProperty(KEY))
+			let cfg = item[KEY];
+
+			if (Version.compare(cfg.version, Version.CURRENT) ===
+				Ordering.Less)
 			{
-				return item[KEY];
+				cfg = NTT.Configuration.update(cfg);
+				save(cfg);
 			}
-			else
-			{
-				return DEFAULT_CONFIGURATION;
-			}
-		});
-	}
+
+			return cfg;
+		}
+		else
+		{
+			return DEFAULT_CONFIGURATION;
+		}
+	});
 }
 /**
  * Saves a configuration to local storage asynchronously.
@@ -46,17 +50,10 @@ function load()
  */
 function save(cfg)
 {
-	if (LocalStorage === null)
-	{
-		return Promise.reject();
-	}
-	else
-	{
-		const item = {};
-		item[KEY] = cfg;
+	const item = {};
+	item[KEY] = cfg;
 
-		return LocalStorage.set(item);
-	}
+	return LocalStorage.set(item);
 }
 
 window.NTT.Configuration.Storage =

@@ -22,14 +22,26 @@
 
 	mocha.setup('bdd');
 
+	describe('version object creation', function()
+    {
+    	const create = Version.create;
 
+        it ('should have correct major, minor, and patch fields', function()
+        {
+            const v1_2_3 = create(1, 2, 3);
+
+			assert.strictEqual(1, v1_2_3.major);
+			assert.strictEqual(2, v1_2_3.minor);
+			assert.strictEqual(3, v1_2_3.patch);
+        });
+    });
 	describe('current version descriptor', function()
 	{
 		it ('should have the correct major, minor, and patch fields', function()
 		{
 			assert.strictEqual(1, Version.CURRENT.major);
-			assert.strictEqual(1, Version.CURRENT.minor);
-			assert.strictEqual(3, Version.CURRENT.patch);
+			assert.strictEqual(2, Version.CURRENT.minor);
+			assert.strictEqual(0, Version.CURRENT.patch);
 		});
 	});
 	describe('valid version-object determination', function()

@@ -13,7 +13,7 @@
     }
     #option-categories > .category
     {
-        font-size: 10pt;
+        font-size: small;
     }
 
     #category-options fieldset > div
@@ -24,5 +24,11 @@
     #category-options fieldset > div + div
     {
         margin-top: 10px;
+    }
+
+    #wallpaper-urls > div > input[type="url"]
+    {
+        width: 100px;
+        font-size: x-small;
     }
 }

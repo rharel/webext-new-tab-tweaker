@@ -5,14 +5,14 @@ body
 
 .link-button
 {
-    color: dodgerblue;
+    color: royalblue;
     cursor: pointer;
 }
 .link-button:hover
 {
-    color: #61b3ff;
+    color: dodgerblue;
 }
 .link-button:active
 {
-    color: #1e77e1;
+    color: darkblue;
 }

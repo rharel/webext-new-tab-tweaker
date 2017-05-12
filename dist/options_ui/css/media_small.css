@@ -4,6 +4,7 @@
     {
         margin-left: 8px;
         margin-right: 8px;
+        margin-bottom: 32px;
     }
 
     #option-categories
@@ -13,15 +14,21 @@
     #option-categories > .category
     {
         max-width: none;
+        font-size: medium;
     }
 
     #category-options fieldset > div
     {
-        border-left: 4px solid darkorange;
         padding-left: 8px;
     }
     #category-options fieldset > div + div
     {
         margin-top: 10px;
+    }
+
+    #wallpaper-urls > div > input[type="url"]
+    {
+        width: 128px;
+        font-size: small;
     }
 }

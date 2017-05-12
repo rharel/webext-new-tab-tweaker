@@ -4,15 +4,17 @@
 window.NTT =
 {
 	Ordering: null,
+	RNG: null,
 
 	Configuration:
 	{
 		DEFAULT: null,
 
 		TabBehavior: null,
-		ImageURL: null,
 
 		Version: null,
-		Storage: null
+		Storage: null,
+
+		update: null
 	}
 };

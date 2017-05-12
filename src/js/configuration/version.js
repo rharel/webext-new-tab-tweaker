@@ -1,12 +1,25 @@
 /**
  * The configuration object's layout version.
  */
-const CURRENT =
+const CURRENT = create(1, 2, 0);
+/**
+ * Creates a new version object.
+ *
+ * @param major
+ * 		The major change-set version number.
+ * @param minor
+ * 		The minor change-set version number.
+ * @param patch
+ * 		The patch version number.
+ */
+function create(major, minor, patch)
 {
-	major: 1,
-	minor: 1,
-	patch: 3
-};
+	return {
+		major: major,
+		minor: minor,
+		patch: patch
+	};
+}
 /**
  * Determines whether the specified object represents a valid version
  * object.
@@ -89,6 +102,7 @@ window.NTT.Configuration.Version =
 {
 	CURRENT: CURRENT,
 
+	create: create,
 	is_valid: is_valid,
 	compare: compare,
 	as_string: as_string

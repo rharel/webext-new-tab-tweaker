@@ -4,12 +4,25 @@
 /**
  * The configuration object's layout version.
  */
-const CURRENT =
+const CURRENT = create(1, 2, 0);
+/**
+ * Creates a new version object.
+ *
+ * @param major
+ * 		The major change-set version number.
+ * @param minor
+ * 		The minor change-set version number.
+ * @param patch
+ * 		The patch version number.
+ */
+function create(major, minor, patch)
 {
-	major: 1,
-	minor: 1,
-	patch: 3
-};
+	return {
+		major: major,
+		minor: minor,
+		patch: patch
+	};
+}
 /**
  * Determines whether the specified object represents a valid version
  * object.
@@ -92,6 +105,7 @@ window.NTT.Configuration.Version =
 {
 	CURRENT: CURRENT,
 
+	create: create,
 	is_valid: is_valid,
 	compare: compare,
 	as_string: as_string
@@ -114,20 +128,6 @@ const TabBehavior =
 	 * The tab displays a customized page.
 	 */
 	DisplayCustomPage: "display-custom-page"
-};
-/**
- * Enumerates possible image sources.
- */
-const ImageURL =
-{
-	/**
-	 * There is no image.
-	 */
-	None: "none",
-	/**
-	 * The URL points directly to the image file.
-	 */
-	Direct: "direct"
 };
 
 /**
@@ -158,8 +158,8 @@ const DEFAULT =
 			},
 			wallpaper:
 			{
-				source: ImageURL.None,
-				url: "",
+				is_enabled: false,
+				urls: [],
 				animation_duration: 1.5
 			}
 		}
@@ -168,7 +168,69 @@ const DEFAULT =
 
 window.NTT.Configuration.DEFAULT = DEFAULT;
 window.NTT.Configuration.TabBehavior = TabBehavior;
-window.NTT.Configuration.ImageURL = ImageURL;
+}());
+
+(function() {
+"use strict";
+
+/**
+ * Migrates a configuration from version 0.0.0-1.1.3 to 1.2.0
+ *
+ * @param previous
+ * 		The previous version(s) configuration object, version 0.0.0-1.1.3.
+ * @returns
+ * 		An up-to-date configuration object based on the previous one.
+ */
+function migrate_to_1_2_0(previous)
+{
+	const cfg = JSON.parse(JSON.stringify(previous));
+	const wallpaper = cfg.new_tab.custom_page.wallpaper;
+
+	// Convert:
+	// 		previous: wallpaper.source: {"none" | "direct"}
+	// 		current: wallpaper.is_enabled: boolean
+	wallpaper.is_enabled = wallpaper.source !== "none";
+	delete wallpaper.source;
+
+	// Convert:
+	// 		previous: wallpaper.url: String
+	//		current: wallpaper.urls: String[]
+	wallpaper.urls = [wallpaper.url];
+	delete wallpaper.url;
+
+	// update version descriptor
+	cfg.version = NTT.Configuration.Version.CURRENT;
+
+	return cfg;
+}
+
+/**
+ * Updates the configuration object's layout to the one specified in the
+ * current version.
+ *
+ * @param cfg
+ *		The previous version(s) configuration object.
+ * @returns
+ * 		An up-to-date configuration object based on the previous one.
+ * @note
+ * 		If the previous object is compatible with the current version,
+ * 	    a copy of it is returned instead.
+ */
+function update(cfg)
+{
+	const Ordering = NTT.Ordering;
+	const Version = NTT.Configuration.Version;
+
+	if (Version.compare(cfg.version, Version.create(1, 2, 0)) ===
+		Ordering.Less)
+	{
+		cfg = migrate_to_1_2_0(cfg);
+	}
+
+	return cfg;
+}
+
+window.NTT.Configuration.update = update;
 }());
 
 (function() {
@@ -191,26 +253,30 @@ const LocalStorage = browser.storage.local;
  */
 function load()
 {
+	const Ordering = NTT.Ordering;
+	const Version = NTT.Configuration.Version;
 	const DEFAULT_CONFIGURATION = NTT.Configuration.DEFAULT;
 
-	if (LocalStorage === null)
+	return LocalStorage.get(KEY).then(item =>
 	{
-		return DEFAULT_CONFIGURATION;
-	}
-	else
-	{
-		return LocalStorage.get(KEY).then(item =>
+		if (item.hasOwnProperty(KEY))
 		{
-			if (item.hasOwnProperty(KEY))
+			let cfg = item[KEY];
+
+			if (Version.compare(cfg.version, Version.CURRENT) ===
+				Ordering.Less)
 			{
-				return item[KEY];
+				cfg = NTT.Configuration.update(cfg);
+				save(cfg);
 			}
-			else
-			{
-				return DEFAULT_CONFIGURATION;
-			}
-		});
-	}
+
+			return cfg;
+		}
+		else
+		{
+			return DEFAULT_CONFIGURATION;
+		}
+	});
 }
 /**
  * Saves a configuration to local storage asynchronously.
@@ -222,17 +288,10 @@ function load()
  */
 function save(cfg)
 {
-	if (LocalStorage === null)
-	{
-		return Promise.reject();
-	}
-	else
-	{
-		const item = {};
-		item[KEY] = cfg;
+	const item = {};
+	item[KEY] = cfg;
 
-		return LocalStorage.set(item);
-	}
+	return LocalStorage.set(item);
 }
 
 window.NTT.Configuration.Storage =

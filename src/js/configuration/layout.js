@@ -12,20 +12,6 @@ const TabBehavior =
 	 */
 	DisplayCustomPage: "display-custom-page"
 };
-/**
- * Enumerates possible image sources.
- */
-const ImageURL =
-{
-	/**
-	 * There is no image.
-	 */
-	None: "none",
-	/**
-	 * The URL points directly to the image file.
-	 */
-	Direct: "direct"
-};
 
 /**
  * The default configuration layout.
@@ -55,8 +41,8 @@ const DEFAULT =
 			},
 			wallpaper:
 			{
-				source: ImageURL.None,
-				url: "",
+				is_enabled: false,
+				urls: [],
 				animation_duration: 1.5
 			}
 		}
@@ -65,4 +51,3 @@ const DEFAULT =
 
 window.NTT.Configuration.DEFAULT = DEFAULT;
 window.NTT.Configuration.TabBehavior = TabBehavior;
-window.NTT.Configuration.ImageURL = ImageURL;

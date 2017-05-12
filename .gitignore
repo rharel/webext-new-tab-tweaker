@@ -6,3 +6,6 @@ node_modules/
 
 # Packaged output
 *.zip
+
+# Private API details
+api_client_details.txt
