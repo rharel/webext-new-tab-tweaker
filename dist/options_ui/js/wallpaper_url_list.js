@@ -51,7 +51,7 @@
 		{
 			const remove_button = document.createElement('a');
 			remove_button.className = "link-button";
-			remove_button.textContent = "Remove";
+			remove_button.textContent = "X";
 			remove_button.title = "Remove this URL";
 			remove_button.addEventListener('click', () => remove_url_field(field));
 
