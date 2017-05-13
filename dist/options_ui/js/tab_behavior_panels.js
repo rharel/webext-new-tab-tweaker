@@ -20,7 +20,7 @@
 	/**
 	 * Displays the panel which corresponds to the selected radio button.
 	 */
-	function update()
+	function update_active_panel()
 	{
 		DOM.radio_buttons.forEach(item =>
 		{
@@ -73,6 +73,7 @@
 			DOM.redirection.radio.checked = false;
 			DOM.custom_page.radio.checked = true;
 		}
+		update_active_panel();
 	}
 
 	/**
@@ -90,33 +91,27 @@
 		DOM.custom_page.panel =
 			document.getElementById('custom-page-options');
 
+		DOM.panel_of = {};
+		DOM.panel_of[DOM.redirection.radio.id] = DOM.redirection.panel;
+		DOM.panel_of[DOM.custom_page.radio.id] = DOM.custom_page.panel;
+
 		DOM.radio_buttons =
 		[
 			DOM.redirection.radio,
 			DOM.custom_page.radio
 		];
-		DOM.panel_of = {};
-		DOM.panel_of[DOM.redirection.radio.id] = DOM.redirection.panel;
-		DOM.panel_of[DOM.custom_page.radio.id] = DOM.custom_page.panel;
-
-		DOM.radio_buttons
-			.forEach(item => item.addEventListener('click', update));
-
-		window.NTT.OptionsUI.NewTab =
+		DOM.radio_buttons.forEach(item =>
 		{
-			behavior_radio:
-			{
-				redirect: DOM.redirection.radio,
-				custom_page: DOM.custom_page.radio
-			},
+			item.addEventListener('click', update_active_panel);
+		});
 
-			get_selected_behavior: get_selected_behavior,
-			set_selected_behavior: set_selected_behavior,
-
-			update_behavior_panels: update
+		window.NTT.OptionsUI.NewTab.Behavior =
+		{
+			get_selected: get_selected_behavior,
+			set_selected: set_selected_behavior,
 		};
 
-		update();
+		update_active_panel();
 	}
 
 	document.addEventListener('DOMContentLoaded', initialize);

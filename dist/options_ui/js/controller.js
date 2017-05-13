@@ -112,8 +112,9 @@
 			is_enabled: wp.is_enabled.checked,
 			urls:
 				NTT.OptionsUI.NewTab
-					.wallpaper.get_urls()
-					.filter(item => item.trim().length > 0),
+					.Wallpaper.get_urls()
+					.map(item => item.trim())
+					.filter(item => item.length > 0),
 			animation_duration:
 				wp.animation_enabled.checked ?
 				parseFloat(wp.animation_duration.value) : 0
@@ -146,11 +147,11 @@
 			notification: get_notification_options(),
 			new_tab:
 			{
-				behavior: NTT.OptionsUI.NewTab.get_selected_behavior(),
+				behavior: NTT.OptionsUI.NewTab.Behavior.get_selected(),
 
 				redirect:
 				{
-					url: DOM.new_tab.redirect.url.value
+					url: DOM.new_tab.redirect.url.value.trim()
 				},
 				custom_page:
 				{
@@ -173,8 +174,7 @@
 			cfg.notification.new_features;
 
 		// new-tab behavior
-		NTT.OptionsUI.NewTab.set_selected_behavior(cfg.new_tab.behavior);
-		NTT.OptionsUI.NewTab.update_behavior_panels();
+		NTT.OptionsUI.NewTab.Behavior.set_selected(cfg.new_tab.behavior);
 
 		// new-tab redirection
 		DOM.new_tab.redirect.url.value = cfg.new_tab.redirect.url;
@@ -192,7 +192,7 @@
 		const cfg_wp = cfg.new_tab.custom_page.wallpaper;
 
 		ui_wp.is_enabled.checked = cfg_wp.is_enabled;
-		NTT.OptionsUI.NewTab.wallpaper.set_urls(cfg_wp.urls);
+		NTT.OptionsUI.NewTab.Wallpaper.set_urls(cfg_wp.urls);
 		ui_wp.animation_enabled.checked = cfg_wp.animation_duration > 0;
 		ui_wp.animation_duration.value = cfg_wp.animation_duration;
     }
@@ -282,18 +282,10 @@
 			item.addEventListener('input', save_configuration);
 		});
 		// Wallpaper url fields
-		NTT.OptionsUI.NewTab
-			.wallpaper.on_url_field_addition = field =>
-		{
-			field.addEventListener('input', save_configuration);
-		};
-		NTT.OptionsUI.NewTab
-			.wallpaper.on_url_field_removal = save_configuration;
+		NTT.OptionsUI.NewTab.Wallpaper.on_change = save_configuration;
 
 		// Buttons
-		DOM.advanced
-			.restore_default_options
-			.addEventListener('click', () =>
+		DOM.advanced.restore_default_options.addEventListener('click', () =>
 		{
 			reset_configuration();
 			save_configuration();

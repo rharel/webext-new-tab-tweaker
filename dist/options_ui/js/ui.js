@@ -10,5 +10,9 @@ window.NTT.OptionsUI =
 	/**
 	 * Hosts new tab related options.
 	 */
-	NewTab: null
+	NewTab:
+	{
+		Behavior: null,
+		Wallpaper: null
+	}
 };
