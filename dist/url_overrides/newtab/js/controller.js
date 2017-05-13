@@ -127,25 +127,38 @@
 				DOM.wallpaper.src = "/icons/main_128.png";
 				DOM.background.appendChild(DOM.wallpaper);
 
-				const last_url =
-					localStorage.getItem(LAST_WALLPAPER_URL_STORAGE_KEY);
-				if (last_url !== null)
+				const url = function()
 				{
-					const index = wp.urls.indexOf(last_url);
-					wp.urls.splice(index, 1);
-				}
-				const url_index =
-					NTT.RNG.integer_in_range(0, wp.urls.length - 1);
-				const url =
-					wp.urls[url_index];
+					if (wp.urls.length === 1)
+					{
+						return wp.urls[0];
+					}
+					else
+					{
+						const last_url =
+							localStorage
+								.getItem(LAST_WALLPAPER_URL_STORAGE_KEY);
 
+						if (last_url !== null)
+						{
+							const index = wp.urls.indexOf(last_url);
+							wp.urls.splice(index, 1);
+						}
+
+						return wp.urls
+						[
+							NTT.RNG.integer_in_range(0, wp.urls.length - 1)
+						];
+					}
+				}();
 				load_wallpaper
 				(
 					url,
 					// On load:
 					() => fade_in_wallpaper(wp.animation_duration)
 				);
-				localStorage.setItem(LAST_WALLPAPER_URL_STORAGE_KEY, url);
+				localStorage
+					.setItem(LAST_WALLPAPER_URL_STORAGE_KEY, url);
 			}
 		}
 	}
