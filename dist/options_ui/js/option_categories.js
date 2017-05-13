@@ -62,17 +62,17 @@
 		DOM.advanced.panel =
 			document.getElementById('advanced-options');
 
+		DOM.panel_of = {};
+		DOM.panel_of[DOM.new_tab.radio.id] = DOM.new_tab.panel;
+		DOM.panel_of[DOM.notification.radio.id] = DOM.notification.panel;
+		DOM.panel_of[DOM.advanced.radio.id] = DOM.advanced.panel;
+
 		DOM.radio_buttons =
 		[
 			DOM.new_tab.radio,
 			DOM.notification.radio,
 			DOM.advanced.radio
 		];
-		DOM.panel_of = {};
-		DOM.panel_of[DOM.new_tab.radio.id] = DOM.new_tab.panel;
-		DOM.panel_of[DOM.notification.radio.id] = DOM.notification.panel;
-		DOM.panel_of[DOM.advanced.radio.id] = DOM.advanced.panel;
-
 		DOM.radio_buttons.forEach(item =>
 		{
 			item.addEventListener('click', update_active_panel);
