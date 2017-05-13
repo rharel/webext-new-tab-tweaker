@@ -31,4 +31,10 @@
         width: 128px;
         font-size: small;
     }
+
+    #dialog-content
+    {
+        width: 300px;
+        padding: 8px;
+    }
 }

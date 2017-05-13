@@ -31,4 +31,18 @@
         width: 100px;
         font-size: x-small;
     }
+
+    #dialog-content
+    {
+        width: 200px;
+        height: 200px;
+        padding: 8px;
+    }
+
+    #wallpaper-url-import-dialog > input[type="url"]
+    {
+        margin-left: 8px;
+        width: 100px;
+        font-size: x-small;
+    }
 }
