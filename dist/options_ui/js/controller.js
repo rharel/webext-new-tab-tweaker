@@ -220,9 +220,9 @@
 			.catch(() => display_error(ErrorMessage.CONFIGURATION_SAVE));
     }
 
-    /**
-     * Initializes the page.
-     */
+	/**
+	 * Initializes element variables and event handling.
+	 */
     function initialize()
     {
     	// Populating DOM properties //

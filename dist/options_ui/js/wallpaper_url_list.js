@@ -156,6 +156,9 @@
 		NTT.OptionsUI.Dialog.close();
 	}
 
+	/**
+	 * Initializes element variables and event handling.
+	 */
 	function initialize()
 	{
 		DOM.wallpaper_urls =

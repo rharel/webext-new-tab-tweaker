@@ -76,7 +76,7 @@
 	}
 
 	/**
-	 * Initializes element variables.
+	 * Initializes element variables and event handling.
 	 */
 	function initialize()
 	{

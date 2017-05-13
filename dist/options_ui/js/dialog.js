@@ -46,6 +46,9 @@
 		DOM.shadow.style.display = "none";
 	}
 
+	/**
+	 * Initializes element variables and event handling.
+	 */
 	function initialize()
 	{
 		DOM.shadow =
