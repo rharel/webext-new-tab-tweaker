@@ -25,6 +25,10 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.3.0
+ * Avoids picking the same wallpaper consecutively when there is more than one image specified.
+ * Adds the option to import wallpaper URLs from an Imgur album.
+ 
 ### 1.2.0
  * Allows for more than one URL to be specified as wallpaper image. If indeed multiple URLs are specified, a new tab will display one of them, chosen at random.
  
