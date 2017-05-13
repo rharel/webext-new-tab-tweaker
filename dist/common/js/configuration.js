@@ -4,7 +4,7 @@
 /**
  * The configuration object's layout version.
  */
-const CURRENT = create(1, 3, 0);
+const CURRENT = create(1, 3, 1);
 /**
  * Creates a new version object.
  *
@@ -197,7 +197,7 @@ function migrate_to_1_2_0(previous)
 	delete wallpaper.url;
 
 	// update version descriptor
-	cfg.version = NTT.Configuration.Version.CURRENT;
+	cfg.version = NTT.Configuration.Version.create(1, 2, 0);
 
 	return cfg;
 }
