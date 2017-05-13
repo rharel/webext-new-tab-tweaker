@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>test/basic/ordering</title>
+    <title>test/basic/version</title>
 
     <link rel="stylesheet" href="../../node_modules/mocha/mocha.css">
 
@@ -40,7 +40,7 @@
 		it ('should have the correct major, minor, and patch fields', function()
 		{
 			assert.strictEqual(1, Version.CURRENT.major);
-			assert.strictEqual(2, Version.CURRENT.minor);
+			assert.strictEqual(3, Version.CURRENT.minor);
 			assert.strictEqual(0, Version.CURRENT.patch);
 		});
 	});

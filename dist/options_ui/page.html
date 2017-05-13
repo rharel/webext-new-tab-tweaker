@@ -13,7 +13,11 @@
     <script src="../common/js/ntt.js"></script>
     <script src="../common/js/basic.js"></script>
     <script src="../common/js/configuration.js"></script>
-    <script src="js/category_tabs.js"></script>
+    <script src="../common/js/imgur.js"></script>
+
+    <script src="js/ui.js"></script>
+    <script src="js/dialog.js"></script>
+    <script src="js/option_categories.js"></script>
     <script src="js/tab_behavior_panels.js"></script>
     <script src="js/wallpaper_url_list.js"></script>
     <script src="js/controller.js"></script>
@@ -22,73 +26,71 @@
 <div id="content">
     <!-- Header -->
     <header>
-        <h1>New Tab Tweaker <span id="version"></span></h1>
+        <h1>New Tab Tweaker <span id="version">?.?.?</span></h1>
     </header>
     <!-- Option categories -->
     <div id="option-categories">
         <div class="category">
-            <input id="category-tab"
-                   type="radio" name="option-category"
-                   value="tab" checked>
-            <label for="category-tab">
+            <input id="new-tab-option-category-button"
+                   type="radio" name="option-category-buttons"
+                   value="new-tab" checked>
+            <label for="new-tab-option-category-button">
                 New Tab
             </label>
         </div>
         <div class="category">
-            <input id="category-notification"
-                   type="radio" name="option-category"
+            <input id="notification-option-category-button"
+                   type="radio" name="option-category-buttons"
                    value="notification">
-            <label for="category-notification">
+            <label for="notification-option-category-button">
                 Notification
             </label>
         </div>
         <div class="category">
-            <input id="category-advanced"
-                   type="radio" name="option-category"
+            <input id="advanced-option-category-button"
+                   type="radio" name="option-category-buttons"
                    value="advanced">
-            <label for="category-advanced">
+            <label for="advanced-option-category-button">
                 Advanced
             </label>
         </div>
     </div>
-    <div id="category-options">
-        <div id="tab-category-options">
-            <fieldset id="tab-behaviors">
+    <div id="options">
+        <div id="new-tab-options">
+            <fieldset id="tab-behavior-selection">
                 <legend>When opening a new tab</legend>
                 <div>
-                    <input id="behavior-custom-page"
-                           type="radio" name="tab-behavior"
-                           value="custom-page" checked
-                           title="Open a customized page">
-                    <label for="behavior-custom-page">
+                    <input id="display-custom-page-button"
+                           type="radio" name="tab-behaviors"
+                           value="display-custom-page" checked
+                           title="Display a custom page">
+                    <label for="display-custom-page-button">
                         Display a custom page
                     </label>
                 </div>
                 <div>
-                    <input id="behavior-redirection"
-                           type="radio" name="tab-behavior"
+                    <input id="redirect-button"
+                           type="radio" name="tab-behaviors"
                            value="redirect"
                            title="Redirect to a specified URL">
-                    <label for="behavior-redirection">
+                    <label for="redirect-button">
                         Redirect to a specified URL
                     </label>
                 </div>
             </fieldset>
-            <div id="redirection-options">
-                <fieldset id="redirection">
-                    <legend>Redirection</legend>
-                    <div>
-                        <label for="redirection-target">
-                            Go to
-                        </label>
-                        <input id="redirection-target" type="url"
-                               pattern="(https?:\/\/)?.+"
-                               size="32" maxlength="512"
-                               placeholder="https://en.wikipedia.org/"
-                               autocomplete="off" title="Target URL">
-                    </div>
-                </fieldset>
-            </div>
+            <fieldset id="redirection-options">
+                <legend>Redirection</legend>
+                <div>
+                    <label for="redirection-url">
+                        Go to
+                    </label>
+                    <input id="redirection-url" type="url"
+                           pattern="(https?:\/\/)?.+"
+                           size="32" maxlength="512"
+                           placeholder="https://en.wikipedia.org/"
+                           autocomplete="off" title="Target URL">
+                </div>
+            </fieldset>
             <div id="custom-page-options">
                 <fieldset id="custom-page-style">
                     <legend>Style the page</legend>
@@ -111,9 +113,15 @@
                                 display one chosen at random)
                             </span>
                             <div id="wallpaper-urls"></div>
-                            <a id="add-wallpaper-url" class="link-button"
+                            <a id="add-wallpaper-url-button" class="link-button"
                                title="Add another wallpaper URL">
-                                Add
+                                Add another
+                            </a>
+                            <br>
+                            <a id="open-wallpaper-url-import-dialog-button"
+                               class="link-button"
+                               title="Import wallpaper URLs from an Imgur album">
+                                Import from Imgur album...
                             </a>
                         </div>
                     </div>
@@ -149,8 +157,8 @@
                 </fieldset>
             </div>
         </div>
-        <div id="notification-category-options">
-            <fieldset id="update-notifications">
+        <div id="notification-options">
+            <fieldset id="update-notifications-options">
                 <legend>Updates</legend>
                 <div>
                     <input id="do-notify-about-new-features"
@@ -163,22 +171,42 @@
                 </div>
             </fieldset>
         </div>
-        <div id="advanced-category-options">
-            <fieldset id="advanced-options">
-                <legend>Back to basics</legend>
-                <div>
-                    <a id="restore-default-options" class="link-button">
-                        Reset all options back to their default values
-                    </a>
-                </div>
-            </fieldset>
-        </div>
+        <fieldset id="advanced-options">
+            <legend>Back to basics</legend>
+            <div>
+                <a id="restore-default-options-button" class="link-button">
+                    Reset all options back to their default values
+                </a>
+            </div>
+        </fieldset>
     </div>
     <!-- Error reporting -->
     <div id="errors">
         <span id="error-message">
             [error messages are displayed here]
         </span>
+    </div>
+    <!-- Dialogs -->
+    <div id="dialogs">
+        <div id="dialog-shadow">
+            <div id="dialog-content">
+                <div id="wallpaper-url-import-dialog">
+                    <header>Import URLs from Imgur</header>
+                    <label for="imgur-album-url">
+                        Album:
+                    </label>
+                    <input id="imgur-album-url" type="url"
+                           pattern="(https?:\/\/)?(www\.)?imgur\.com\/a\/.+"
+                           size="32" maxlength="100"
+                           placeholder="http://imgur.com/a/"
+                           autocomplete="off" title="Album URL">
+                    <div id="imgur-album-info"></div>
+                    <a id="import-wallpaper-urls-button" class="link-button">
+                        Import
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

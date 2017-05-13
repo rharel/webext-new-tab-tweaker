@@ -16,18 +16,32 @@
         font-size: small;
     }
 
-    #category-options fieldset > div
+    #options fieldset > div
     {
         border-left: 4px solid darkorange;
         padding-left: 8px;
     }
-    #category-options fieldset > div + div
+    #options fieldset > div + div
     {
         margin-top: 10px;
     }
 
     #wallpaper-urls > div > input[type="url"]
     {
+        width: 100px;
+        font-size: x-small;
+    }
+
+    #dialog-content
+    {
+        width: 200px;
+        height: 200px;
+        padding: 8px;
+    }
+
+    #wallpaper-url-import-dialog > input[type="url"]
+    {
+        margin-left: 8px;
         width: 100px;
         font-size: x-small;
     }

@@ -20,7 +20,7 @@
 	/**
 	 * Displays the panel which corresponds to the selected radio button.
 	 */
-	function update()
+	function update_active_panel()
 	{
 		DOM.radio_buttons.forEach(item =>
 		{
@@ -73,50 +73,45 @@
 			DOM.redirection.radio.checked = false;
 			DOM.custom_page.radio.checked = true;
 		}
+		update_active_panel();
 	}
 
 	/**
-	 * Initializes element variables.
+	 * Initializes element variables and event handling.
 	 */
 	function initialize()
 	{
-		DOM.redirection.radio = document.getElementById('behavior-redirection');
-		DOM.redirection.panel = document.getElementById('redirection-options');
+		DOM.redirection.radio =
+			document.getElementById('redirect-button');
+		DOM.redirection.panel =
+			document.getElementById('redirection-options');
 
-		DOM.custom_page.radio = document.getElementById('behavior-custom-page');
-		DOM.custom_page.panel = document.getElementById('custom-page-options');
+		DOM.custom_page.radio =
+			document.getElementById('display-custom-page-button');
+		DOM.custom_page.panel =
+			document.getElementById('custom-page-options');
+
+		DOM.panel_of = {};
+		DOM.panel_of[DOM.redirection.radio.id] = DOM.redirection.panel;
+		DOM.panel_of[DOM.custom_page.radio.id] = DOM.custom_page.panel;
 
 		DOM.radio_buttons =
 		[
 			DOM.redirection.radio,
 			DOM.custom_page.radio
 		];
-		DOM.panel_of = {};
-		DOM.panel_of[DOM.redirection.radio.id] = DOM.redirection.panel;
-		DOM.panel_of[DOM.custom_page.radio.id] = DOM.custom_page.panel;
-
-		DOM.radio_buttons
-			.forEach(item => item.addEventListener('click', update));
-
-		if (window.NTT.OptionsUI === undefined)
+		DOM.radio_buttons.forEach(item =>
 		{
-			window.NTT.OptionsUI = {};
-		}
-		window.NTT.OptionsUI.new_tab =
+			item.addEventListener('click', update_active_panel);
+		});
+
+		window.NTT.OptionsUI.NewTab.Behavior =
 		{
-			behavior_radio:
-			{
-				redirect: DOM.redirection.radio,
-				custom_page: DOM.custom_page.radio
-			},
-
-			get_selected_behavior: get_selected_behavior,
-			set_selected_behavior: set_selected_behavior,
-
-			update_behavior_panels: update
+			get_selected: get_selected_behavior,
+			set_selected: set_selected_behavior,
 		};
 
-		update();
+		update_active_panel();
 	}
 
 	document.addEventListener('DOMContentLoaded', initialize);

@@ -17,11 +17,11 @@
         font-size: medium;
     }
 
-    #category-options fieldset > div
+    #options fieldset > div
     {
         padding-left: 8px;
     }
-    #category-options fieldset > div + div
+    #options fieldset > div + div
     {
         margin-top: 10px;
     }
@@ -30,5 +30,11 @@
     {
         width: 128px;
         font-size: small;
+    }
+
+    #dialog-content
+    {
+        width: 300px;
+        padding: 8px;
     }
 }

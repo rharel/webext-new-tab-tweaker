@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "New Tab Tweaker",
-	"version": "1.2.0",
+	"version": "1.3.0",
 
 	"author": "Raoul Harel",
 	"description": "Have new tabs redirect to a specified URL or display a custom page.",
@@ -27,7 +27,11 @@
 		}
 	},
 
-	"permissions": ["storage"],
+	"permissions":
+	[
+		"storage",
+		"https://api.imgur.com/3/album/*"
+	],
 
 	"options_ui":
 	{

@@ -4,7 +4,7 @@
 /**
  * The configuration object's layout version.
  */
-const CURRENT = create(1, 2, 0);
+const CURRENT = create(1, 3, 0);
 /**
  * Creates a new version object.
  *
@@ -129,11 +129,12 @@ const TabBehavior =
 	 */
 	DisplayCustomPage: "display-custom-page"
 };
+window.NTT.Configuration.TabBehavior = TabBehavior;
 
 /**
  * The default configuration layout.
  */
-const DEFAULT =
+window.NTT.Configuration.DEFAULT =
 {
 	version: NTT.Configuration.Version.CURRENT,
 
@@ -165,9 +166,6 @@ const DEFAULT =
 		}
 	}
 };
-
-window.NTT.Configuration.DEFAULT = DEFAULT;
-window.NTT.Configuration.TabBehavior = TabBehavior;
 }());
 
 (function() {

@@ -62,25 +62,25 @@ body
     height: 100%;
 }
 
-#category-options
+#options
 {
     padding-top: 28px;
 }
-#category-options fieldset
+#options fieldset
 {
     border: none;
 	cursor: default;
 }
-#category-options fieldset > legend
+#options fieldset > legend
 {
     font-weight: bold;
 }
-#category-options fieldset > div
+#options fieldset > div
 {
     border-left: 4px solid darkorange;
     padding-left: 28px;
 }
-#category-options fieldset > div + div
+#options fieldset > div + div
 {
     margin-top: 4px;
 }
@@ -138,6 +138,60 @@ body
 #error-message
 {
     color: #9f0000;
+}
+
+#dialog-shadow
+{
+    display: none;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.25);
+}
+#dialog-content
+{
+    position:absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    margin:auto;
+    width: 400px;
+    height: 150px;
+    padding: 16px;
+
+    background-color: #FAFAFD;
+}
+
+#wallpaper-url-import-dialog
+{
+    display: none;
+}
+#wallpaper-url-import-dialog > header
+{
+    border-bottom: 2px solid darkorange;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+
+    text-align: center;
+    font-weight: bold;
+}
+#wallpaper-url-import-dialog > input[type="url"]
+{
+    margin-left: 8px;
+    width: 200px;
+}
+#import-wallpaper-urls-button
+{
+    visibility: hidden;
+
+    float: right;
 }
 
 .indented-once
