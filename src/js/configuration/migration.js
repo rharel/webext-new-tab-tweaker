@@ -24,7 +24,7 @@ function migrate_to_1_2_0(previous)
 	delete wallpaper.url;
 
 	// update version descriptor
-	cfg.version = NTT.Configuration.Version.CURRENT;
+	cfg.version = NTT.Configuration.Version.create(1, 2, 0);
 
 	return cfg;
 }

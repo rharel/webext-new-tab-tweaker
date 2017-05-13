@@ -25,6 +25,9 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.3.1
+ * Minor bug fix.
+ 
 ### 1.3.0
  * Avoids picking the same wallpaper consecutively when there is more than one image specified.
  * Adds the option to import wallpaper URLs from an Imgur album.
