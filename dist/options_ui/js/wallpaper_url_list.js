@@ -7,7 +7,14 @@
 	{
 		wallpaper_urls: null,
 		add_url_button: null,
+
+		open_import_dialog: null,
+		import_dialog: null,
+		album_url: null,
+		album_info: null,
+		import_button: null
 	};
+	let urls_to_import = [];
 
 	/**
 	 * Gets all url input elements.
@@ -111,6 +118,44 @@
 		});
 	}
 
+	function on_import_album_select()
+	{
+		const Imgur = NTT.Imgur;
+		const url = DOM.album_url.value;
+
+		if (!Imgur.is_valid_album_url(url)) { return; }
+
+		DOM.album_info.textContent = "Loading...";
+
+		Imgur.get_album_image_urls(url,
+			// On success
+			urls =>
+		{
+			DOM.album_info.textContent =
+				`Album contains ${urls.length} images. Import?`;
+			DOM.import_button.style.visibility = "visible";
+			urls_to_import = urls;
+		},
+			// On error
+			() =>
+		{
+			DOM.album_info.textContent =
+				"Could not retrieve images. Make sure the album is not hidden.";
+			DOM.import_button.style.visibility = "hidden";
+		});
+	}
+	function on_import_album_confirm()
+	{
+		const current_urls = get_urls();
+		urls_to_import
+			.filter(item => current_urls.indexOf(item) === -1)
+			.forEach(item =>
+		{
+			add_url_field().firstChild.value = item;
+		});
+		NTT.OptionsUI.Dialog.close();
+	}
+
 	function initialize()
 	{
 		DOM.wallpaper_urls =
@@ -118,7 +163,28 @@
 		DOM.add_url_button =
 			document.getElementById('add-wallpaper-url-button');
 
+		DOM.open_import_dialog =
+			document.getElementById('open-wallpaper-url-import-dialog-button');
+		DOM.import_dialog =
+			document.getElementById('wallpaper-url-import-dialog');
+		DOM.album_url =
+			document.getElementById('imgur-album-url');
+		DOM.album_info =
+			document.getElementById('imgur-album-info');
+		DOM.import_button =
+			document.getElementById('import-wallpaper-urls-button');
+
 		DOM.add_url_button.addEventListener('click', add_url_field);
+		DOM.open_import_dialog.addEventListener('click', () =>
+		{
+			urls_to_import = [];
+			DOM.album_url.value = "";
+			DOM.album_info.textContent = "";
+			DOM.import_button.style.visibility = "hidden";
+			NTT.OptionsUI.Dialog.open(DOM.import_dialog);
+		});
+		DOM.album_url.addEventListener('input', on_import_album_select);
+		DOM.import_button.addEventListener('click', on_import_album_confirm);
 
 		window.NTT.OptionsUI.NewTab.wallpaper =
 		{

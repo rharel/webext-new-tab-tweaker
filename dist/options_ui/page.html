@@ -118,7 +118,8 @@
                                 Add another
                             </a>
                             <br>
-                            <a id="import-wallpaper-urls" class="link-button"
+                            <a id="open-wallpaper-url-import-dialog-button"
+                               class="link-button"
                                title="Import wallpaper URLs from an Imgur album">
                                 Import from Imgur album...
                             </a>
@@ -184,6 +185,28 @@
         <span id="error-message">
             [error messages are displayed here]
         </span>
+    </div>
+    <!-- Dialogs -->
+    <div id="dialogs">
+        <div id="dialog-shadow">
+            <div id="dialog-content">
+                <div id="wallpaper-url-import-dialog">
+                    <header>Import URLs from Imgur</header>
+                    <label for="imgur-album-url">
+                        Album:
+                    </label>
+                    <input id="imgur-album-url" type="url"
+                           pattern="(https?:\/\/)?(www\.)?imgur\.com\/a\/.+"
+                           size="32" maxlength="100"
+                           placeholder="http://imgur.com/a/"
+                           autocomplete="off" title="Album URL">
+                    <div id="imgur-album-info"></div>
+                    <a id="import-wallpaper-urls-button" class="link-button">
+                        Import
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

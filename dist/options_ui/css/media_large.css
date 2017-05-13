@@ -170,6 +170,29 @@ body
 
     background-color: #FAFAFD;
 }
+
+#wallpaper-url-import-dialog
+{
+    display: none;
+}
+#wallpaper-url-import-dialog > header
+{
+    border-bottom: 2px solid darkorange;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+
+    text-align: center;
+    font-weight: bold;
+}
+#wallpaper-url-import-dialog > input[type="url"]
+{
+    margin-left: 8px;
+}
+#import-wallpaper-urls-button
+{
+    visibility: hidden;
+}
+
 .indented-once
 {
     padding-left: 28px;
