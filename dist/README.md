@@ -10,6 +10,9 @@ The extension's settings persist in `storage.local`.
 
 ## Project structure
 
+### `background_scripts/`
+Contains all background scripts.
+
 ### `common/`
 A place for all JavaScript and CSS that is shared by two or more sub-components of the extension.
 
