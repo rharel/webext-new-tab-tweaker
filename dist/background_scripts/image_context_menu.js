@@ -90,15 +90,17 @@ function update_context_menu_item_visibility()
 	NTT.Configuration.Storage.load().then(cfg =>
 	{
 		const TabBehavior = NTT.Configuration.TabBehavior;
+		const wallpaper_is_relevant =
+			cfg.new_tab.behavior === TabBehavior.DisplayCustomPage &&
+			cfg.new_tab.custom_page.wallpaper.is_enabled;
+
 		configuration = cfg;
 
-		if (cfg.new_tab.behavior === TabBehavior.DisplayCustomPage &&
-		    !context_items_are_active)
+		if (wallpaper_is_relevant && !context_items_are_active)
 		{
 			create_context_menu_items();
 		}
-		else if (cfg.new_tab.behavior !== TabBehavior.DisplayCustomPage &&
-		         context_items_are_active)
+		else if (!wallpaper_is_relevant && context_items_are_active)
 		{
 			remove_context_menu_items();
 		}
