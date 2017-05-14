@@ -75,10 +75,10 @@ function get_album_image_urls(album_url, on_success, on_error)
 	xhr.send();
 }
 
-window.NTT.Imgur =
+window.NTT.OptionsUI.Imgur =
 {
 	is_valid_album_url: is_valid_album_url,
 	extract_album_hash: extract_album_hash,
 	get_album_image_urls: get_album_image_urls
 };
-}());
+})();

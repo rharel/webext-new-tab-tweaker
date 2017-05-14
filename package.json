@@ -21,12 +21,12 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
     "gulp-iife": "^0.3.0",
     "gulp-open": "^2.0.0",
-    "gulp-rename": "^1.2.2",
     "gulp-zip": "^4.0.0",
     "mocha": "^3.3.0"
   }

@@ -30,9 +30,21 @@
 	"permissions":
 	[
 		"storage",
+		"contextMenus",
+
 		"https://api.imgur.com/3/album/*"
 	],
 
+	"background":
+	{
+		"scripts":
+		[
+			"background_scripts/main.js",
+			"background_scripts/ordering.js",
+			"background_scripts/configuration.js",
+			"background_scripts/image_context_menu.js"
+		]
+	},
 	"options_ui":
 	{
 		"page": "options_ui/page.html",

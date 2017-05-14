@@ -98,6 +98,7 @@ function as_string(version)
 	return `${version.major}.${version.minor}.${version.patch}`;
 }
 
+// Populate the Configuration.Version namespace.
 window.NTT.Configuration.Version =
 {
 	CURRENT: CURRENT,

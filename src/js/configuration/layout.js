@@ -37,14 +37,14 @@ window.NTT.Configuration.DEFAULT =
 		{
 			background:
 			{
-				color: "#ffffff",
+				color: "#2d2d2d",
 				animation_duration: 0.5
 			},
 			wallpaper:
 			{
 				is_enabled: false,
 				urls: [],
-				animation_duration: 1.5
+				animation_duration: 0
 			}
 		}
 	}
