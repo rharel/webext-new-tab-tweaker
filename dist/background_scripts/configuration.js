@@ -249,10 +249,7 @@ const KEY = "configuration@new-tab-tweaker";
 /**
  * Cross-browser storage API.
  */
-const LocalStorage =
-	browser !== undefined ?
-	browser.storage.local :
-	chrome.storage.local;
+const LocalStorage = browser.storage.local;
 
 /**
  * Loads the configuration from local storage asynchronously.
