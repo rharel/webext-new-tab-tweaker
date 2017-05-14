@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "New Tab Tweaker",
-	"version": "1.3.1",
+	"version": "1.4.0",
 
 	"author": "Raoul Harel",
 	"description": "Have new tabs redirect to a specified URL or display a custom page.",
@@ -30,9 +30,21 @@
 	"permissions":
 	[
 		"storage",
+		"contextMenus",
+
 		"https://api.imgur.com/3/album/*"
 	],
 
+	"background":
+	{
+		"scripts":
+		[
+			"background_scripts/main.js",
+			"background_scripts/ordering.js",
+			"background_scripts/configuration.js",
+			"background_scripts/image_context_menu.js"
+		]
+	},
 	"options_ui":
 	{
 		"page": "options_ui/page.html",

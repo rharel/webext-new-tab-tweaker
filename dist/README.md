@@ -25,6 +25,9 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.4.0
+ * Adds an image-context menu that facilitates specification and/or addition of images to the wallpaper collection.
+
 ### 1.3.1
  * Minor bug fix.
  

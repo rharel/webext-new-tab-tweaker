@@ -1,7 +1,7 @@
 /**
  * The configuration object's layout version.
  */
-const CURRENT = create(1, 3, 1);
+const CURRENT = create(1, 4, 0);
 /**
  * Creates a new version object.
  *
@@ -98,6 +98,7 @@ function as_string(version)
 	return `${version.major}.${version.minor}.${version.patch}`;
 }
 
+// Populate the Configuration.Version namespace.
 window.NTT.Configuration.Version =
 {
 	CURRENT: CURRENT,

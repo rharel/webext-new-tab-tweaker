@@ -1,18 +1,11 @@
-/**
- * The OptionsUI namespace layout.
- */
-window.NTT.OptionsUI =
+// Create the OptionsUI namespace.
+NTT.OptionsUI =
 {
-	/**
-	 * Hosts dialog construction and display methods.
-	 */
 	Dialog: null,
-	/**
-	 * Hosts new tab related options.
-	 */
 	NewTab:
 	{
 		Behavior: null,
 		Wallpaper: null
-	}
+	},
+	Imgur: null
 };

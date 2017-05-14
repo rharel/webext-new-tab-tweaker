@@ -1,3 +1,6 @@
+(function() {
+"use strict";
+
 /**
  * Generates a random integer on the interval [min, max].
  *
@@ -24,3 +27,4 @@ window.NTT.RNG =
 {
 	integer_in_range: integer_in_range
 };
+}());

@@ -1,10 +1,17 @@
 (function() {
 "use strict";
 
+// Create the Configuration namespace.
+window.NTT.Configuration = {};
+}());
+
+(function() {
+"use strict";
+
 /**
  * The configuration object's layout version.
  */
-const CURRENT = create(1, 3, 1);
+const CURRENT = create(1, 4, 0);
 /**
  * Creates a new version object.
  *
@@ -101,6 +108,7 @@ function as_string(version)
 	return `${version.major}.${version.minor}.${version.patch}`;
 }
 
+// Populate the Configuration.Version namespace.
 window.NTT.Configuration.Version =
 {
 	CURRENT: CURRENT,
@@ -154,14 +162,14 @@ window.NTT.Configuration.DEFAULT =
 		{
 			background:
 			{
-				color: "#ffffff",
+				color: "#2d2d2d",
 				animation_duration: 0.5
 			},
 			wallpaper:
 			{
 				is_enabled: false,
 				urls: [],
-				animation_duration: 1.5
+				animation_duration: 0
 			}
 		}
 	}
@@ -175,13 +183,13 @@ window.NTT.Configuration.DEFAULT =
  * Migrates a configuration from version 0.0.0-1.1.3 to 1.2.0
  *
  * @param previous
- * 		The previous version(s) configuration object, version 0.0.0-1.1.3.
+ * 		The previous version's configuration object, version 0.0.0-1.1.3.
  * @returns
- * 		An up-to-date configuration object based on the previous one.
+ * 		The previous configuration represented for version 1.2.0.
  */
 function migrate_to_1_2_0(previous)
 {
-	const cfg = JSON.parse(JSON.stringify(previous));
+	const cfg = JSON.parse(JSON.stringify(previous));  // Make a copy.
 	const wallpaper = cfg.new_tab.custom_page.wallpaper;
 
 	// Convert:
@@ -207,7 +215,7 @@ function migrate_to_1_2_0(previous)
  * current version.
  *
  * @param cfg
- *		The previous version(s) configuration object.
+ *		The previous version's configuration object.
  * @returns
  * 		An up-to-date configuration object based on the previous one.
  * @note
@@ -239,9 +247,12 @@ window.NTT.Configuration.update = update;
  */
 const KEY = "configuration@new-tab-tweaker";
 /**
- * Just a shorthand.
+ * Cross-browser storage API.
  */
-const LocalStorage = browser.storage.local;
+const LocalStorage =
+	browser !== undefined ?
+	browser.storage.local :
+	chrome.storage.local;
 
 /**
  * Loads the configuration from local storage asynchronously.
@@ -251,24 +262,13 @@ const LocalStorage = browser.storage.local;
  */
 function load()
 {
-	const Ordering = NTT.Ordering;
-	const Version = NTT.Configuration.Version;
 	const DEFAULT_CONFIGURATION = NTT.Configuration.DEFAULT;
 
 	return LocalStorage.get(KEY).then(item =>
 	{
 		if (item.hasOwnProperty(KEY))
 		{
-			let cfg = item[KEY];
-
-			if (Version.compare(cfg.version, Version.CURRENT) ===
-				Ordering.Less)
-			{
-				cfg = NTT.Configuration.update(cfg);
-				save(cfg);
-			}
-
-			return cfg;
+			return item[KEY];
 		}
 		else
 		{
@@ -292,6 +292,7 @@ function save(cfg)
 	return LocalStorage.set(item);
 }
 
+// Populate the Configuration.Storage namespace.
 window.NTT.Configuration.Storage =
 {
 	KEY: KEY,
@@ -299,4 +300,18 @@ window.NTT.Configuration.Storage =
 	load: load,
 	save: save
 };
+
+// Perform configuration layout updates once (if necessary).
+load().then(cfg =>
+{
+	const Ordering = NTT.Ordering;
+	const Version = NTT.Configuration.Version;
+
+	if (Version.compare(cfg.version, Version.CURRENT) ===
+		Ordering.Less)
+	{
+		cfg = NTT.Configuration.update(cfg);
+		save(cfg);
+	}
+});
 }());
