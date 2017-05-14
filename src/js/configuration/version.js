@@ -1,7 +1,7 @@
 /**
  * The configuration object's layout version.
  */
-const CURRENT = create(1, 4, 0);
+const CURRENT = create(1, 4, 1);
 /**
  * Creates a new version object.
  *
