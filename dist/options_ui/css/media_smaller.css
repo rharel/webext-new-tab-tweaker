@@ -26,17 +26,16 @@
         margin-top: 10px;
     }
 
-    #wallpaper-urls > div > input[type="url"]
-    {
-        width: 100px;
-        font-size: x-small;
-    }
-
     #dialog-content
     {
         width: 200px;
         height: 200px;
         padding: 8px;
+    }
+
+    #wallpaper-urls
+    {
+        max-width: 200px;
     }
 
     #wallpaper-url-import-dialog > input[type="url"]

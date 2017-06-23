@@ -26,10 +26,9 @@
         margin-top: 10px;
     }
 
-    #wallpaper-urls > div > input[type="url"]
+    #wallpaper-urls
     {
-        width: 128px;
-        font-size: small;
+        max-width: 250px;
     }
 
     #dialog-content
