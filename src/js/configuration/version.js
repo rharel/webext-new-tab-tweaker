@@ -1,7 +1,7 @@
 /**
  * The configuration object's layout version.
  */
-const CURRENT = create(1, 4, 1);
+const CURRENT = create(1, 5, 0);
 /**
  * Creates a new version object.
  *
@@ -64,15 +64,13 @@ function is_valid(obj)
 function compare(first, second)
 {
 	const Ordering = NTT.Ordering;
-	const
-		parts_of_first = [first.major, first.minor, first.patch],
-		parts_of_second = [second.major, second.minor, second.patch];
+	const parts_of_first  = [first.major, first.minor, first.patch],
+		  parts_of_second = [second.major, second.minor, second.patch];
 
 	for (let i = 0; i < 3; ++i)
 	{
-		const
-			first_part = parts_of_first[i],
-			second_part = parts_of_second[i];
+		const first_part  = parts_of_first[i],
+			  second_part = parts_of_second[i];
 
 		if (first_part > second_part)
 		{

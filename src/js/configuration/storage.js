@@ -3,7 +3,7 @@
  */
 const KEY = "configuration@new-tab-tweaker";
 /**
- * Cross-browser storage API.
+ * A reference to local storage.
  */
 const LocalStorage = browser.storage.local;
 
@@ -12,6 +12,9 @@ const LocalStorage = browser.storage.local;
  *
  * @returns
  *      A promise which yields a configuration object when fulfilled.
+ *
+ * @note
+ * 		If no configuration object is detected, returns one with default values.
  */
 function load()
 {
@@ -58,12 +61,11 @@ window.NTT.Configuration.Storage =
 load().then(cfg =>
 {
 	const Ordering = NTT.Ordering;
-	const Version = NTT.Configuration.Version;
+	const Version  = NTT.Configuration.Version;
 
 	if (Version.compare(cfg.version, Version.CURRENT) ===
 		Ordering.Less)
 	{
-		cfg = NTT.Configuration.update(cfg);
-		save(cfg);
+		save(NTT.Configuration.update(cfg));
 	}
 });
