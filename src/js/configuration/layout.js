@@ -44,7 +44,7 @@ window.NTT.Configuration.DEFAULT =
 			{
 				is_enabled: false,
 				urls: [],
-				animation_duration: 0
+				animation_duration: 1.0
 			}
 		}
 	}
