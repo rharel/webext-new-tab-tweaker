@@ -28,6 +28,10 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.5.0
+ * Simplifies wallpaper list UI in the options page.
+ * Added a button for downloading of the wallpaper URL list as a text file.
+   
 ### 1.4.1
  * Fixes a bug where the image context menu was enabled even when the display of wallpapers was disabled.
  
