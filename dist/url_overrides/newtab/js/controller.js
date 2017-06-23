@@ -170,14 +170,13 @@ function apply_configuration(cfg)
 function initialize()
 {
 	DOM.background = document.getElementById('background');
-	DOM.wallpaper = document.getElementById('wallpaper');
+	DOM.wallpaper  = document.getElementById('wallpaper');
 
 	NTT.Configuration.Storage
 		.load()
 		.then(apply_configuration);
 
-	DOM.customize_page_button =
-		document.getElementById('customize-button');
+	DOM.customize_page_button = document.getElementById('customize-button');
 	DOM.customize_page_button.addEventListener('click', () =>
 	{
 		browser.runtime.openOptionsPage();

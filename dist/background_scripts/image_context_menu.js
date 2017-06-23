@@ -2,9 +2,9 @@
 "use strict";
 
 const contextMenus = browser.contextMenus;
-const storage = browser.storage;
+const storage      = browser.storage;
 
-const NEW_TAB_TWEAKER_ITEM_ID = "new-tab-tweaker";
+const NEW_TAB_TWEAKER_ITEM_ID     = "new-tab-tweaker";
 const SET_WALLPAPER_IMAGE_ITEM_ID = "set-wallpaper-image";
 const ADD_WALLPAPER_IMAGE_ITEM_ID = "add-wallpaper-image";
 
@@ -56,8 +56,7 @@ function create_context_menu_items()
 	{
 		if (info.menuItemId === ADD_WALLPAPER_IMAGE_ITEM_ID)
 		{
-			const existing_urls =
-				configuration.new_tab.custom_page.wallpaper.urls;
+			const existing_urls = configuration.new_tab.custom_page.wallpaper.urls;
 
 			if (!existing_urls.includes(info.srcUrl))
 			{
@@ -96,11 +95,13 @@ function update_context_menu_item_visibility()
 
 		configuration = cfg;
 
-		if (wallpaper_is_relevant && !context_items_are_active)
+		if (wallpaper_is_relevant &&
+		   !context_items_are_active)
 		{
 			create_context_menu_items();
 		}
-		else if (!wallpaper_is_relevant && context_items_are_active)
+		else if (!wallpaper_is_relevant &&
+			      context_items_are_active)
 		{
 			remove_context_menu_items();
 		}
