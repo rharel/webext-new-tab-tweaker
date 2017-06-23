@@ -11,7 +11,7 @@ window.NTT.Configuration = {};
 /**
  * The configuration object's layout version.
  */
-const CURRENT = create(1, 4, 1);
+const CURRENT = create(1, 5, 0);
 /**
  * Creates a new version object.
  *
@@ -74,15 +74,13 @@ function is_valid(obj)
 function compare(first, second)
 {
 	const Ordering = NTT.Ordering;
-	const
-		parts_of_first = [first.major, first.minor, first.patch],
-		parts_of_second = [second.major, second.minor, second.patch];
+	const parts_of_first  = [first.major, first.minor, first.patch],
+		  parts_of_second = [second.major, second.minor, second.patch];
 
 	for (let i = 0; i < 3; ++i)
 	{
-		const
-			first_part = parts_of_first[i],
-			second_part = parts_of_second[i];
+		const first_part  = parts_of_first[i],
+			  second_part = parts_of_second[i];
 
 		if (first_part > second_part)
 		{
@@ -180,39 +178,9 @@ window.NTT.Configuration.DEFAULT =
 "use strict";
 
 /**
- * Migrates a configuration from version 0.0.0-1.1.3 to 1.2.0
- *
- * @param previous
- * 		The previous version's configuration object, version 0.0.0-1.1.3.
- * @returns
- * 		The previous configuration represented for version 1.2.0.
- */
-function migrate_to_1_2_0(previous)
-{
-	const cfg = JSON.parse(JSON.stringify(previous));  // Make a copy.
-	const wallpaper = cfg.new_tab.custom_page.wallpaper;
-
-	// Convert:
-	// 		previous: wallpaper.source: {"none" | "direct"}
-	// 		current: wallpaper.is_enabled: boolean
-	wallpaper.is_enabled = wallpaper.source !== "none";
-	delete wallpaper.source;
-
-	// Convert:
-	// 		previous: wallpaper.url: String
-	//		current: wallpaper.urls: String[]
-	wallpaper.urls = [wallpaper.url];
-	delete wallpaper.url;
-
-	// update version descriptor
-	cfg.version = NTT.Configuration.Version.create(1, 2, 0);
-
-	return cfg;
-}
-
-/**
  * Updates the configuration object's layout to the one specified in the
- * current version.
+ * most recent version, but only if the most recent version's layout is incompatible with the
+ * old one.
  *
  * @param cfg
  *		The previous version's configuration object.
@@ -220,22 +188,17 @@ function migrate_to_1_2_0(previous)
  * 		An up-to-date configuration object based on the previous one.
  * @note
  * 		If the previous object is compatible with the current version,
- * 	    a copy of it is returned instead.
+ * 	    it is returned instead as-is.
  */
 function update(cfg)
 {
 	const Ordering = NTT.Ordering;
-	const Version = NTT.Configuration.Version;
+	const Version  = NTT.Configuration.Version;
 
-	if (Version.compare(cfg.version, Version.create(1, 2, 0)) ===
-		Ordering.Less)
-	{
-		cfg = migrate_to_1_2_0(cfg);
-	}
+	// (currently there is no need for migrations, but perhaps in the future).
 
 	return cfg;
 }
-
 window.NTT.Configuration.update = update;
 }());
 
@@ -247,7 +210,7 @@ window.NTT.Configuration.update = update;
  */
 const KEY = "configuration@new-tab-tweaker";
 /**
- * Cross-browser storage API.
+ * A reference to local storage.
  */
 const LocalStorage = browser.storage.local;
 
@@ -256,6 +219,9 @@ const LocalStorage = browser.storage.local;
  *
  * @returns
  *      A promise which yields a configuration object when fulfilled.
+ *
+ * @note
+ * 		If no configuration object is detected, returns one with default values.
  */
 function load()
 {
@@ -302,13 +268,12 @@ window.NTT.Configuration.Storage =
 load().then(cfg =>
 {
 	const Ordering = NTT.Ordering;
-	const Version = NTT.Configuration.Version;
+	const Version  = NTT.Configuration.Version;
 
 	if (Version.compare(cfg.version, Version.CURRENT) ===
 		Ordering.Less)
 	{
-		cfg = NTT.Configuration.update(cfg);
-		save(cfg);
+		save(NTT.Configuration.update(cfg));
 	}
 });
 }());
