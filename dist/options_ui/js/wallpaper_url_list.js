@@ -13,6 +13,8 @@ const DOM =
 	album_url: null,
 	album_info: null,
 	import_urls: null,
+
+	download_urls: null
 };
 /**
  * Contains candidate URLs to import.
@@ -94,6 +96,25 @@ function on_import_album_confirmation()
 }
 
 /**
+ * Offers the URL list as a download.
+ */
+function download_as_text()
+{
+	const anchor = document.createElement('a');
+	anchor.setAttribute
+	(
+		"href",
+		"data:text/plain;charset=utf-8," + encodeURIComponent(DOM.wallpaper_urls.value)
+	);
+	anchor.setAttribute("download", "wallpaper-urls");
+
+	anchor.style.display = "none";
+	document.body.appendChild(anchor);
+	anchor.click();
+	document.body.removeChild(anchor);
+}
+
+/**
  * Initializes element variables and event handling.
  */
 function initialize()
@@ -126,6 +147,10 @@ function initialize()
 		DOM.import_urls.style.visibility = "hidden";
 		NTT.OptionsUI.Dialog.open(DOM.import_dialog);
 	});
+
+	DOM.download_urls =
+		document.getElementById('download-wallpaper-urls');
+	DOM.download_urls.addEventListener('click', download_as_text);
 
 	window.NTT.OptionsUI.NewTab.Wallpaper =
 	{
