@@ -6,6 +6,7 @@
     <title>Options | New Tab Tweaker</title>
 
     <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="css/theme_light.css" id="theme">
     <link rel="stylesheet" href="css/media_large.css">
     <link rel="stylesheet" href="css/media_small.css">
     <link rel="stylesheet" href="css/media_smaller.css">
@@ -18,6 +19,7 @@
     <script src="js/imgur.js"></script>
     <script src="js/dialog.js"></script>
     <script src="js/option_categories.js"></script>
+    <script src="js/themes.js"></script>
     <script src="js/tab_behavior_panels.js"></script>
     <script src="js/wallpaper_url_list.js"></script>
     <script src="js/controller.js"></script>
@@ -26,7 +28,7 @@
 <div id="content">
     <!-- Header -->
     <header>
-        <h1>New Tab Tweaker <span id="version">?.?.?</span></h1>
+        <h1>New Tab Tweaker <span id="version"></span></h1>
     </header>
     <!-- Option categories -->
     <div id="option-categories">
@@ -37,16 +39,14 @@
             <label for="new-tab-option-category-button">
                 New Tab
             </label>
-        </div>
-        <div class="category">
+        </div><div class="category">
             <input id="notification-option-category-button"
                    type="radio" name="option-category-buttons"
                    value="notification">
             <label for="notification-option-category-button">
                 Notification
             </label>
-        </div>
-        <div class="category">
+        </div><div class="category">
             <input id="advanced-option-category-button"
                    type="radio" name="option-category-buttons"
                    value="advanced">
@@ -55,6 +55,7 @@
             </label>
         </div>
     </div>
+    <!-- Options -->
     <div id="options">
         <div id="new-tab-options">
             <fieldset id="tab-behavior-selection">
@@ -97,7 +98,7 @@
                     <div>
                         Use
                         <input id="bg-color" type="color"
-                               size="28" value="#0000ff"
+                               size="28" value="#ffffff"
                                title="Background color">
                         as background color
                     </div>
@@ -115,7 +116,7 @@
                             <div>
                                 <textarea id="wallpaper-urls"
                                           rows="10" cols="100"
-                                          placeholder="one image URL per line"
+                                          placeholder="One image URL per line."
                                           wrap="off">
                                 </textarea>
                             </div>
@@ -127,7 +128,8 @@
                             <br>
                             <a id="download-wallpaper-urls"
                                class="link-button"
-                               title="Download the wallpaper URL list">
+                               title="Download the wallpaper URL list"
+                               download="wallpaper-urls.txt">
                                 Download as a text file...
                             </a>
                         </div>
@@ -142,7 +144,7 @@
                             Fade the background color in over
                             <input id="bg-color-animation-duration"
                                    type="number"
-                                   min="0" max="5" step="0.1" value="1"
+                                   min="0.1" max="5" step="0.1" value="1"
                                    title="Background color animation duration">
                             seconds
                         </label>
@@ -155,7 +157,7 @@
                             Fade the wallpaper image in over
                             <input id="wallpaper-animation-duration"
                                    type="number"
-                                   min="0" max="5" step="0.1" value="1"
+                                   min="0.1" max="5" step="0.1" value="1"
                                    title="Wallpaper animation duration">
                             seconds
                         </label>
@@ -178,14 +180,37 @@
                 </div>
             </fieldset>
         </div>
-        <fieldset id="advanced-options">
-            <legend>Back to basics</legend>
-            <div>
-                <a id="restore-default-options-button" class="link-button">
-                    Reset all options back to their default values
-                </a>
-            </div>
-        </fieldset>
+        <div id="advanced-options">
+            <fieldset id="theme-options">
+                <legend>Select a theme</legend>
+                <div>
+                    <input id="light-theme-button"
+                           type="radio" name="themes"
+                           value="light" checked
+                           title="Light theme">
+                    <label for="light-theme-button">
+                        Light
+                    </label>
+                </div>
+                <div>
+                    <input id="dark-theme-button"
+                           type="radio" name="themes"
+                           value="dark"
+                           title="Dark theme">
+                    <label for="dark-theme-button">
+                        Dark
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset id="resetting-options">
+                <legend>Back to basics</legend>
+                <div>
+                    <a id="restore-default-options-button" class="link-button">
+                        Reset all options back to their default values
+                    </a>
+                </div>
+            </fieldset>
+        </div>
     </div>
     <!-- Error reporting -->
     <div id="errors">

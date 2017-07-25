@@ -1,0 +1,73 @@
+body
+{
+    background-color: #fafafd;
+    color:            #282828;
+}
+
+#option-categories > .category
+{
+    border-style: solid;
+    border-width: 1px 1px 2px 1px;
+    border-color: dimgray dimgray darkorange dimgray;
+
+    background-color: #e8e8e8;
+}
+#option-categories > .category:hover
+{
+    background-color: #dddddd;
+}
+#option-categories > .category:active
+{
+    background-color: #cacaca;
+}
+#option-categories > .category > input[type="radio"]:checked + label
+{
+    border-bottom: 8px solid darkorange;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#options fieldset > div
+{
+    border-left: 4px solid darkorange;
+}
+textarea
+{
+    border-color: dimgray;
+}
+input
+{
+    border-color: dimgray;
+}
+
+#errors
+{
+    background-color: #ffc0c9;
+}
+#error-message
+{
+    color: #9f0000;
+}
+
+#dialog-shadow
+{
+    background-color: rgba(0, 0, 0, 0.25);
+}
+#dialog-content
+{
+    background-color: #fafafd;
+}
+
+#wallpaper-url-import-dialog > header
+{
+    border-bottom:  2px solid darkorange;
+}
+
+.note
+{
+    color: grey;
+}
+.note:hover
+{
+    color: inherit;
+}

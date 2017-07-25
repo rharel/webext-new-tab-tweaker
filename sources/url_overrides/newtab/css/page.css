@@ -9,16 +9,16 @@ body
 
     position: absolute;
     left: 0;
-    top: 0;
+    top:  0;
 
-    width: 100vw;
+    width:  100vw;
     height: 100vh;
 
     text-align: center;
 }
 #wallpaper
 {
-    width: auto;
+    width:  auto;
     height: 100%;
 
     opacity: 0;
@@ -29,10 +29,10 @@ body
     z-index: 1;
 
     position: absolute;
-    left: 0;
+    left:   0;
     bottom: 0;
 
-    width: 100%;
+    width:  100%;
     height: 20%;
 
     opacity: 0;
@@ -49,7 +49,7 @@ body
     position: absolute;
     bottom: 32px;
 
-    padding-top: 16px;
+    padding-top:    16px;
     padding-bottom: 16px;
     width: 100%;
 

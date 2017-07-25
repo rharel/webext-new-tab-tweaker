@@ -1,18 +1,12 @@
-body
-{
-    background-color: #FAFAFD;
-    color: #282828;
-}
-
 #content
 {
-    margin-left: 32px;
-    margin-right: 32px;
+    margin-left:   32px;
+    margin-right:  32px;
     margin-bottom: 16px;
 }
 #content > header
 {
-	cursor: default;
+    cursor: default;
 }
 
 #option-categories
@@ -23,36 +17,19 @@ body
 {
     display: inline-block;
 
-    border: 1px solid dimgrey;
-    border-bottom: 2px solid darkorange;
-    max-width: 256px;
-    width: 30%;
-    height: 48px;
+    max-width: 200px;
+    width:     30%;
+    height:    48px;
 
-    text-align: center;
+    text-align:     center;
     vertical-align: middle;
-    line-height: 48px;
+    line-height:    48px;
 
     font-size: large;
-    background-color: #e8e8e8;
-}
-#option-categories > .category:hover
-{
-    background-color: #dddddd;
-}
-#option-categories > .category:active
-{
-    background-color: #cacaca;
 }
 #option-categories > .category > input[type="radio"]
 {
     display: none;
-}
-#option-categories > .category > input[type="radio"]:checked + label
-{
-    border-bottom: 8px solid darkorange;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 #option-categories > .category > label
 {
@@ -77,12 +54,22 @@ body
 }
 #options fieldset > div
 {
-    border-left: 4px solid darkorange;
     padding-left: 28px;
 }
 #options fieldset > div + div
 {
     margin-top: 4px;
+}
+textarea
+{
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}
+input
+{
+    border-width: 1px;
+    border-style: solid;
 }
 
 #custom-page-style input[type="color"]
@@ -96,11 +83,13 @@ body
 
 #wallpaper-urls
 {
-    margin-top: 8px;
+    margin-top:    8px;
     margin-bottom: 4px;
-    min-width: 150px;
-    max-width: 350px;
+
+    min-width:  150px;
+    max-width:  350px;
     max-height: 100px;
+
     resize: none;
 
     overflow-x: auto;
@@ -111,15 +100,9 @@ body
 {
     display: none;
 
-    margin-top: 10px;
+    margin-top:    10px;
     margin-bottom: 10px;
-    padding: 10px;
-
-    background-color: #ffc0c9;
-}
-#error-message
-{
-    color: #9f0000;
+    padding:       10px;
 }
 
 #dialog-shadow
@@ -128,9 +111,9 @@ body
 
     position: absolute;
     left: 0;
-    top: 0;
+    top:  0;
 
-    width: 100%;
+    width:  100%;
     height: 100%;
 
     background-color: rgba(0, 0, 0, 0.25);
@@ -138,17 +121,16 @@ body
 #dialog-content
 {
     position:absolute;
-    left: 0;
-    right: 0;
-    top: 0;
+    left:   0;
+    right:  0;
+    top:    0;
     bottom: 0;
 
-    margin:auto;
-    width: 400px;
+    margin: auto;
+    border: 1px solid dimgray;
+    width:  400px;
     height: 150px;
     padding: 16px;
-
-    background-color: #FAFAFD;
 }
 
 #wallpaper-url-import-dialog
@@ -157,8 +139,7 @@ body
 }
 #wallpaper-url-import-dialog > header
 {
-    border-bottom: 2px solid darkorange;
-    margin-bottom: 8px;
+    margin-bottom:  8px;
     padding-bottom: 8px;
 
     text-align: center;
@@ -188,10 +169,5 @@ body
 .note
 {
     font-size: small;
-    color: grey;
     cursor: default;
-}
-.note:hover
-{
-    color: inherit;
 }

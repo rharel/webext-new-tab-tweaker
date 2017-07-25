@@ -3,3 +3,5 @@ Remember to update the following when bumping up a version:
 package.json
 sources/manifest.json
 sources/README.md
+sources/background_scripts/configuration.js
+tests/configuration/version.test.html

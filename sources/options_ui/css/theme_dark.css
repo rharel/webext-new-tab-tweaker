@@ -1,0 +1,91 @@
+body
+{
+    background-color: #333333;
+    color:            #c2c2c2;
+}
+
+#option-categories > .category
+{
+    border-style: solid;
+    border-width: 1px 1px 2px 1px;
+    border-color: dimgray dimgray darkorange dimgray;
+
+    background-color: #303030;
+    color:            #e6e6e6;
+}
+#option-categories > .category:hover
+{
+    background-color: #252525;
+}
+#option-categories > .category:active
+{
+    background-color: #000000;
+}
+#option-categories > .category > input[type="radio"]:checked + label
+{
+    border-bottom: 8px solid darkorange;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#options fieldset > div
+{
+    border-left: 4px solid darkorange;
+}
+#options fieldset > legend
+{
+    color: #e6e6e6;
+}
+textarea
+{
+    border-color: dimgray;
+
+    background-color: #252525;
+    color:            #e6e6e6;
+}
+input
+{
+    border-color: dimgray;
+}
+input[type="number"]
+{
+    background-color: #252525;
+    color:            #e6e6e6;
+}
+input[type="url"]
+{
+    background-color: #252525;
+    color:            #e6e6e6;
+}
+
+#errors
+{
+    background-color: #ffc0c9;
+}
+#error-message
+{
+    color: #9f0000;
+}
+
+#dialog-shadow
+{
+    background-color: rgba(0, 0, 0, 0.25);
+}
+#dialog-content
+{
+    background-color: #333333;
+}
+
+#wallpaper-url-import-dialog > header
+{
+    border-bottom:  2px solid darkorange;
+}
+
+.note
+{
+    color: grey;
+}
+.note:hover
+{
+    color: inherit;
+}

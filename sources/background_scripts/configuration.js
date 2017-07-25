@@ -1,279 +1,232 @@
-(function() {
-"use strict";
+NTT.Configuration = {};
 
-// Create the Configuration namespace.
-window.NTT.Configuration = {};
-}());
-
-(function() {
-"use strict";
-
-/**
- * The configuration object's layout version.
- */
-const CURRENT = create(1, 5, 0);
-/**
- * Creates a new version object.
- *
- * @param major
- * 		The major change-set version number.
- * @param minor
- * 		The minor change-set version number.
- * @param patch
- * 		The patch version number.
- */
-function create(major, minor, patch)
+// Version operations:
 {
-	return {
-		major: major,
-		minor: minor,
-		patch: patch
-	};
-}
-/**
- * Determines whether the specified object represents a valid version
- * object.
- *
- * @param obj
- *        The object to test.
- * @returns
- *        True iff the object is a valid version object.
- */
-function is_valid(obj)
-{
-	/**
-	 * Determines whether the specified object is a (non-strict) positive
-	 * integer.
-	 *
-	 * @param obj
-	 *        The object to test.
-	 * @returns
-	 *        True iff the object is a (non-strict) positive integer.
-	 */
+	// Creates a new version identifier.
+	function create(major, minor, patch)
+	{
+		return {
+			major: major,
+			minor: minor,
+			patch: patch
+		};
+	}
+
+	// Returns true iff the specified object is a (non-strict) positive integer.
 	function is_positive_integer(obj)
 	{
 		return Number.isInteger(obj) && obj >= 0;
 	}
-	return (
-		is_positive_integer(obj.major) &&
-		is_positive_integer(obj.minor) &&
-		is_positive_integer(obj.patch)
-	);
-}
-/**
- * Determines whether one version is greater, lesser, or equal than/to
- * another.
- *
- * @param first
- * 		The first version object.
- * @param second
- * 		The second version object.
- * @returns
- * 		An ordering descriptor with relation to 'first' and 'second'.
- */
-function compare(first, second)
-{
-	const Ordering = NTT.Ordering;
-	const parts_of_first  = [first.major, first.minor, first.patch],
-		  parts_of_second = [second.major, second.minor, second.patch];
-
-	for (let i = 0; i < 3; ++i)
+	// Returns true iff the specified object is a valid version identifier.
+	function is_valid(obj)
 	{
-		const first_part  = parts_of_first[i],
-			  second_part = parts_of_second[i];
-
-		if (first_part > second_part)
-		{
-			return Ordering.Greater;
-		}
-		else if (first_part < second_part)
-		{
-			return Ordering.Less;
-		}
+		return (
+			is_positive_integer(obj.major) &&
+			is_positive_integer(obj.minor) &&
+			is_positive_integer(obj.patch)
+		);
 	}
-	return Ordering.Equal;
-}
-/**
- * Represent the specified version as a string.
- *
- * @param version
- * 		The version object to represent.
- * @returns
- *		A human-readable string representing the specified version.
- */
-function as_string(version)
-{
-	return `${version.major}.${version.minor}.${version.patch}`;
-}
 
-// Populate the Configuration.Version namespace.
-window.NTT.Configuration.Version =
-{
-	CURRENT: CURRENT,
-
-	create: create,
-	is_valid: is_valid,
-	compare: compare,
-	as_string: as_string
-};
-}());
-
-(function() {
-"use strict";
-
-/**
- * Enumerates possible tab behaviors.
- */
-const TabBehavior =
-{
-	/**
-	 * The tab redirects the browser to a specified URL.
-	 */
-	Redirect: "redirect",
-	/**
-	 * The tab displays a customized page.
-	 */
-	DisplayCustomPage: "display-custom-page"
-};
-window.NTT.Configuration.TabBehavior = TabBehavior;
-
-/**
- * The default configuration layout.
- */
-window.NTT.Configuration.DEFAULT =
-{
-	version: NTT.Configuration.Version.CURRENT,
-
-	notification:
+	// Returns an Ordering relating two version identifiers.
+	function compare(a, b)
 	{
-		new_features: true
-	},
-	new_tab:
-	{
-		behavior: TabBehavior.DisplayCustomPage,
+		const Ordering     = NTT.Ordering;
+		const components_a = [a.major, a.minor, a.patch],
+			  components_b = [b.major, b.minor, b.patch];
 
-		redirect:
+		for (let i = 0; i < 3; ++i)
 		{
-			url: ""
-		},
-		custom_page:
+			const component_a = components_a[i],
+				  component_b = components_b[i];
+
+			if      (component_a > component_b) { return Ordering.Greater; }
+			else if (component_a < component_b) { return Ordering.Less;    }
+		}
+		return Ordering.Equal;
+	}
+
+	// Builds a string representation of the specified version identifier.
+	function as_string(id, include_minor = true, include_patch = true)
+	{
+		let result = `${id.major}`;
+		if (include_minor)
 		{
-			background:
+			result += `.${id.minor}`;
+			if (include_patch)
 			{
-				color: "#2d2d2d",
-				animation_duration: 0.5
-			},
-			wallpaper:
-			{
-				is_enabled: false,
-				urls: [],
-				animation_duration: 0
+				result += `.${id.patch}`;
 			}
 		}
+		return result;
 	}
-};
-}());
 
-(function() {
-"use strict";
-
-/**
- * Updates the configuration object's layout to the one specified in the
- * most recent version, but only if the most recent version's layout is incompatible with the
- * old one.
- *
- * @param cfg
- *		The previous version's configuration object.
- * @returns
- * 		An up-to-date configuration object based on the previous one.
- * @note
- * 		If the previous object is compatible with the current version,
- * 	    it is returned instead as-is.
- */
-function update(cfg)
-{
-	const Ordering = NTT.Ordering;
-	const Version  = NTT.Configuration.Version;
-
-	// (currently there is no need for migrations, but perhaps in the future).
-
-	return cfg;
-}
-window.NTT.Configuration.update = update;
-}());
-
-(function() {
-"use strict";
-
-/**
- * The key to the configuration object in local storage.
- */
-const KEY = "configuration@new-tab-tweaker";
-/**
- * A reference to local storage.
- */
-const LocalStorage = browser.storage.local;
-
-/**
- * Loads the configuration from local storage asynchronously.
- *
- * @returns
- *      A promise which yields a configuration object when fulfilled.
- *
- * @note
- * 		If no configuration object is detected, returns one with default values.
- */
-function load()
-{
-	const DEFAULT_CONFIGURATION = NTT.Configuration.DEFAULT;
-
-	return LocalStorage.get(KEY).then(item =>
+	NTT.Configuration.Version =
 	{
-		if (item.hasOwnProperty(KEY))
+		CURRENT: create(1, 5, 0),
+
+		create:    create,
+		is_valid:  is_valid,
+		compare:   compare,
+		as_string: as_string
+	};
+}
+// Storage layout:
+{
+	const Version = NTT.Configuration.Version;
+
+	// Enumerates possible tab behaviors.
+	const TabBehavior =
+	{
+		// Redirection to a specified URL.
+		Redirect: "redirect",
+
+		// Display of a custom page with user-specified background color and wallpaper image.
+		DisplayCustomPage: "display-custom-page"
+	};
+	NTT.Configuration.TabBehavior = TabBehavior;
+
+	// Enumerates option-ui themes.
+	const Theme =
+	{
+		Light: "light",
+		Dark:  "dark"
+	};
+	NTT.Configuration.Theme = Theme;
+
+	// The default configuration.
+	NTT.Configuration.create_default = function()
+	{
+		return {
+			version: Version.create(Version.CURRENT.major, Version.CURRENT.minor, 0),
+
+			notification:
+			{
+				new_features: true
+			},
+			new_tab:
+			{
+				behavior: TabBehavior.DisplayCustomPage,
+
+				redirect:
+				{
+					url: ""
+				},
+				custom_page:
+				{
+					background:
+					{
+						color: "#2d2d2d",
+
+						do_animate: true,
+						animation_duration: 0.5
+					},
+					wallpaper:
+					{
+						is_enabled: false,
+
+						urls: [],
+
+						do_animate: true,
+						animation_duration: 1.5
+					}
+				}
+			},
+			options_ui:
+			{
+				theme: Theme.Light
+			}
+		};
+	}
+}
+// Updates:
+{
+	const migration =
+	{
+		"1.4": cfg =>  // migrates 1.4 to 1.5
 		{
-			return item[KEY];
+			cfg.version = create(1, 5, 0);
+
+			const page = cfg.new_tab.custom_page;
+			const bg   = page.background;
+			const wp   = page.wallpaper;
+
+			bg.do_animate         = bg.animation_duration > 0;
+			bg.animation_duration = Math.max(bg.animation_duration, 0.1);
+
+			wp.do_animate         = wp.animation_duration  > 0;
+			wp.animation_duration = Math.max(wp.animation_duration, 0.1);
+
+			cfg.options_ui = { theme: NTT.Configuration.Theme.Light };
 		}
-		else
+	};
+	// Updates the configuration object layout.
+	function update(cfg)
+	{
+		const Ordering = NTT.Ordering;
+		const Version  = NTT.Configuration.Version;
+
+		let version_string = Version.as_string(cfg.version, true, false);
+		while (migration.hasOwnProperty(version_string))
 		{
-			return DEFAULT_CONFIGURATION;
+			migration[version_string](cfg);
+			version_string = Version.as_string(cfg.version, true, false);
+		}
+
+		return cfg;
+	}
+	NTT.Configuration.update = update;
+}
+// Read/write:
+{
+	// The key to the configuration object in local storage.
+	const KEY = "configuration@new-tab-tweaker";
+	const storage = browser.storage.local;
+
+	// Loads the configuration from storage asynchronously (returns a promise).
+	//
+	// Note: If no configuration object is detected, returns one with default values.
+	function load()
+	{
+		return storage.get(KEY).then(item =>
+		{
+			if (item.hasOwnProperty(KEY)) { return item[KEY];                          }
+			else                          { return NTT.Configuration.create_default(); }
+		});
+	}
+	// Saves a configuration to storage asynchronously (returns a promise).
+	function save(cfg)
+	{
+		const item = {};
+		item[KEY] = cfg;
+
+		return storage.set(item);
+	}
+
+	NTT.Configuration.Storage =
+	{
+		KEY: KEY,
+
+		load: load,
+		save: save
+	};
+}
+// Runtime event hookups:
+{
+	const Configuration = NTT.Configuration,
+		  Storage       = NTT.Configuration.Storage;
+
+	browser.runtime.onInstalled.addListener(details =>
+	{
+		if (details.reason === "install")
+		{
+			Storage.save(Configuration.create_default());
+		}
+		else if (details.reason === "update")
+		{
+			Storage.load().then(cfg =>
+			{
+				Storage.save(Configuration.update(cfg));
+			});
 		}
 	});
 }
-/**
- * Saves a configuration to local storage asynchronously.
- *
- * @param cfg
- *      The configuration to save.
- * @returns
- *      A promise.
- */
-function save(cfg)
-{
-	const item = {};
-	item[KEY] = cfg;
-
-	return LocalStorage.set(item);
-}
-
-// Populate the Configuration.Storage namespace.
-window.NTT.Configuration.Storage =
-{
-	KEY: KEY,
-
-	load: load,
-	save: save
-};
-
-// Perform configuration layout updates once (if necessary).
-load().then(cfg =>
-{
-	const Ordering = NTT.Ordering;
-	const Version  = NTT.Configuration.Version;
-
-	if (Version.compare(cfg.version, Version.CURRENT) ===
-		Ordering.Less)
-	{
-		save(NTT.Configuration.update(cfg));
-	}
-});
-}());

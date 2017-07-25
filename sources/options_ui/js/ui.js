@@ -1,4 +1,3 @@
-// Create the OptionsUI namespace.
 NTT.OptionsUI =
 {
 	Dialog: null,

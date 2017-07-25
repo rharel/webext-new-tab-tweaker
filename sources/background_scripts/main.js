@@ -1,2 +1,1 @@
-// Create the NTT namespace.
-window.NTT = {};
+NTT = {};
