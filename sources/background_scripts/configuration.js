@@ -60,7 +60,7 @@ NTT.Configuration = {};
 
 	NTT.Configuration.Version =
 	{
-		CURRENT: create(1, 5, 1, 2),
+		CURRENT: create(1, 5, 1),
 		HAS_RELEASE_NOTES: true,
 
 		create:    create,
