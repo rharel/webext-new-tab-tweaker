@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>test/basic/version</title>
 
-    <link rel="stylesheet" href="../../node_modules/mocha/mocha.css">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
 
-    <script src="../../node_modules/mocha/mocha.js"></script>
-    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
 
     <script>
         window.NTT = {};
     </script>
-    <script src="../../sources/background_scripts/ordering.js"></script>
-    <script src="../../sources/background_scripts/configuration.js"></script>
+    <script src="../sources/background_scripts/ordering.js"></script>
+    <script src="../sources/background_scripts/configuration.js"></script>
 </head>
 <body>
 <div id="mocha"></div>
@@ -45,7 +45,7 @@
 			assert.strictEqual(1, Version.CURRENT.major);
 			assert.strictEqual(5, Version.CURRENT.minor);
 			assert.strictEqual(1, Version.CURRENT.patch);
-			assert.strictEqual(1, Version.CURRENT.beta);
+			assert.strictEqual(2, Version.CURRENT.beta);
 		});
 	});
 	describe('valid version-object determination', function()
