@@ -28,13 +28,14 @@
     {
     	const create = Version.create;
 
-        it ('should have correct major, minor, and patch fields', function()
+        it ('should have correct components', function()
         {
-            const v1_2_3 = create(1, 2, 3);
+            const v1_2_3_4 = create(1, 2, 3, 4);
 
-			assert.strictEqual(1, v1_2_3.major);
-			assert.strictEqual(2, v1_2_3.minor);
-			assert.strictEqual(3, v1_2_3.patch);
+			assert.strictEqual(1, v1_2_3_4.major);
+			assert.strictEqual(2, v1_2_3_4.minor);
+			assert.strictEqual(3, v1_2_3_4.patch);
+			assert.strictEqual(4, v1_2_3_4.beta);
         });
     });
 	describe('current version descriptor', function()
@@ -43,7 +44,8 @@
 		{
 			assert.strictEqual(1, Version.CURRENT.major);
 			assert.strictEqual(5, Version.CURRENT.minor);
-			assert.strictEqual(0, Version.CURRENT.patch);
+			assert.strictEqual(1, Version.CURRENT.patch);
+			assert.strictEqual(1, Version.CURRENT.beta);
 		});
 	});
 	describe('valid version-object determination', function()
@@ -52,28 +54,32 @@
 
 		it('should indicate missing fields are invalid', function()
 		{
-			assert(!is_valid({minor: 1, patch: 1}));  // missing 'major'
-			assert(!is_valid({major: 1, patch: 1}));  // missing 'minor'
-			assert(!is_valid({major: 1, minor: 1}));  // missing 'patch'
+			assert(!is_valid({minor: 1, patch: 1, beta:  1}));  // missing 'major'
+			assert(!is_valid({major: 1, patch: 1, beta:  1}));  // missing 'minor'
+			assert(!is_valid({major: 1, minor: 1, beta:  1}));  // missing 'patch'
+			assert(!is_valid({major: 1, minor: 1, patch: 1}));  // missing 'beta'
 		});
 		it('should indicate non-integers are invalid', function()
 		{
-			assert(!is_valid({major: 1.1, minor: 1, patch: 1}));
-			assert(!is_valid({major: 1, minor: 1.1, patch: 1}));
-			assert(!is_valid({major: 1, minor: 1, patch: 1.1}));
+			assert(!is_valid({major: 1.1, minor: 1  , patch: 1  , beta: 1  }));
+			assert(!is_valid({major: 1  , minor: 1.1, patch: 1  , beta: 1  }));
+			assert(!is_valid({major: 1  , minor: 1  , patch: 1.1, beta: 1  }));
+			assert(!is_valid({major: 1  , minor: 1  , patch: 1  , beta: 1.1}));
 		});
 		it('should indicate negative values are invalid', function()
 		{
-			assert(!is_valid({major: -1, minor: 1, patch: 1}));
-			assert(!is_valid({major: 1, minor: -1, patch: 1}));
-			assert(!is_valid({major: 1, minor: 1, patch: -1}));
+			assert(!is_valid({major: -1, minor:  1, patch:  1, beta:  1}));
+			assert(!is_valid({major:  1, minor: -1, patch:  1, beta:  1}));
+			assert(!is_valid({major:  1, minor:  1, patch: -1, beta:  1}));
+			assert(!is_valid({major:  1, minor:  1, patch:  1, beta: -1}));
 		});
 		it('should validate positive, non-negative integers', function()
 		{
-			assert(is_valid({major: 0, minor: 0, patch: 0}));
-			assert(is_valid({major: 0, minor: 0, patch: 1}));
-			assert(is_valid({major: 0, minor: 1, patch: 0}));
-			assert(is_valid({major: 1, minor: 0, patch: 0}));
+			assert(is_valid({major: 0, minor: 0, patch: 0, beta: 0}));
+			assert(is_valid({major: 0, minor: 0, patch: 0, beta: 1}));
+			assert(is_valid({major: 0, minor: 0, patch: 1, beta: 0}));
+			assert(is_valid({major: 0, minor: 1, patch: 0, beta: 0}));
+			assert(is_valid({major: 1, minor: 0, patch: 0, beta: 0}));
 		});
 	});
 	describe('comparison between versions', function()
@@ -81,23 +87,32 @@
 		const compare = Version.compare;
 
 		const
-			v1_0_0 = {major: 1, minor: 0, patch: 0},
-			v0_1_0 = {major: 0, minor: 1, patch: 0},
-			v0_0_1 = {major: 0, minor: 0, patch: 1};
+			v1_0_0_0 = {major: 1, minor: 0, patch: 0, beta: 0},
+			v0_1_0_0 = {major: 0, minor: 1, patch: 0, beta: 0},
+			v0_0_1_0 = {major: 0, minor: 0, patch: 1, beta: 0},
+			v0_0_0_1 = {major: 0, minor: 0, patch: 0, beta: 1};
 
-		it('should compare in order: (1) major, (2) minor, (3) patch', function()
+		it('should compare in order: (1) major, (2) minor, (3) patch, (4) beta', function()
 		{
-			assert.strictEqual(Ordering.Equal, compare(v1_0_0, v1_0_0));
-			assert.strictEqual(Ordering.Greater, compare(v1_0_0, v0_1_0));
-			assert.strictEqual(Ordering.Greater, compare(v1_0_0, v0_0_1));
+			assert.strictEqual(Ordering.Equal,   compare(v1_0_0_0, v1_0_0_0));
+			assert.strictEqual(Ordering.Greater, compare(v1_0_0_0, v0_1_0_0));
+			assert.strictEqual(Ordering.Greater, compare(v1_0_0_0, v0_0_1_0));
+			assert.strictEqual(Ordering.Greater, compare(v1_0_0_0, v0_0_0_1));
 
-			assert.strictEqual(Ordering.Equal, compare(v0_1_0, v0_1_0));
-			assert.strictEqual(Ordering.Less, compare(v0_1_0, v1_0_0));
-			assert.strictEqual(Ordering.Greater, compare(v0_1_0, v0_0_1));
+			assert.strictEqual(Ordering.Less,    compare(v0_1_0_0, v1_0_0_0));
+			assert.strictEqual(Ordering.Equal,   compare(v0_1_0_0, v0_1_0_0));
+			assert.strictEqual(Ordering.Greater, compare(v0_1_0_0, v0_0_1_0));
+			assert.strictEqual(Ordering.Greater, compare(v0_1_0_0, v0_0_0_1));
 
-			assert.strictEqual(Ordering.Equal, compare(v0_0_1, v0_0_1));
-			assert.strictEqual(Ordering.Less, compare(v0_0_1, v1_0_0));
-			assert.strictEqual(Ordering.Less, compare(v0_0_1, v0_1_0));
+			assert.strictEqual(Ordering.Less,    compare(v0_0_1_0, v1_0_0_0));
+			assert.strictEqual(Ordering.Less,    compare(v0_0_1_0, v0_1_0_0));
+			assert.strictEqual(Ordering.Equal,   compare(v0_0_1_0, v0_0_1_0));
+			assert.strictEqual(Ordering.Greater, compare(v0_0_1_0, v0_0_0_1));
+
+			assert.strictEqual(Ordering.Less,    compare(v0_0_0_1, v1_0_0_0));
+			assert.strictEqual(Ordering.Less,    compare(v0_0_0_1, v0_1_0_0));
+			assert.strictEqual(Ordering.Less,    compare(v0_0_0_1, v0_0_1_0));
+			assert.strictEqual(Ordering.Equal,   compare(v0_0_0_1, v0_0_0_1));
 		});
 	});
 

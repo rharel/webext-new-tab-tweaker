@@ -3,12 +3,13 @@ NTT.Configuration = {};
 // Version operations:
 {
 	// Creates a new version identifier.
-	function create(major, minor, patch)
+	function create(major, minor = 0, patch = 0, beta = 0)
 	{
 		return {
 			major: major,
 			minor: minor,
-			patch: patch
+			patch: patch,
+			beta : beta
 		};
 	}
 
@@ -23,7 +24,8 @@ NTT.Configuration = {};
 		return (
 			is_positive_integer(obj.major) &&
 			is_positive_integer(obj.minor) &&
-			is_positive_integer(obj.patch)
+			is_positive_integer(obj.patch) &&
+			is_positive_integer(obj.beta)
 		);
 	}
 
@@ -31,10 +33,10 @@ NTT.Configuration = {};
 	function compare(a, b)
 	{
 		const Ordering     = NTT.Ordering;
-		const components_a = [a.major, a.minor, a.patch],
-			  components_b = [b.major, b.minor, b.patch];
+		const components_a = [a.major, a.minor, a.patch, a.beta],
+			  components_b = [b.major, b.minor, b.patch, b.beta];
 
-		for (let i = 0; i < 3; ++i)
+		for (let i = 0; i < 4; ++i)
 		{
 			const component_a = components_a[i],
 				  component_b = components_b[i];
@@ -46,17 +48,13 @@ NTT.Configuration = {};
 	}
 
 	// Builds a string representation of the specified version identifier.
-	function as_string(id, include_minor = true, include_patch = true)
+	function as_string(id, include_patch = true, include_beta = true)
 	{
-		let result = `${id.major}`;
-		if (include_minor)
-		{
-			result += `.${id.minor}`;
-			if (include_patch)
-			{
-				result += `.${id.patch}`;
-			}
-		}
+		let result = `${id.major}.${id.minor}`;
+
+		if (include_patch)                { result += `.${id.patch}`; }
+		if (include_beta && id.beta > 0)  { result += `b${id.beta}`;  }
+
 		return result;
 	}
 
@@ -140,11 +138,12 @@ NTT.Configuration = {};
 }
 // Updates:
 {
+	const Version   = NTT.Configuration.Version;
 	const migration =
 	{
 		"1.4": cfg =>  // migrates 1.4 to 1.5
 		{
-			cfg.version = create(1, 5, 0);
+			cfg.version = Version.create(1, 5);
 
 			const page = cfg.new_tab.custom_page;
 			const bg   = page.background;
@@ -153,7 +152,7 @@ NTT.Configuration = {};
 			bg.do_animate         = bg.animation_duration > 0;
 			bg.animation_duration = Math.max(bg.animation_duration, 0.1);
 
-			wp.do_animate         = wp.animation_duration  > 0;
+			wp.do_animate         = wp.animation_duration > 0;
 			wp.animation_duration = Math.max(wp.animation_duration, 0.1);
 
 			cfg.options_ui = { theme: NTT.Configuration.Theme.Light };
@@ -162,15 +161,16 @@ NTT.Configuration = {};
 	// Updates the configuration object layout.
 	function update(cfg)
 	{
-		const Ordering = NTT.Ordering;
-		const Version  = NTT.Configuration.Version;
-
-		let version_string = Version.as_string(cfg.version, true, false);
+		let version_string = Version.as_string(cfg.version, false, false);
 		while (migration.hasOwnProperty(version_string))
 		{
 			migration[version_string](cfg);
-			version_string = Version.as_string(cfg.version, true, false);
+			version_string = Version.as_string(cfg.version, false, false);
 		}
+		cfg.version = Version.create(
+			Version.CURRENT.major,
+			Version.CURRENT.minor
+		);
 
 		return cfg;
 	}
