@@ -61,6 +61,7 @@ NTT.Configuration = {};
 	NTT.Configuration.Version =
 	{
 		CURRENT: create(1, 5, 1, 2),
+		HAS_RELEASE_NOTES: true,
 
 		create:    create,
 		is_valid:  is_valid,
@@ -225,6 +226,18 @@ NTT.Configuration = {};
 		{
 			Storage.load().then(cfg =>
 			{
+				const Version  = NTT.Configuration.Version;
+
+				if (Version.HAS_RELEASE_NOTES && cfg.notification.new_features)
+				{
+					const v = Version.CURRENT;
+					browser.tabs.create({
+						url: "https://rharel.github.io/webext-new-tab-tweaker/release-notes/" +
+						     `${v.major}-${v.minor}/` +
+						     `${v.major}-${v.minor}-${v.patch}.html`,
+						active: true
+					});
+				}
 				Storage.save(Configuration.update(cfg));
 			});
 		}
