@@ -60,8 +60,8 @@ NTT.Configuration = {};
 
 	NTT.Configuration.Version =
 	{
-		CURRENT: create(1, 5, 1),
-		HAS_RELEASE_NOTES: true,
+		CURRENT: create(1, 6, 0, 1),
+		HAS_RELEASE_NOTES: false,
 
 		create:    create,
 		is_valid:  is_valid,
@@ -96,7 +96,7 @@ NTT.Configuration = {};
 	NTT.Configuration.create_default = function()
 	{
 		return {
-			version: Version.create(Version.CURRENT.major, Version.CURRENT.minor, 0),
+			version: Version.create(Version.CURRENT.major, Version.CURRENT.minor),
 
 			notification:
 			{

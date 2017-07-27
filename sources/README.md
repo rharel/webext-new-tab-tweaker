@@ -28,6 +28,10 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.6.0
+
+ * TODO
+ 
 ### 1.5.1
  * Fixes a bug where the specified duration for the animation of the background/wallpaper would not be saved correctly (sometimes).
  
