@@ -81,6 +81,11 @@ input
     width: 48px;
 }
 
+#wallpaper-urls-options
+{
+    display:         flex;
+    align-items:     center;
+}
 #wallpaper-urls
 {
     margin-top:    8px;
@@ -88,12 +93,18 @@ input
 
     min-width:  150px;
     max-width:  350px;
-    max-height: 100px;
+    max-height: 150px;
 
     resize: none;
 
     overflow-x: auto;
     overflow-y: auto;
+}
+#wallpaper-preview
+{
+    margin-left: 16px;
+    max-width:  150px;
+    max-height: 150px;
 }
 
 #errors

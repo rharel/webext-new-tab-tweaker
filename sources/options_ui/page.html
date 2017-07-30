@@ -26,6 +26,7 @@
     <script src="js/themes.js"></script>
     <script src="js/tab_behavior_panels.js"></script>
     <script src="js/wallpaper_url_list.js"></script>
+    <script src="js/wallpaper_preview.js"></script>
     <script src="js/controller.js"></script>
 </head>
 <body>
@@ -117,12 +118,14 @@
                                 (one image URL per line, a new tab will
                                 display one chosen at random)
                             </span>
-                            <div>
+                            <div id="wallpaper-urls-options">
                                 <textarea id="wallpaper-urls"
                                           rows="10" cols="100"
                                           placeholder="One image URL per line."
                                           wrap="off">
                                 </textarea>
+                                <img id="wallpaper-preview"
+                                     src="../icons/main_128.png">
                             </div>
                             <a id="open-wallpaper-url-import-dialog-button"
                                class="link-button"
