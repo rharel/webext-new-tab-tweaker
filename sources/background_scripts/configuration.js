@@ -61,7 +61,7 @@ NTT.Configuration = {};
 	NTT.Configuration.Version =
 	{
 		CURRENT: create(1, 6, 0, 1),
-		HAS_RELEASE_NOTES: false,
+		HAS_RELEASE_NOTES: true,
 
 		create:    create,
 		is_valid:  is_valid,
@@ -234,7 +234,7 @@ NTT.Configuration = {};
 					browser.tabs.create({
 						url: "https://rharel.github.io/webext-new-tab-tweaker/release-notes/" +
 						     `${v.major}-${v.minor}/` +
-						     `${v.major}-${v.minor}-${v.patch}.html`,
+						     `${v.major}-${v.minor}-${v.patch}${v.beta > 0 ? `b${v.beta}` : ""}.html`,
 						active: true
 					});
 				}
