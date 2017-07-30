@@ -30,7 +30,7 @@ Contains resources which are directly related to the new-tab page override.
 
 ### 1.6.0
 
- * TODO
+ * Fixes a bug where particularly wide wallpapers were not fully contained in a new tab's frame.
  
 ### 1.5.1
  * Fixes a bug where the specified duration for the animation of the background/wallpaper would not be saved correctly (sometimes).

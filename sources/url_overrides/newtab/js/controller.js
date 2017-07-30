@@ -47,6 +47,24 @@
 		});
 		DOM.wallpaper.src = url;
 	}
+	// Re-sizes the wallpaper image so that it is as large possible without exceeding the current
+    // window's bounds.
+	function fit_wallpaper_to_window()
+    {
+        const window_aspect_ratio    = window.innerWidth / window.innerHeight;
+        const wallpaper_aspect_ratio = DOM.wallpaper.naturalWidth / DOM.wallpaper.naturalHeight;
+
+        if (window_aspect_ratio > wallpaper_aspect_ratio)
+        {
+            DOM.wallpaper.classList.remove('wide');
+            DOM.wallpaper.classList.add('tall');
+        }
+        else
+        {
+            DOM.wallpaper.classList.remove('tall');
+            DOM.wallpaper.classList.add('wide');
+        }
+    }
 	// Fades-in the wallpaper image over the specified duration (in seconds).
 	function fade_in_wallpaper(duration)
 	{
@@ -116,7 +134,16 @@
 			}
 			load_wallpaper(
 				url,
-				() => fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0)
+				() =>
+                {
+                    fit_wallpaper_to_window();
+                    fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0);
+
+                    window.addEventListener('resize', () =>
+                    {
+                        fit_wallpaper_to_window();
+                    });
+                }
 			);
 			localStorage.setItem(PREVIOUS_WALLPAPER_INDEX, index);
 		}
