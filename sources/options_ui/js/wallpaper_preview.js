@@ -43,7 +43,7 @@
         DOM.preview      = document.getElementById('wallpaper-preview');
         DOM.preview_link = document.getElementById('wallpaper-preview-link');
 
-        ['click', 'keyup'].forEach(event =>
+        ['click', 'keyup', 'input'].forEach(event =>
         {
             DOM.urls.addEventListener(event, update_preview)
         });
