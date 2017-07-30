@@ -2,8 +2,9 @@
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
     {
-        urls:    null,
-        preview: null,
+        urls:         null,
+        preview:      null,
+        preview_link: null,
     };
 
     // Gets the line containing current selection start.
@@ -38,10 +39,23 @@
 
     function initialize()
     {
-        DOM.urls    = document.getElementById('wallpaper-urls');
-        DOM.preview = document.getElementById('wallpaper-preview');
+        DOM.urls         = document.getElementById('wallpaper-urls');
+        DOM.preview      = document.getElementById('wallpaper-preview');
+        DOM.preview_link = document.getElementById('wallpaper-preview-link');
 
-        ['click', 'keyup'].forEach(event => DOM.urls.addEventListener(event, update_preview));
+        ['click', 'keyup'].forEach(event =>
+        {
+            DOM.urls.addEventListener(event, update_preview)
+        });
+        DOM.preview.addEventListener('load', () =>
+        {
+            DOM.preview_link.href = DOM.preview.src;
+            DOM.preview_link.style.visibility = "visible";
+        });
+        DOM.preview.addEventListener('error', () =>
+        {
+            DOM.preview_link.style.visibility = "hidden";
+        });
     }
     document.addEventListener('DOMContentLoaded', initialize);
 }
