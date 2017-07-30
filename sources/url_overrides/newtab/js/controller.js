@@ -91,35 +91,34 @@
 			fade_in_background(bg.color, bg.do_animate ? bg.animation_duration : 0);
 
 			const wp = cfg.new_tab.custom_page.wallpaper;
-			if (wp.is_enabled && wp.urls.length > 0)
+			if (!wp.is_enabled || wp.urls.length === 0) { return; }
+
+			DOM.wallpaper = new Image();
+			DOM.wallpaper.id = "wallpaper";
+			DOM.wallpaper.src = "/icons/main_128.png";
+			DOM.background.appendChild(DOM.wallpaper);
+
+			let index, url;
 			{
-				DOM.wallpaper = new Image();
-				DOM.wallpaper.id = "wallpaper";
-				DOM.wallpaper.src = "/icons/main_128.png";
-				DOM.background.appendChild(DOM.wallpaper);
-
-				let index, url;
+				if (wp.urls.length === 1) { index = 0; }
+				else
 				{
-					if (wp.urls.length === 1) { index = 0; }
-					else
-					{
-						let previous_index = parseInt(localStorage.getItem(PREVIOUS_WALLPAPER_INDEX));
-						if (previous_index >= wp.urls.length) { previous_index = 0; }
+					let previous_index = parseInt(localStorage.getItem(PREVIOUS_WALLPAPER_INDEX));
+					if (previous_index >= wp.urls.length) { previous_index = 0; }
 
-						index = NTT.RNG.integer_in_range(0, wp.urls.length - 1);
-						if (index === previous_index)
-						{
-							index = (index + 1) % wp.urls.length;
-						}
+					index = NTT.RNG.integer_in_range(0, wp.urls.length - 1);
+					if (index === previous_index)
+					{
+						index = (index + 1) % wp.urls.length;
 					}
-					url = wp.urls[index];
 				}
-				load_wallpaper(
-					url,
-					() => fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0)
-				);
-				localStorage.setItem(PREVIOUS_WALLPAPER_INDEX, index);
+				url = wp.urls[index];
 			}
+			load_wallpaper(
+				url,
+				() => fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0)
+			);
+			localStorage.setItem(PREVIOUS_WALLPAPER_INDEX, index);
 		}
 	}
 	function initialize()
