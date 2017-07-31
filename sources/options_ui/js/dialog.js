@@ -17,8 +17,7 @@
 			hide_active_dialog();
 		}
 
-		DOM.shadow.style.display  = "block";
-		DOM.content.style.display = "block";
+		DOM.shadow.style.display = "flex";
 
 		active_dialog = dialog;
 		active_dialog.style.display = "block";
@@ -32,8 +31,7 @@
 			active_dialog.style.display = "none";
 			active_dialog = null;
 		}
-		DOM.content.style.display = "none";
-		DOM.shadow.style.display  = "none";
+		DOM.shadow.style.display = "none";
 	}
 
 	function initialize()

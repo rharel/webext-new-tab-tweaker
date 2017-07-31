@@ -62,8 +62,7 @@
 }
 textarea, input, img
 {
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid;
 }
 textarea
 {
@@ -119,27 +118,22 @@ textarea
 {
     display: none;
 
-    position: absolute;
+    justify-content: center;
+    align-items:     center;
+
+    position: fixed;
     left: 0;
     top:  0;
 
-    width:  100%;
-    height: 100%;
+    width:  100vw;
+    height: 100vh;
 
     background-color: rgba(0, 0, 0, 0.25);
 }
 #dialog-content
 {
-    position: absolute;
-    left:   0;
-    right:  0;
-    top:    0;
-    bottom: 0;
-
-    margin:  auto;
-    border:  1px solid dimgray;
+    border:  1px solid;
     width:   400px;
-    height:  150px;
     padding: 16px;
 }
 
@@ -158,7 +152,7 @@ textarea
 #wallpaper-url-import-dialog > input[type="url"]
 {
     margin-left: 8px;
-    width: 200px;
+    width:       200px;
 }
 #import-wallpaper-urls-button
 {

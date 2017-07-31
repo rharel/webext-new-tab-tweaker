@@ -58,6 +58,7 @@ textarea, input, img
 }
 #dialog-content
 {
+    border-color:     dimgray;
     background-color: #333333;
 }
 
