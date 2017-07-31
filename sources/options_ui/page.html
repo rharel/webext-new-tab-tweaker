@@ -102,8 +102,8 @@
                 </div>
             </fieldset>
             <div id="custom-page-options">
-                <fieldset id="custom-page-style">
-                    <legend>Style the page</legend>
+                <fieldset id="custom-page-background">
+                    <legend>Background</legend>
                     <div>
                         Use
                         <input id="bg-color" type="color"
@@ -111,6 +111,22 @@
                                title="Background color">
                         as background color
                     </div>
+                    <div>
+                        <input id="do-animate-bg-color" type="checkbox"
+                               title="Animate the background color">
+                        <label for="do-animate-bg-color">
+                            Fade the background color in over
+                            <input id="bg-color-animation-duration"
+                                   type="number"
+                                   min="0.1" max="5" step="0.1" value="1"
+                                   title="Background color animation duration">
+                            seconds
+                        </label>
+                        <span class="note">(max 5)</span>
+                    </div>
+                </fieldset>
+                <fieldset id="custom-page-wallpaper">
+                    <legend>Wallpaper</legend>
                     <div>
                         <input id="do-display-wallpaper" type="checkbox"
                                title="Display a wallpaper image">
@@ -147,22 +163,6 @@
                                 Download as a text file...
                             </a>
                         </div>
-                    </div>
-                </fieldset>
-                <fieldset id="custom-page-animation">
-                    <legend>Animate the page</legend>
-                    <div>
-                        <input id="do-animate-bg-color" type="checkbox"
-                               title="Animate the background color">
-                        <label for="do-animate-bg-color">
-                            Fade the background color in over
-                            <input id="bg-color-animation-duration"
-                                   type="number"
-                                   min="0.1" max="5" step="0.1" value="1"
-                                   title="Background color animation duration">
-                            seconds
-                        </label>
-                        <span class="note">(max 5)</span>
                     </div>
                     <div>
                         <input id="do-animate-wallpaper" type="checkbox"

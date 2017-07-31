@@ -2,7 +2,7 @@
 {
     margin-left:   32px;
     margin-right:  32px;
-    margin-bottom: 16px;
+    margin-bottom: 48px;
 }
 #content > header
 {
@@ -68,14 +68,14 @@ textarea
 {
     padding: 5px;
 }
-
-#custom-page-style input[type="color"]
+input[type="color"]
 {
     height: 1.2em;
 }
-#custom-page-animation input[type="number"]
+input[type="number"]
 {
-    width: 48px;
+    width:  48px;
+    height: 1.2em;
 }
 
 #wallpaper-urls-options
