@@ -83,7 +83,7 @@ input:disabled
     opacity: 0.5;
 }
 
-#wallpaper-urls-options
+#wallpaper-urls-container
 {
     display:     flex;
     align-items: center;

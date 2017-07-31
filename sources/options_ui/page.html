@@ -25,6 +25,7 @@
     <script src="js/themes.js"></script>
     <script src="js/tab_behavior_panels.js"></script>
 
+    <script src="js/wallpaper/main.js"></script>
     <script src="js/wallpaper/url_list.js"></script>
     <script src="js/wallpaper/preview.js"></script>
     <script src="js/wallpaper/imgur.js"></script>
@@ -134,38 +135,38 @@
                         <label for="do-display-wallpaper">
                             Display a wallpaper image
                         </label>
-                        <div class="indented-once">
-                            <span class="note">
-                                (one image URL per line, a new tab will
-                                display one chosen at random)
-                            </span>
-                            <div id="wallpaper-urls-options">
-                                <textarea id="wallpaper-urls"
-                                          rows="10" cols="100"
-                                          placeholder="One image URL per line."
-                                          wrap="off">
-                                </textarea>
-                                <a id="wallpaper-preview-link" target="_blank" title="View"
-                                   style="visibility: hidden">
-                                    <img id="wallpaper-preview"
-                                         src="">
-                                </a>
-                            </div>
-                            <a id="open-wallpaper-url-import-dialog-button"
-                               class="link-button"
-                               title="Import wallpaper URLs from an Imgur album">
-                                Import from Imgur album...
-                            </a>
-                            <br>
-                            <a id="download-wallpaper-urls"
-                               class="link-button"
-                               title="Download the wallpaper URL list"
-                               download="wallpaper-urls.txt">
-                                Download as a text file...
+                    </div>
+                    <div class="requires-wallpaper">
+                        <span class="note">
+                            (one image URL per line, a new tab will
+                            display one chosen at random)
+                        </span>
+                        <div id="wallpaper-urls-container">
+                            <textarea id="wallpaper-urls"
+                                      rows="10" cols="100"
+                                      placeholder="One image URL per line."
+                                      wrap="off">
+                            </textarea>
+                            <a id="wallpaper-preview-link" target="_blank" title="View"
+                               style="visibility: hidden">
+                                <img id="wallpaper-preview"
+                                     src="">
                             </a>
                         </div>
+                        <a id="open-wallpaper-url-import-dialog-button"
+                           class="link-button"
+                           title="Import wallpaper URLs from an Imgur album">
+                            Import from Imgur album...
+                        </a>
+                        <br>
+                        <a id="download-wallpaper-urls"
+                           class="link-button"
+                           title="Download the wallpaper URL list"
+                           download="wallpaper-urls.txt">
+                            Download as a text file...
+                        </a>
                     </div>
-                    <div>
+                    <div class="requires-wallpaper">
                         <input id="do-animate-wallpaper" type="checkbox"
                                title="Animate the wallpaper">
                         <label for="do-animate-wallpaper">
