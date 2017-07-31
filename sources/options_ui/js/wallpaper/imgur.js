@@ -49,7 +49,7 @@
 		xhr.send();
 	}
 
-	NTT.OptionsUI.Imgur =
+	NTT.Imgur =
 	{
 		is_valid_album_url:   is_valid_album_url,
 		extract_album_hash:   extract_album_hash,

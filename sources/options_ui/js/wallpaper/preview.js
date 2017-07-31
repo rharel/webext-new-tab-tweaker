@@ -7,7 +7,7 @@
         preview_link: null,
     };
 
-    // Gets the line containing current selection start.
+    // Gets the line containing current selection end.
     function get_selected_url()
     {
         const text = DOM.urls.value,
@@ -19,11 +19,11 @@
 
         return text.substring(i, j).trim();
     }
+    // Updates the preview image based on the selected url.
     const update_preview = function()
     {
         let timeout_id;
 
-        // Updates the preview image based on the selected url.
         return function()
         {
             clearTimeout(timeout_id);

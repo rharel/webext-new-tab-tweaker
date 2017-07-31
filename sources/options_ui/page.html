@@ -10,23 +10,27 @@
           sizes="32x32">
 
     <link rel="stylesheet" href="../common/css/common.css">
-    <link rel="stylesheet" href="css/theme_light.css" id="theme">
-    <link rel="stylesheet" href="css/media_large.css">
-    <link rel="stylesheet" href="css/media_small.css">
-    <link rel="stylesheet" href="css/media_smaller.css">
+    <link rel="stylesheet" href="css/themes/light.css" id="theme">
+    <link rel="stylesheet" href="css/media/large.css">
+    <link rel="stylesheet" href="css/media/small.css">
+    <link rel="stylesheet" href="css/media/smaller.css">
 
     <script src="../background_scripts/main.js"></script>
     <script src="../background_scripts/ordering.js"></script>
     <script src="../background_scripts/configuration.js"></script>
 
     <script src="js/ui.js"></script>
-    <script src="js/imgur.js"></script>
     <script src="js/dialog.js"></script>
     <script src="js/option_categories.js"></script>
     <script src="js/themes.js"></script>
     <script src="js/tab_behavior_panels.js"></script>
-    <script src="js/wallpaper_url_list.js"></script>
-    <script src="js/wallpaper_preview.js"></script>
+
+    <script src="js/wallpaper/url_list.js"></script>
+    <script src="js/wallpaper/preview.js"></script>
+    <script src="js/wallpaper/imgur.js"></script>
+    <script src="js/wallpaper/imgur_import.js"></script>
+    <script src="js/wallpaper/download_url_list.js"></script>
+
     <script src="js/controller.js"></script>
 </head>
 <body>
@@ -244,7 +248,7 @@
                            autocomplete="off" title="Album URL">
                     <div id="imgur-album-info"></div>
                     <a id="import-wallpaper-urls-button" class="link-button">
-                        Import
+                        Import?
                     </a>
                 </div>
             </div>
