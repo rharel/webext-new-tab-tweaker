@@ -60,16 +60,14 @@
 {
     margin-top: 4px;
 }
+textarea, input, img
+{
+    border-width: 1px;
+    border-style: solid;
+}
 textarea
 {
-    border-width: 1px;
-    border-style: solid;
     padding: 5px;
-}
-input
-{
-    border-width: 1px;
-    border-style: solid;
 }
 
 #custom-page-style input[type="color"]
@@ -103,6 +101,7 @@ input
 #wallpaper-preview
 {
     margin-left: 16px;
+
     max-width:  150px;
     max-height: 150px;
 }

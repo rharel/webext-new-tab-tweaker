@@ -36,24 +36,9 @@ body
 {
     color: #e6e6e6;
 }
-textarea
+textarea, input, img
 {
-    border-color: dimgray;
-
-    background-color: #252525;
-    color:            #e6e6e6;
-}
-input
-{
-    border-color: dimgray;
-}
-input[type="number"]
-{
-    background-color: #252525;
-    color:            #e6e6e6;
-}
-input[type="url"]
-{
+    border-color:     dimgray;
     background-color: #252525;
     color:            #e6e6e6;
 }
