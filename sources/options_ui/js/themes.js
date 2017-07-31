@@ -2,8 +2,8 @@
 	const Theme = NTT.Configuration.Theme;
 
 	const stylesheets = {};
-	stylesheets[Theme.Light] = "css/theme_light.css";
-	stylesheets[Theme.Dark]  = "css/theme_dark.css";
+	stylesheets[Theme.Light] = "css/themes/light.css";
+	stylesheets[Theme.Dark]  = "css/themes/dark.css";
 
 	// This will contain DOM elements proceeding a call to initialize().
 	const DOM =
