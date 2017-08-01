@@ -2,9 +2,9 @@
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
     {
-        urls:         null,
-        preview:      null,
-        preview_link: null,
+        urls:          null,
+        preview_image: null,
+        preview:  null,
     };
 
     // Gets the line containing current selection end.
@@ -33,28 +33,25 @@
             {
                 return;
             }
-            timeout_id = setTimeout(() => DOM.preview.src = get_selected_url(), 500);
+            DOM.preview.style.opacity = "0";
+            timeout_id = setTimeout(() => DOM.preview_image.src = get_selected_url(), 500);
         }
     }();
 
     function initialize()
     {
-        DOM.urls         = document.getElementById('wallpaper-urls');
-        DOM.preview      = document.getElementById('wallpaper-preview');
-        DOM.preview_link = document.getElementById('wallpaper-preview-link');
+        DOM.urls          = document.getElementById('wallpaper-urls');
+        DOM.preview_image = document.getElementById('wallpaper-preview-image');
+        DOM.preview  = document.getElementById('wallpaper-preview');
 
         ['click', 'keyup', 'input'].forEach(event =>
         {
             DOM.urls.addEventListener(event, update_preview)
         });
-        DOM.preview.addEventListener('load', () =>
+        DOM.preview_image.addEventListener('load', () =>
         {
-            DOM.preview_link.href = DOM.preview.src;
-            DOM.preview_link.style.visibility = "visible";
-        });
-        DOM.preview.addEventListener('error', () =>
-        {
-            DOM.preview_link.style.visibility = "hidden";
+            DOM.preview.href = DOM.preview_image.src;
+            setTimeout(() => { DOM.preview.style.opacity = "1"; }, 50);
         });
     }
     document.addEventListener('DOMContentLoaded', initialize);

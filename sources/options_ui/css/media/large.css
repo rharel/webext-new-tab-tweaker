@@ -102,12 +102,17 @@ input:disabled
     overflow-x: auto;
     overflow-y: auto;
 }
-#wallpaper-preview
+#wallpaper-preview-image
 {
     margin-left: 16px;
 
     max-width:  150px;
     max-height: 150px;
+}
+#wallpaper-preview
+{
+    opacity:    0;
+    transition: opacity 0.25s ease;
 }
 
 #errors
