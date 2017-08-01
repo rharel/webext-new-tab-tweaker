@@ -15,7 +15,7 @@
     // Called when the album to import has changed.
     function on_album_selection()
     {
-        const Imgur = NTT.Imgur;
+        const Imgur = NTT.OptionsUI.NewTab.Wallpaper.Imgur;
         const url   = DOM.album_url.value;
 
         if (!Imgur.is_valid_album_url(url))
@@ -49,13 +49,12 @@
     // Called when the user confirms he/she wants to import the selected album.
     function on_import_confirmation()
     {
-        const Wallpaper = NTT.OptionsUI.NewTab.Wallpaper;
+        const URLs = NTT.OptionsUI.NewTab.Wallpaper.URLs;
 
-        const current_urls = Wallpaper.get_urls();
+        const current_urls = URLs.get();
         const new_urls     = candidate_urls.filter(item => !current_urls.includes(item));
 
-        Wallpaper.set_urls(current_urls.concat(new_urls));
-        Wallpaper.on_change();
+        URLs.set(current_urls.concat(new_urls), true);
 
         NTT.OptionsUI.Dialog.close();
     }

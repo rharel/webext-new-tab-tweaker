@@ -1,4 +1,9 @@
 {
+	const Dialog = NTT.OptionsUI.Dialog =
+    {
+        open:  null,
+        close: null
+    };
 	// This will contain DOM elements proceeding a call to initialize().
 	const DOM =
 	{
@@ -10,21 +15,21 @@
 
 	// Displays the specified element as a dialog.
 	// It is assumed that it is a child of '#dialog-content'.
-	function activate_dialog(dialog)
+	Dialog.open = function(dialog)
 	{
 		if (active_dialog !== null)
 		{
-			hide_active_dialog();
+			Dialog.close();
 		}
 
 		DOM.shadow.style.display = "flex";
 
 		active_dialog = dialog;
 		active_dialog.style.display = "block";
-	}
+	};
 	// Hides the active dialog.
 	// It is assumed that it is a child of '#dialog-content'.
-	function hide_active_dialog()
+	Dialog.close = function()
 	{
 		if (active_dialog !== null)
 		{
@@ -32,7 +37,7 @@
 			active_dialog = null;
 		}
 		DOM.shadow.style.display = "none";
-	}
+	};
 
 	function initialize()
 	{
@@ -41,17 +46,11 @@
 
 		// Close the dialog if the user clicks on anything but the dialog
 		// content.
-		DOM.shadow.addEventListener('click', hide_active_dialog);
+		DOM.shadow.addEventListener('click', Dialog.close);
 
 		// Clicking the shadow closes the dialog, so don't allow clicks on the
 		// content to bubble up to the shadow.
 		DOM.content.addEventListener('click', event => event.stopPropagation());
-
-		NTT.OptionsUI.Dialog =
-		{
-			open:  activate_dialog,
-			close: hide_active_dialog
-		};
 	}
 	document.addEventListener('DOMContentLoaded', initialize);
 }

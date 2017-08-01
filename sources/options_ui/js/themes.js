@@ -1,33 +1,30 @@
 {
 	const Theme = NTT.Configuration.Theme;
 
-	const stylesheets = {};
-	stylesheets[Theme.Light] = "css/themes/light.css";
-	stylesheets[Theme.Dark]  = "css/themes/dark.css";
+    const options = NTT.OptionsUI.Theme =
+    {
+        initialize: null,
+
+        get: null,
+        set: null,
+
+        change_listeners: []
+    };
 
 	// This will contain DOM elements proceeding a call to initialize().
 	const DOM =
 	{
 		theme: null,
 		light: null,
-		dark: null
+		dark:  null
 	};
 
-	// Applies the theme which corresponds to the selected radio button.
-	function update_theme()
-	{
-		if (DOM.light.checked) { DOM.theme.href = stylesheets[Theme.Light]; }
-		else                   { DOM.theme.href = stylesheets[Theme.Dark];  }
-	}
-
-	// Gets the selected theme.
-	function get_selected_theme()
+	options.get = function()
 	{
 		if (DOM.light.checked) { return Theme.Light; }
 		else                   { return Theme.Dark;  }
-	}
-	// Sets the selected theme.
-	function set_selected_theme(value)
+	};
+	options.set = function(value)
 	{
 		if (value === Theme.Light)
 		{
@@ -39,10 +36,22 @@
 			DOM.light.checked = false;
 			DOM.dark.checked  = true;
 		}
-		update_theme();
-	}
+		update();
+	};
 
-	function initialize()
+    // Applies the theme which corresponds to the selected radio button.
+    function update()
+    {
+        DOM.theme.href = `css/themes/${options.get()}.css`;
+    }
+
+    // Invoked when the represented configuration changes.
+    function on_change()
+    {
+        options.change_listeners.forEach(listener => listener());
+    }
+
+    options.initialize = function()
 	{
 		DOM.theme = document.getElementById('theme');
 		DOM.light = document.getElementById('light-theme-button');
@@ -50,16 +59,7 @@
 
 		[DOM.light, DOM.dark].forEach(item =>
 		{
-			item.addEventListener('click', update_theme);
+			item.addEventListener('change', () => { update(); on_change(); });
 		});
-
-		NTT.OptionsUI.Theme =
-		{
-			get_selected: get_selected_theme,
-			set_selected: set_selected_theme,
-		};
-
-		update_theme();
-	}
-	document.addEventListener('DOMContentLoaded', initialize);
+	};
 }

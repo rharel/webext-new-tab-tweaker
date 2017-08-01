@@ -19,11 +19,11 @@
 		},
 
 		radio_buttons: [],
-		panel_of: {}
+		panel_of:      {}
 	};
 
 	// Displays the panel which corresponds to the selected radio button.
-	function update_active_panel()
+	function update()
 	{
 		DOM.radio_buttons.forEach(item =>
 		{
@@ -58,9 +58,9 @@
 		];
 		DOM.radio_buttons.forEach(item =>
 		{
-			item.addEventListener('click', update_active_panel);
+			item.addEventListener('click', update);
 		});
-		update_active_panel();
+		update();
 	}
 	document.addEventListener('DOMContentLoaded', initialize);
 }

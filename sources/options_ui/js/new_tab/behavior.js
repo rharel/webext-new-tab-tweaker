@@ -1,6 +1,16 @@
 {
 	const TabBehavior = NTT.Configuration.TabBehavior;
 
+    const options = NTT.OptionsUI.NewTab.Behavior =
+	{
+	    initialize: null,
+
+		get: null,
+		set: null,
+
+		change_listeners: []
+	};
+
 	// This will contain DOM elements proceeding a call to initialize().
 	const DOM =
 	{
@@ -16,29 +26,15 @@
 		},
 
 		radio_buttons: [],
-		panel_of: {}
+		panel_of:      {}
 	};
 
-	// Displays the panel which corresponds to the selected radio button.
-	function update_active_panel()
-	{
-		DOM.radio_buttons.forEach(item =>
-		{
-			const panel = DOM.panel_of[item.id];
-
-			if (item.checked) { panel.style.display = "block"; }
-			else              { panel.style.display = "none";  }
-		});
-	}
-
-	// Gets the selected tab behavior.
-	function get_selected_behavior()
+	options.get = function()
 	{
 		if (DOM.redirection.radio.checked) { return TabBehavior.Redirect;          }
 		else                               { return TabBehavior.DisplayCustomPage; }
-	}
-	// Sets the selected tab behavior.
-	function set_selected_behavior(value)
+	};
+	options.set = function(value)
 	{
 		if (value === TabBehavior.Redirect)
 		{
@@ -50,10 +46,28 @@
 			DOM.redirection.radio.checked = false;
 			DOM.custom_page.radio.checked = true;
 		}
-		update_active_panel();
-	}
+		update();
+	};
 
-	function initialize()
+    // Updates the display of panels corresponding to the selected radio button.
+    function update()
+    {
+        DOM.radio_buttons.forEach(item =>
+        {
+            const panel = DOM.panel_of[item.id];
+
+            if (item.checked) { panel.style.display = "block"; }
+            else              { panel.style.display = "none";  }
+        });
+    }
+
+    // Invoked when the represented configuration changes.
+    function on_change()
+    {
+        options.change_listeners.forEach(listener => listener());
+    }
+
+	options.initialize = function()
 	{
 		DOM.redirection.radio = document.getElementById('redirect-button');
 		DOM.redirection.panel = document.getElementById('redirection-options');
@@ -72,16 +86,7 @@
 		];
 		DOM.radio_buttons.forEach(item =>
 		{
-			item.addEventListener('click', update_active_panel);
+            item.addEventListener('change', () => { update(); on_change(); });
 		});
-
-		NTT.OptionsUI.NewTab.Behavior =
-		{
-			get_selected: get_selected_behavior,
-			set_selected: set_selected_behavior,
-		};
-
-		update_active_panel();
-	}
-	document.addEventListener('DOMContentLoaded', initialize);
+	};
 }
