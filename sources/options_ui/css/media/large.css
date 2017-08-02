@@ -111,6 +111,8 @@ input:disabled
 }
 #wallpaper-preview
 {
+    color: inherit;
+
     opacity:    0;
     transition: opacity 0.25s ease;
 }
