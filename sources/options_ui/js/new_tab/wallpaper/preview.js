@@ -33,8 +33,12 @@
             {
                 return;
             }
+
+            const url = get_selected_url();
+            if (url === DOM.preview_image.src) { return; }
+
             DOM.preview.style.opacity = "0";
-            timeout_id = setTimeout(() => DOM.preview_image.src = get_selected_url(), 500);
+            timeout_id = setTimeout(() => { DOM.preview_image.src = url; }, 500);
         }
     }();
 
