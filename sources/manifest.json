@@ -31,7 +31,8 @@
   [
     "storage",
     "contextMenus",
-
+    "notifications",
+    
     "http://localhost/*",
     "https://api.imgur.com/3/album/*"
   ],

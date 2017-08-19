@@ -10,3 +10,4 @@ requirejs(
     "common/configuration",
     "background_scripts/image_context_menu"
 ]);
+NTT = {};
