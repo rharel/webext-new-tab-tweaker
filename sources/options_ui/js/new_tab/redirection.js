@@ -1,13 +1,7 @@
+(function()
 {
-    const options = NTT.OptionsUI.NewTab.Redirection =
-    {
-        initialize: null,
-
-        get: null,
-        set: null,
-
-        change_listeners: []
-    };
+    // Set in define().
+    let change_listeners;
 
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
@@ -15,18 +9,27 @@
         url: null
     };
 
-    options.get = function()      { return DOM.url.value; };
-    options.set = function(value) { DOM.url.value = value; };
+    function get()      { return DOM.url.value; };
+    function set(value) { DOM.url.value = value; };
 
-    // Invoked when the represented configuration changes.
-    function on_change()
-    {
-        options.change_listeners.forEach(listener => listener());
-    }
-
-    options.initialize = function()
+    function initialize()
     {
         DOM.url = document.getElementById('redirection-url');
-        DOM.url.addEventListener('input', on_change);
-    };
-}
+        DOM.url.addEventListener('input', change_listeners.notify);
+    }
+
+    define(["subscription_service"],
+    function(subscription_service)
+    {
+        change_listeners = subscription_service.setup();
+
+        return {
+            initialize: initialize,
+
+            get: get,
+            set: set,
+
+            add_change_listener: change_listeners.add
+        };
+    });
+})();

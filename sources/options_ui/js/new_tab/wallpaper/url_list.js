@@ -1,54 +1,57 @@
+(function()
 {
-    const options = NTT.OptionsUI.NewTab.Wallpaper.URLs =
-    {
-        initialize: null,
-
-        get: null,
-        set: null,
-
-        change_listeners: []
-    };
+    // Set in define().
+    let change_listeners;
 
     // This will contain DOM elements proceeding a call to initialize().
-	const DOM =
-	{
-		urls: null
-	};
+    const DOM =
+    {
+        urls: null
+    };
 
-	options.get = function()
-	{
-		const seen = {};
-		return DOM.urls.value.split("\n")
-			.map   (url => url.trim())
-			.filter(url =>
-			{
-				if (url.length === 0 ||
-					seen.hasOwnProperty(url))
-				{
-					return false;
-				}
-				else
+    function get()
+    {
+        const seen = {};
+        return DOM.urls.value.split("\n")
+            .map   (url => url.trim())
+            .filter(url =>
+            {
+                if (url.length === 0 ||
+                    seen.hasOwnProperty(url))
+                {
+                    return false;
+                }
+                else
                 {
                     return seen[url] = true;
                 }
-			});
-	};
-	options.set = function(array, invoke_change_listeners = false)
-	{
-		DOM.urls.value = array.join("\n");
-
-		if (invoke_change_listeners) { on_change(); }
-	};
-
-    // Invoked when the represented configuration changes.
-    function on_change()
+            });
+    }
+    function set(array, invoke_change_listeners = false)
     {
-        options.change_listeners.forEach(listener => listener());
+        DOM.urls.value = array.join("\n");
+
+        if (invoke_change_listeners) { change_listeners.notify(); }
     }
 
-	options.initialize = function()
-	{
-		DOM.urls = document.getElementById('wallpaper-urls');
-		DOM.urls.addEventListener('input', on_change);
-	};
-}
+    function initialize()
+    {
+        DOM.urls = document.getElementById('wallpaper-urls');
+        DOM.urls.addEventListener('input', change_listeners.notify);
+    }
+
+    define(["subscription_service"],
+    function(subscription_service)
+    {
+        change_listeners  = subscription_service.setup();
+
+        return {
+            initialize: initialize,
+
+            get: get,
+            set: set,
+
+            add_change_listener: change_listeners.add
+        };
+    });
+})();

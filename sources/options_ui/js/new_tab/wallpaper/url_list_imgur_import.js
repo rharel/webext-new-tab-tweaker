@@ -1,4 +1,8 @@
+(function()
 {
+    // Set in define().
+    let imgur, wallpaper_urls, dialog;
+
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
     {
@@ -15,10 +19,9 @@
     // Called when the album to import has changed.
     function on_album_selection()
     {
-        const Imgur = NTT.OptionsUI.NewTab.Wallpaper.Imgur;
         const url   = DOM.album_url.value;
 
-        if (!Imgur.is_valid_album_url(url))
+        if (!imgur.is_valid_album_url(url))
         {
             DOM.import_urls.style.visibility = "hidden";
             DOM.album_info.textContent       = "The URL specified does not seem to point to a " +
@@ -27,7 +30,7 @@
         }
 
         DOM.album_info.textContent = "Loading album info...";
-        Imgur.get_album_image_urls(
+        imgur.get_album_image_urls(
             url,
             // On success
             urls =>
@@ -49,14 +52,12 @@
     // Called when the user confirms he/she wants to import the selected album.
     function on_import_confirmation()
     {
-        const URLs = NTT.OptionsUI.NewTab.Wallpaper.URLs;
-
-        const current_urls = URLs.get();
+        const current_urls = wallpaper_urls.get();
         const new_urls     = candidate_urls.filter(item => !current_urls.includes(item));
 
-        URLs.set(current_urls.concat(new_urls), true);
+        wallpaper_urls.set(current_urls.concat(new_urls), true);
 
-        NTT.OptionsUI.Dialog.close();
+        dialog.close();
     }
 
     function initialize()
@@ -75,10 +76,19 @@
             DOM.album_info.textContent       = "";
             DOM.import_urls.style.visibility = "hidden";
 
-            NTT.OptionsUI.Dialog.open(DOM.dialog);
+            dialog.open(DOM.dialog);
         });
         DOM.album_url.addEventListener('input', on_album_selection);
         DOM.import_urls.addEventListener('click', on_import_confirmation);
     }
-    document.addEventListener('DOMContentLoaded', initialize);
-}
+
+    define(["dialogs", "./imgur", "./url_list"],
+    function(dialogs_module, imgur_module, url_list_module)
+    {
+        dialog         = dialogs_module;
+        imgur          = imgur_module;
+        wallpaper_urls = url_list_module;
+
+        return { initialize: initialize };
+    });
+})();

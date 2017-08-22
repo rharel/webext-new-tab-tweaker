@@ -1,13 +1,7 @@
+(function()
 {
-    const options = NTT.OptionsUI.Notification =
-    {
-        initialize: null,
-
-        get_new_features: null,
-        set_new_features: null,
-
-        change_listeners: []
-    };
+    // Set in define().
+    let change_listeners;
 
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
@@ -15,24 +9,33 @@
         new_features: null
     };
 
-    options.get_new_features = function()
+    function get_new_features()
     {
         return DOM.new_features.checked;
-    };
-    options.set_new_features = function(value)
+    }
+    function set_new_features (value)
     {
         DOM.new_features.checked = value;
-    };
-
-    // Invoked when the represented configuration changes.
-    function on_change()
-    {
-        options.change_listeners.forEach(listener => listener());
     }
 
-    options.initialize = function()
+    function initialize ()
     {
         DOM.new_features = document.getElementById('do-notify-about-new-features');
-        DOM.new_features.addEventListener('change', on_change);
-    };
-}
+        DOM.new_features.addEventListener('change', change_listeners.notify);
+    }
+
+    define(["subscription_service"],
+    function(subscription_service)
+    {
+        change_listeners  = subscription_service.setup();
+
+        return {
+            initialize: initialize,
+
+            get_new_features: get_new_features,
+            set_new_features: set_new_features,
+
+            add_change_listener: change_listeners.add
+        };
+    });
+})();

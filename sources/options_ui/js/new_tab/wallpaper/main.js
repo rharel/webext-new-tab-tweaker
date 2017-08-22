@@ -1,15 +1,14 @@
+(function()
 {
-    const options = NTT.OptionsUI.NewTab.Wallpaper =
+    // Set in define().
+    let change_listeners;
+    const options =
     {
-        URLs:      null,
-        Animation: null,
-
-        initialize: null,
-
-        get: null,
-        set: null,
-
-        change_listeners: []
+        animation:              null,
+        url_list:               null,
+        url_list_download:      null,
+        url_list_image_preview: null,
+        url_list_imgur_import:  null
     };
 
     // This will contain DOM elements proceeding a call to initialize().
@@ -19,59 +18,85 @@
         panels:     []
     };
 
-    options.get = function()
+    function get()
     {
         return {
             is_enabled: DOM.is_enabled.checked,
 
-            urls: options.URLs.get(),
+            urls: options.url_list.get(),
 
-            do_animate:         options.Animation.is_enabled(),
-            animation_duration: options.Animation.get_duration()
+            do_animate:         options.animation.is_enabled(),
+            animation_duration: options.animation.get_duration()
         };
-    };
-    options.set = function(cfg)
+    }
+    function set(cfg)
     {
         DOM.is_enabled.checked = cfg.is_enabled;
 
-        options.URLs.set(cfg.urls);
+        options.url_list.set(cfg.urls);
 
-        if (cfg.do_animate) { options.Animation.enable();  }
-        else                { options.Animation.disable(); }
+        if (cfg.do_animate) { options.animation.enable();  }
+        else                { options.animation.disable(); }
 
-        options.Animation.set_duration(cfg.animation_duration);
+        options.animation.set_duration(cfg.animation_duration);
 
-        update();
-    };
+        update_wallpaper_option_panels_visibility();
+    }
 
     // Updates the display of relevant panels depending on whether a wallpaper is enabled or not.
-    function update()
+    function update_wallpaper_option_panels_visibility()
     {
         const value = DOM.is_enabled.checked ? "block" : "none";
         DOM.panels.forEach(panel => { panel.style.display = value; });
     }
 
-    // Invoked when the represented configuration changes.
-    function on_change()
-    {
-        options.change_listeners.forEach(listener => listener());
-    }
-
-    options.initialize = function()
+    function initialize()
     {
         DOM.is_enabled = document.getElementById('do-display-wallpaper');
         DOM.panels     = document.querySelectorAll('.requires-wallpaper');
 
         DOM.is_enabled.addEventListener('change', () =>
         {
-            update();
-            on_change();
+            update_wallpaper_option_panels_visibility();
+            change_listeners.notify();
         });
 
-        options.URLs.initialize();
-        options.URLs.change_listeners.push(on_change);
+        options.animation.initialize();
+        options.animation.add_change_listener(change_listeners.notify);
 
-        options.Animation.initialize();
-        options.Animation.change_listeners.push(on_change);
-    };
-}
+        options.url_list.initialize();
+        options.url_list.add_change_listener(change_listeners.notify);
+
+        options.url_list_download.initialize();
+        options.url_list_image_preview.initialize();
+        options.url_list_imgur_import.initialize();
+    }
+
+    define(["subscription_service",
+            "./animation",
+            "./url_list",
+            "./url_list_download",
+            "./url_list_image_preview",
+            "./url_list_imgur_import"],
+    function(subscription_service,
+             animation,
+             url_list, url_list_download, url_list_image_preivew, url_list_imgur_import)
+    {
+        options.animation              = animation;
+        options.url_list               = url_list;
+        options.url_list_download      = url_list_download;
+        options.url_list_image_preview = url_list_image_preivew;
+        options.url_list_imgur_import  = url_list_imgur_import;
+
+        change_listeners = subscription_service.setup();
+
+        return {
+            initialize: initialize,
+
+            get: get,
+            set: set,
+
+            add_change_listener: change_listeners.add
+        };
+    });
+})();

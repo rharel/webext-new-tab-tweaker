@@ -1,61 +1,72 @@
+(function()
 {
-    const options = NTT.OptionsUI.NewTab =
+    // Set in define().
+    let change_listeners;
+    const options =
     {
-        Behavior:    null,
-        Redirection: null,
-        Background:  null,
-        Wallpaper:   null,
-
-        initialize: null,
-
-        get: null,
-        set: null,
-
-        change_listeners: []
+        behavior:     null,
+        redirection:  null,
+        background:   null,
+        wallpaper:    null,
     };
 
-    options.get = function()
+    function get()
     {
         return {
-            behavior: options.Behavior.get(),
+            behavior: options.behavior.get(),
 
             redirect:
             {
-                url: options.Redirection.get()
+                url: options.redirection.get()
             },
             custom_page:
             {
-                background: options.Background.get(),
-                wallpaper:  options.Wallpaper.get()
+                background: options.background.get(),
+                wallpaper:  options.wallpaper.get()
             }
         };
-    };
-    options.set = function(cfg)
+    }
+    function set(cfg)
     {
-        options.Behavior.set(cfg.behavior);
-        options.Redirection.set(cfg.redirect.url);
-        options.Background.set(cfg.custom_page.background);
-        options.Wallpaper.set(cfg.custom_page.wallpaper);
-    };
-
-    // Invoked when the represented configuration changes.
-    function on_change()
-    {
-        options.change_listeners.forEach(listener => listener());
+        options.behavior.set(cfg.behavior);
+        options.redirection.set(cfg.redirect.url);
+        options.background.set(cfg.custom_page.background);
+        options.wallpaper.set(cfg.custom_page.wallpaper);
     }
 
-    options.initialize = function()
+    function initialize()
     {
-        options.Behavior.initialize();
-        options.Behavior.change_listeners.push(on_change);
+        options.behavior.initialize();
+        options.behavior.add_change_listener(change_listeners.notify);
 
-        options.Redirection.initialize();
-        options.Redirection.change_listeners.push(on_change);
+        options.redirection.initialize();
+        options.redirection.add_change_listener(change_listeners.notify);
 
-        options.Background.initialize();
-        options.Background.change_listeners.push(on_change);
+        options.background.initialize();
+        options.background.add_change_listener(change_listeners.notify);
 
-        options.Wallpaper.initialize();
-        options.Wallpaper.change_listeners.push(on_change);
-    };
-}
+        options.wallpaper.initialize();
+        options.wallpaper.add_change_listener(change_listeners.notify);
+    }
+
+    define(["subscription_service",
+            "./behavior", "./redirection", "./background/main", "./wallpaper/main"],
+    function(subscription_service, behavior, redirection, background, wallpaper)
+    {
+        options.behavior    = behavior;
+        options.redirection = redirection;
+        options.background  = background;
+        options.wallpaper   = wallpaper;
+
+        change_listeners  = subscription_service.setup();
+
+        return {
+            initialize: initialize,
+
+            get: get,
+            set: set,
+
+            add_change_listener: change_listeners.add
+        };
+    });
+})();

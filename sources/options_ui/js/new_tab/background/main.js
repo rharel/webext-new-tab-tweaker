@@ -1,14 +1,10 @@
+(function()
 {
-    const options = NTT.OptionsUI.NewTab.Background =
+    // Set in define().
+    let change_listeners;
+    const options =
     {
-        Animation: null,
-
-        initialize: null,
-
-        get: null,
-        set: null,
-
-        change_listeners: []
+        animation: null
     };
 
     // This will contain DOM elements proceeding a call to initialize().
@@ -17,37 +13,48 @@
         color: null
     };
 
-    options.get = function()
+    function get()
     {
         return {
             color: DOM.color.value,
 
-            do_animate:         options.Animation.is_enabled(),
-            animation_duration: options.Animation.get_duration()
+            do_animate:         options.animation.is_enabled(),
+            animation_duration: options.animation.get_duration()
         };
-    };
-    options.set = function(cfg)
+    }
+    function set(cfg)
     {
         DOM.color.value = cfg.color;
 
-        if (cfg.do_animate) { options.Animation.enable();  }
-        else                { options.Animation.disable(); }
+        if (cfg.do_animate) { options.animation.enable();  }
+        else                { options.animation.disable(); }
 
-        options.Animation.set_duration(cfg.animation_duration);
-    };
-
-    // Invoked when the represented configuration changes.
-    function on_change()
-    {
-        options.change_listeners.forEach(listener => listener());
+        options.animation.set_duration(cfg.animation_duration);
     }
 
-    options.initialize = function()
+    function initialize()
     {
         DOM.color = document.getElementById('bg-color');
-        DOM.color.addEventListener('input', on_change);
+        DOM.color.addEventListener('input', change_listeners.notify);
 
-        options.Animation.initialize();
-        options.Animation.change_listeners.push(on_change);
-    };
-}
+        options.animation.initialize();
+        options.animation.add_change_listener(change_listeners.notify);
+    }
+
+    define(["subscription_service", "./animation"],
+    function(subscription_service, animation)
+    {
+        options.animation = animation;
+
+        change_listeners = subscription_service.setup();
+
+        return {
+            initialize: initialize,
+
+            get: get,
+            set: set,
+
+            add_change_listener: change_listeners.add
+        };
+    });
+})();

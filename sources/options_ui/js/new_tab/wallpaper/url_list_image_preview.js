@@ -1,4 +1,4 @@
-{
+(function() {
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
     {
@@ -46,7 +46,7 @@
     {
         DOM.urls          = document.getElementById('wallpaper-urls');
         DOM.preview_image = document.getElementById('wallpaper-preview-image');
-        DOM.preview  = document.getElementById('wallpaper-preview');
+        DOM.preview       = document.getElementById('wallpaper-preview');
 
         ['click', 'keyup', 'input'].forEach(event =>
         {
@@ -58,5 +58,6 @@
             setTimeout(() => { DOM.preview.style.opacity = "1"; }, 50);
         });
     }
-    document.addEventListener('DOMContentLoaded', initialize);
-}
+
+    define({ initialize: initialize });
+})();

@@ -1,3 +1,4 @@
+(function()
 {
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
@@ -24,5 +25,6 @@
 
         DOM.download.addEventListener('click', download_as_text);
     }
-    document.addEventListener('DOMContentLoaded', initialize);
-}
+
+    define({ initialize: initialize });
+})();
