@@ -61,6 +61,13 @@
     margin-top: 4px;
 }
 
+/* Hide all dynamic panels initially: */
+#new-tab-options      { display: none; }
+#notification-options { display: none; }
+#advanced-options     { display: none; }
+#redirection-options  { display: none; }
+#custom-page-options  { display: none; }
+
 textarea, input, img
 {
     border: 1px solid;
