@@ -2,9 +2,13 @@
 {
     #content
     {
-        margin-left:   4px;
-        margin-right:  4px;
-        margin-bottom: 48px;
+        margin-left:   0.4rem;
+        margin-right:  0.4rem;
+        margin-bottom: 4.8rem;
+    }
+    #content > header
+    {
+        font-size: 2rem;
     }
 
     #option-categories
@@ -18,23 +22,23 @@
 
     #options fieldset > div
     {
-        border-left:  4px solid darkorange;
-        padding-left: 8px;
+        border-left:  0.4rem solid darkorange;
+        padding-left: 0.8rem;
     }
     #options fieldset > div + div
     {
-        margin-top: 10px;
+        margin-top: 1rem;
     }
 
     #dialog-content
     {
-        max-width: 200px;
-        padding:   8px;
+        max-width:  20rem;
+        padding:   0.8rem;
     }
 
     #wallpaper-urls
     {
-        max-width: 200px;
+        max-width: 20rem;
     }
     #wallpaper-preview
     {
@@ -43,9 +47,9 @@
 
     #wallpaper-url-import-dialog > input[type="url"]
     {
-        margin-left: 8px;
-        width:       100px;
+        margin-left: 0.8rem;
+        width:        10rem;
 
-        font-size: x-small;
+        font-size: 1rem;
     }
 }

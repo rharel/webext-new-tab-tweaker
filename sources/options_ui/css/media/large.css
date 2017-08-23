@@ -1,31 +1,44 @@
+html
+{
+    font-size: 10px;
+}
+
 #content
 {
-    margin-left:   32px;
-    margin-right:  32px;
-    margin-bottom: 48px;
+    margin-left:   3.2rem;
+    margin-right:  3.2rem;
+    margin-bottom: 4.8rem;
+
+    font-size: 1.75rem;
 }
 #content > header
 {
+    margin-top:    2rem;
+    margin-bottom: 2rem;
+
+    font-size:   4rem;
+    font-weight: bold;
+
     cursor: default;
 }
 
 #option-categories
 {
-    min-height: 48px;
+    min-height: 4.8rem;
 }
 #option-categories > .category
 {
     display: inline-block;
 
-    max-width: 200px;
-    width:     30%;
-    height:    48px;
+    max-width: 20rem;
+        width: 30%;
+       height: 4.8rem;
 
     text-align:     center;
     vertical-align: middle;
-    line-height:    48px;
+    line-height:    4.8rem;
 
-    font-size: large;
+    font-size: 2rem;
 }
 #option-categories > .category > input[type="radio"]
 {
@@ -41,7 +54,7 @@
 
 #options
 {
-    padding-top: 28px;
+    padding-top: 2.8rem;
 }
 #options fieldset
 {
@@ -54,11 +67,11 @@
 }
 #options fieldset > div
 {
-    padding-left: 28px;
+    padding-left: 2.8rem;
 }
 #options fieldset > div + div
 {
-    margin-top: 4px;
+    margin-top: 0.4rem;
 }
 
 /* Hide all dynamic panels initially: */
@@ -70,24 +83,41 @@
 
 textarea, input, img
 {
-    border: 1px solid;
+    border: 0.1rem solid;
 }
 textarea
 {
-    padding: 5px;
+    padding: 0.5rem;
+    font-size: 0.75em;
+}
+input
+{
+    font-size: 1em;
+}
+/*input[type="radio"], input[type="checkbox"]*/
+input
+{
+    display:  inline-block;
+    vertical-align: middle;
 }
 input[type="color"]
 {
-    height: 1.2em;
+    font-size: 1em;
 }
 input[type="number"]
 {
-    width:  48px;
-    height: 1.2em;
+    width:  4.8rem;
+    height: 1em;
+    font-size: 1em;
 }
 input:disabled
 {
     opacity: 0.5;
+}
+label
+{
+    display:  inline-block;
+    vertical-align: middle;
 }
 
 #wallpaper-urls-container
@@ -97,12 +127,12 @@ input:disabled
 }
 #wallpaper-urls
 {
-    margin-top:    8px;
-    margin-bottom: 4px;
+    margin-top:    0.8rem;
+    margin-bottom: 0.4rem;
 
-    min-width:  150px;
-    max-width:  350px;
-    max-height: 150px;
+    min-width:  15rem;
+    max-width:  35rem;
+    max-height: 15rem;
 
     resize: none;
 
@@ -111,10 +141,10 @@ input:disabled
 }
 #wallpaper-preview-image
 {
-    margin-left: 16px;
+    margin-left: 1.6rem;
 
-    max-width:  150px;
-    max-height: 150px;
+    max-width:  15rem;
+    max-height: 15rem;
 }
 #wallpaper-preview
 {
@@ -128,9 +158,9 @@ input:disabled
 {
     display: none;
 
-    margin-top:    10px;
-    margin-bottom: 10px;
-    padding:       10px;
+    margin-top:    1rem;
+    margin-bottom: 1rem;
+    padding:       1rem;
 }
 
 #dialog-shadow
@@ -151,9 +181,9 @@ input:disabled
 }
 #dialog-content
 {
-    border:  1px solid;
-    width:   400px;
-    padding: 16px;
+    border:  0.1rem solid;
+    width:    40rem;
+    padding: 1.6rem;
 }
 
 #wallpaper-url-import-dialog
@@ -162,16 +192,16 @@ input:disabled
 }
 #wallpaper-url-import-dialog > header
 {
-    margin-bottom:  8px;
-    padding-bottom: 8px;
+    margin-bottom:  0.8rem;
+    padding-bottom: 0.8rem;
 
     text-align:  center;
     font-weight: bold;
 }
 #wallpaper-url-import-dialog > input[type="url"]
 {
-    margin-left: 8px;
-    width:       200px;
+    margin-left: 0.8rem;
+    width:       20rem;
 }
 #import-wallpaper-urls-button
 {
@@ -182,15 +212,15 @@ input:disabled
 
 .indented-once
 {
-    padding-left: 28px;
+    padding-left: 2.8rem;
 }
 .indented-twice
 {
-    padding-left: 46px;
+    padding-left: 4.6rem;
 }
 
 .note
 {
-    font-size: small;
+    font-size: 0.75em;
     cursor: default;
 }

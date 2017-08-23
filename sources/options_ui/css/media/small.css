@@ -1,10 +1,14 @@
-@media (max-width: 600px)
+@media (max-width: 768px)
 {
     #content
     {
-        margin-left:   8px;
-        margin-right:  8px;
-        margin-bottom: 32px;
+        margin-left:   0.8rem;
+        margin-right:  0.8rem;
+        margin-bottom: 3.2rem;
+    }
+    #content > header
+    {
+        font-size: 3rem;
     }
 
     #option-categories
@@ -14,26 +18,26 @@
     #option-categories > .category
     {
         max-width: none;
-        font-size: medium;
+        font-size: 1.5rem;
     }
 
     #options fieldset > div
     {
-        padding-left: 8px;
+        padding-left: 0.8rem;
     }
     #options fieldset > div + div
     {
-        margin-top: 10px;
+        margin-top: 1rem;
     }
 
     #wallpaper-urls
     {
-        max-width: 250px;
+        max-width: 25rem;
     }
 
     #dialog-content
     {
-        max-width: 300px;
-        padding:   8px;
+        max-width:  30rem;
+        padding:   0.8rem;
     }
 }
