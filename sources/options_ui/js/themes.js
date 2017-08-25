@@ -1,65 +1,75 @@
-{
-	const Theme = NTT.Configuration.Theme;
+(function() {
+    // Set in define().
+    let change_listeners;
+    let Theme;
 
-	const stylesheets = {};
-	stylesheets[Theme.Light] = "css/theme_light.css";
-	stylesheets[Theme.Dark]  = "css/theme_dark.css";
+    // This will contain DOM elements proceeding a call to initialize().
+    const DOM =
+    {
+        theme: null,
+        light: null,
+        dark:  null
+    };
 
-	// This will contain DOM elements proceeding a call to initialize().
-	const DOM =
-	{
-		theme: null,
-		light: null,
-		dark: null
-	};
+    function get()
+    {
+        if (DOM.light.checked) { return Theme.Light; }
+        else                   { return Theme.Dark;  }
+    }
+    function set(value)
+    {
+        if (value === Theme.Light)
+        {
+            DOM.dark.checked  = false;
+            DOM.light.checked = true;
+        }
+        else if (value === Theme.Dark)
+        {
+            DOM.light.checked = false;
+            DOM.dark.checked  = true;
+        }
+        update_theme_stylesheet();
+    }
 
-	// Applies the theme which corresponds to the selected radio button.
-	function update_theme()
-	{
-		if (DOM.light.checked) { DOM.theme.href = stylesheets[Theme.Light]; }
-		else                   { DOM.theme.href = stylesheets[Theme.Dark];  }
-	}
+    // Applies the theme which corresponds to the selected radio button.
+    function update_theme_stylesheet()
+    {
+        DOM.theme.href = `css/themes/${get()}.css`;
+    }
 
-	// Gets the selected theme.
-	function get_selected_theme()
-	{
-		if (DOM.light.checked) { return Theme.Light; }
-		else                   { return Theme.Dark;  }
-	}
-	// Sets the selected theme.
-	function set_selected_theme(value)
-	{
-		if (value === Theme.Light)
-		{
-			DOM.dark.checked  = false;
-			DOM.light.checked = true;
-		}
-		else if (value === Theme.Dark)
-		{
-			DOM.light.checked = false;
-			DOM.dark.checked  = true;
-		}
-		update_theme();
-	}
+    function initialize()
+    {
+        DOM.theme = document.getElementById('theme');
+        DOM.light = document.getElementById('light-theme-button');
+        DOM.dark  = document.getElementById('dark-theme-button');
 
-	function initialize()
-	{
-		DOM.theme = document.getElementById('theme');
-		DOM.light = document.getElementById('light-theme-button');
-		DOM.dark  = document.getElementById('dark-theme-button');
+        [DOM.light, DOM.dark].forEach(item =>
+        {
+            item.addEventListener('change', () =>
+            {
+                update_theme_stylesheet();
+                change_listeners.notify();
+            });
+        });
+    }
 
-		[DOM.light, DOM.dark].forEach(item =>
-		{
-			item.addEventListener('click', update_theme);
-		});
+    define(
+    [
+        "common/configuration",
+        "common_ui/subscription_service"
+    ],
+    function(configuration, subscription_service)
+    {
+        Theme = configuration.Theme;
+        change_listeners  = subscription_service.setup();
 
-		NTT.OptionsUI.Theme =
-		{
-			get_selected: get_selected_theme,
-			set_selected: set_selected_theme,
-		};
+        return {
+            initialize: initialize,
 
-		update_theme();
-	}
-	document.addEventListener('DOMContentLoaded', initialize);
-}
+            get: get,
+            set: set,
+
+            add_change_listener: change_listeners.add
+        };
+    });
+})();

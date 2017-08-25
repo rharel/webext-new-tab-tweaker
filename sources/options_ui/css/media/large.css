@@ -1,0 +1,226 @@
+html
+{
+    font-size: 10px;
+}
+
+#content
+{
+    margin-left:   3.2rem;
+    margin-right:  3.2rem;
+    margin-bottom: 4.8rem;
+
+    font-size: 1.75rem;
+}
+#content > header
+{
+    margin-top:    2rem;
+    margin-bottom: 2rem;
+
+    font-size:   4rem;
+    font-weight: bold;
+
+    cursor: default;
+}
+
+#option-categories
+{
+    min-height: 4.8rem;
+}
+#option-categories > .category
+{
+    display: inline-block;
+
+    max-width: 20rem;
+        width: 30%;
+       height: 4.8rem;
+
+    text-align:     center;
+    vertical-align: middle;
+    line-height:    4.8rem;
+
+    font-size: 2rem;
+}
+#option-categories > .category > input[type="radio"]
+{
+    display: none;
+}
+#option-categories > .category > label
+{
+    display: block;
+
+    width:  100%;
+    height: 100%;
+}
+
+#options
+{
+    padding-top: 2.8rem;
+}
+#options fieldset
+{
+    border: none;
+	cursor: default;
+}
+#options fieldset > legend
+{
+    font-weight: bold;
+}
+#options fieldset > div
+{
+    padding-left: 2.8rem;
+}
+#options fieldset > div + div
+{
+    margin-top: 0.4rem;
+}
+
+/* Hide all dynamic panels initially: */
+#new-tab-options      { display: none; }
+#notification-options { display: none; }
+#advanced-options     { display: none; }
+#redirection-options  { display: none; }
+#custom-page-options  { display: none; }
+
+textarea, input, img
+{
+    border: 0.1rem solid;
+}
+textarea
+{
+    padding: 0.5rem;
+    font-size: 0.75em;
+}
+input
+{
+    font-size: 1em;
+}
+/*input[type="radio"], input[type="checkbox"]*/
+input
+{
+    display:  inline-block;
+    vertical-align: middle;
+}
+input[type="color"]
+{
+    font-size: 1em;
+}
+input[type="number"]
+{
+    width:  4.8rem;
+    height: 1em;
+    font-size: 1em;
+}
+input:disabled
+{
+    opacity: 0.5;
+}
+label
+{
+    display:  inline-block;
+    vertical-align: middle;
+}
+
+#wallpaper-urls-container
+{
+    display:     flex;
+    align-items: center;
+}
+#wallpaper-urls
+{
+    margin-top:    0.8rem;
+    margin-bottom: 0.4rem;
+
+    min-width:  15rem;
+    max-width:  35rem;
+    max-height: 15rem;
+
+    resize: none;
+
+    overflow-x: auto;
+    overflow-y: auto;
+}
+#wallpaper-preview-image
+{
+    margin-left: 1.6rem;
+
+    max-width:  15rem;
+    max-height: 15rem;
+}
+#wallpaper-preview
+{
+    color: inherit;
+
+    opacity:    0;
+    transition: opacity 0.25s ease;
+}
+
+#errors
+{
+    display: none;
+
+    margin-top:    1rem;
+    margin-bottom: 1rem;
+    padding:       1rem;
+}
+
+#dialog-shadow
+{
+    display: none;
+
+    justify-content: center;
+    align-items:     center;
+
+    position: fixed;
+    left: 0;
+    top:  0;
+
+    width:  100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.25);
+}
+#dialog-content
+{
+    border:  0.1rem solid;
+    width:    40rem;
+    padding: 1.6rem;
+}
+
+#wallpaper-url-import-dialog
+{
+    display: none;
+}
+#wallpaper-url-import-dialog > header
+{
+    margin-bottom:  0.8rem;
+    padding-bottom: 0.8rem;
+
+    text-align:  center;
+    font-weight: bold;
+}
+#wallpaper-url-import-dialog > input[type="url"]
+{
+    margin-left: 0.8rem;
+    width:       20rem;
+}
+#import-wallpaper-urls-button
+{
+    visibility: hidden;
+
+    float: right;
+}
+
+.indented-once
+{
+    padding-left: 2.8rem;
+}
+.indented-twice
+{
+    padding-left: 4.6rem;
+}
+
+.note
+{
+    font-size: 0.75em;
+    cursor: default;
+}

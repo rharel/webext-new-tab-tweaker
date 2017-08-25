@@ -28,6 +28,10 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.6.0
+
+ * Adds a wallpaper preview box to the options page.
+ 
 ### 1.5.2
 
  * Fixes a bug where particularly wide wallpapers were not fully contained in a new tab's frame.

@@ -1,7 +1,20 @@
+html
+{
+    font-size: 10px;
+}
+@media (min-width: 1600px)
+{
+    html
+    {
+        font-size: 17px;
+    }
+}
+
 body
 {
     margin: 0;
     overflow: hidden;
+    font-size: 1.75rem;
 }
 
 #background
@@ -56,8 +69,8 @@ body
 {
     flex-grow: 1;
 
-    padding-top:    16px;
-    padding-bottom: 16px;
+    padding-top:    1.6rem;
+    padding-bottom: 1.6rem;
 
     background-color: rgba(0, 0, 0, 0.75);
 }

@@ -9,16 +9,13 @@
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
 
-    <script>
-        window.NTT = {};
-    </script>
-    <script src="../sources/background_scripts/ordering.js"></script>
+    <script src="../sources/common/js/require.js"></script>
 </head>
 <body>
 <div id="mocha"></div>
 <script>
 	const assert = chai.assert;
-    const Ordering = NTT.Ordering;
+    let Ordering;
 
 	mocha.setup('bdd');
 
@@ -32,7 +29,12 @@
 		});
 	});
 
-	mocha.run();
+    require(["../sources/common/js/ordering"],
+    function(ordering_module)
+    {
+        Ordering = ordering_module;
+        mocha.run();
+    });
 </script>
 </body>
 </html>

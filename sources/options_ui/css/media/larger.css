@@ -1,0 +1,12 @@
+@media (min-width: 1600px)
+{
+    html
+    {
+        font-size: 17px;
+    }
+
+    input[type="radio"], input[type="checkbox"]
+    {
+         transform: scale(1.75);
+    }
+}

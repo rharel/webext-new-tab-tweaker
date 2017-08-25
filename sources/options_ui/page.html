@@ -10,29 +10,19 @@
           sizes="32x32">
 
     <link rel="stylesheet" href="../common/css/common.css">
-    <link rel="stylesheet" href="css/theme_light.css" id="theme">
-    <link rel="stylesheet" href="css/media_large.css">
-    <link rel="stylesheet" href="css/media_small.css">
-    <link rel="stylesheet" href="css/media_smaller.css">
+    <link rel="stylesheet" href="css/themes/light.css" id="theme">
+    <link rel="stylesheet" href="css/media/large.css">
+    <link rel="stylesheet" href="css/media/larger.css">
+    <link rel="stylesheet" href="css/media/small.css">
+    <link rel="stylesheet" href="css/media/smaller.css">
 
-    <script src="../background_scripts/main.js"></script>
-    <script src="../background_scripts/ordering.js"></script>
-    <script src="../background_scripts/configuration.js"></script>
-
-    <script src="js/ui.js"></script>
-    <script src="js/imgur.js"></script>
-    <script src="js/dialog.js"></script>
-    <script src="js/option_categories.js"></script>
-    <script src="js/themes.js"></script>
-    <script src="js/tab_behavior_panels.js"></script>
-    <script src="js/wallpaper_url_list.js"></script>
-    <script src="js/controller.js"></script>
+    <script data-main="js/main" src="../common/js/require.js"></script>
 </head>
 <body>
 <div id="content">
     <!-- Header -->
     <header>
-        <h1>New Tab Tweaker <span id="version"></span></h1>
+        New Tab Tweaker <span id="version"></span>
     </header>
     <!-- Option categories -->
     <div id="option-categories">
@@ -97,8 +87,8 @@
                 </div>
             </fieldset>
             <div id="custom-page-options">
-                <fieldset id="custom-page-style">
-                    <legend>Style the page</legend>
+                <fieldset id="custom-page-background">
+                    <legend>Background</legend>
                     <div>
                         Use
                         <input id="bg-color" type="color"
@@ -106,41 +96,6 @@
                                title="Background color">
                         as background color
                     </div>
-                    <div>
-                        <input id="do-display-wallpaper" type="checkbox"
-                               title="Display a wallpaper image">
-                        <label for="do-display-wallpaper">
-                            Display a wallpaper image
-                        </label>
-                        <div class="indented-once">
-                            <span class="note">
-                                (one image URL per line, a new tab will
-                                display one chosen at random)
-                            </span>
-                            <div>
-                                <textarea id="wallpaper-urls"
-                                          rows="10" cols="100"
-                                          placeholder="One image URL per line."
-                                          wrap="off">
-                                </textarea>
-                            </div>
-                            <a id="open-wallpaper-url-import-dialog-button"
-                               class="link-button"
-                               title="Import wallpaper URLs from an Imgur album">
-                                Import from Imgur album...
-                            </a>
-                            <br>
-                            <a id="download-wallpaper-urls"
-                               class="link-button"
-                               title="Download the wallpaper URL list"
-                               download="wallpaper-urls.txt">
-                                Download as a text file...
-                            </a>
-                        </div>
-                    </div>
-                </fieldset>
-                <fieldset id="custom-page-animation">
-                    <legend>Animate the page</legend>
                     <div>
                         <input id="do-animate-bg-color" type="checkbox"
                                title="Animate the background color">
@@ -154,7 +109,46 @@
                         </label>
                         <span class="note">(max 5)</span>
                     </div>
+                </fieldset>
+                <fieldset id="custom-page-wallpaper">
+                    <legend>Wallpaper</legend>
                     <div>
+                        <input id="do-display-wallpaper" type="checkbox"
+                               title="Display a wallpaper image">
+                        <label for="do-display-wallpaper">
+                            Display a wallpaper image
+                        </label>
+                    </div>
+                    <div class="requires-wallpaper">
+                        <span class="note">
+                            (one image URL per line, a new tab will
+                            display one chosen at random)
+                        </span>
+                        <div id="wallpaper-urls-container">
+                            <textarea id="wallpaper-urls"
+                                      rows="10" cols="100"
+                                      placeholder="One image URL per line."
+                                      wrap="off">
+                            </textarea>
+                            <a id="wallpaper-preview" target="_blank" title="View">
+                                <img id="wallpaper-preview-image"
+                                     src="">
+                            </a>
+                        </div>
+                        <a id="open-wallpaper-url-import-dialog-button"
+                           class="link-button"
+                           title="Import wallpaper URLs from an Imgur album">
+                            Import from Imgur album...
+                        </a>
+                        <br>
+                        <a id="download-wallpaper-urls"
+                           class="link-button"
+                           title="Download the wallpaper URL list"
+                           download="wallpaper-urls.txt">
+                            Download as a text file...
+                        </a>
+                    </div>
+                    <div class="requires-wallpaper">
                         <input id="do-animate-wallpaper" type="checkbox"
                                title="Animate the wallpaper">
                         <label for="do-animate-wallpaper">
@@ -238,7 +232,7 @@
                            autocomplete="off" title="Album URL">
                     <div id="imgur-album-info"></div>
                     <a id="import-wallpaper-urls-button" class="link-button">
-                        Import
+                        Import?
                     </a>
                 </div>
             </div>

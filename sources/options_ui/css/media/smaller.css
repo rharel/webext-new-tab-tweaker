@@ -1,0 +1,55 @@
+@media (max-width: 512px)
+{
+    #content
+    {
+        margin-left:   0.4rem;
+        margin-right:  0.4rem;
+        margin-bottom: 4.8rem;
+    }
+    #content > header
+    {
+        font-size: 2rem;
+    }
+
+    #option-categories
+    {
+        text-align: center;
+    }
+    #option-categories > .category
+    {
+        font-size: small;
+    }
+
+    #options fieldset > div
+    {
+        border-left:  0.4rem solid darkorange;
+        padding-left: 0.8rem;
+    }
+    #options fieldset > div + div
+    {
+        margin-top: 1rem;
+    }
+
+    #dialog-content
+    {
+        max-width:  20rem;
+        padding:   0.8rem;
+    }
+
+    #wallpaper-urls
+    {
+        max-width: 20rem;
+    }
+    #wallpaper-preview
+    {
+        display: none;
+    }
+
+    #wallpaper-url-import-dialog > input[type="url"]
+    {
+        margin-left: 0.8rem;
+        width:        10rem;
+
+        font-size: 1rem;
+    }
+}

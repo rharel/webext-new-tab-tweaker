@@ -1,0 +1,43 @@
+@media (max-width: 768px)
+{
+    #content
+    {
+        margin-left:   0.8rem;
+        margin-right:  0.8rem;
+        margin-bottom: 3.2rem;
+    }
+    #content > header
+    {
+        font-size: 3rem;
+    }
+
+    #option-categories
+    {
+        text-align: center;
+    }
+    #option-categories > .category
+    {
+        max-width: none;
+        font-size: 1.5rem;
+    }
+
+    #options fieldset > div
+    {
+        padding-left: 0.8rem;
+    }
+    #options fieldset > div + div
+    {
+        margin-top: 1rem;
+    }
+
+    #wallpaper-urls
+    {
+        max-width: 25rem;
+    }
+
+    #dialog-content
+    {
+        max-width:  30rem;
+        padding:   0.8rem;
+    }
+}

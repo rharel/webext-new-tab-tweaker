@@ -1,57 +1,55 @@
 {
-	"manifest_version": 2,
+  "manifest_version": 2,
 
-	"name":    "New Tab Tweaker",
-	"version": "1.5.2",
+  "name":    "New Tab Tweaker",
+  "version": "1.6.0b4",
 
-	"author":      "Raoul Harel",
-	"description": "Have new tabs redirect to a specified URL or display a custom page.",
+  "author":      "Raoul Harel",
+  "description": "Have new tabs redirect to a specified URL or display a custom page.",
 
-	"homepage_url": "https://github.com/rharel/webext-new-tab-tweaker",
+  "homepage_url": "https://github.com/rharel/webext-new-tab-tweaker",
 
-	"icons":
-	{
-		"16":  "icons/main_16.png",
-		"32":  "icons/main_32.png",
-		"48":  "icons/main_48.png",
-		"64":  "icons/main_64.png",
-		"96":  "icons/main_96.png",
-		"128": "icons/main_128.png"
-	},
+  "icons":
+  {
+    "16":  "icons/main_16.png",
+    "32":  "icons/main_32.png",
+    "48":  "icons/main_48.png",
+    "64":  "icons/main_64.png",
+    "96":  "icons/main_96.png",
+    "128": "icons/main_128.png"
+  },
 
-	"applications":
-	{
-		"gecko":
-		{
-			"id": "new-tab-tweaker@rharel"
-		}
-	},
+  "applications":
+  {
+    "gecko":
+    {
+      "id": "new-tab-tweaker@rharel"
+    }
+  },
 
-	"permissions":
-	[
-		"storage",
-		"contextMenus",
+  "permissions":
+  [
+    "storage",
+    "contextMenus",
 
-		"https://api.imgur.com/3/album/*"
-	],
+    "https://api.imgur.com/3/album/*"
+  ],
 
-	"background":
-	{
-		"scripts":
-		[
-			"background_scripts/main.js",
-			"background_scripts/ordering.js",
-			"background_scripts/configuration.js",
-			"background_scripts/image_context_menu.js"
-		]
-	},
-	"options_ui":
-	{
-		"page": "options_ui/page.html",
-		"open_in_tab": true
-	},
-	"chrome_url_overrides":
-	{
-		"newtab": "url_overrides/newtab/page.html"
-	}
+  "background":
+  {
+    "scripts":
+    [
+      "common/js/require.js",
+      "background_scripts/main.js"
+    ]
+  },
+  "options_ui":
+  {
+    "page": "options_ui/page.html",
+    "open_in_tab": true
+  },
+  "chrome_url_overrides":
+  {
+    "newtab": "url_overrides/newtab/page.html"
+  }
 }

@@ -31,11 +31,7 @@ body
 {
     border-left: 4px solid darkorange;
 }
-textarea
-{
-    border-color: dimgray;
-}
-input
+textarea, input, img
 {
     border-color: dimgray;
 }
@@ -55,12 +51,13 @@ input
 }
 #dialog-content
 {
+    border-color:     dimgray;
     background-color: #fafafd;
 }
 
 #wallpaper-url-import-dialog > header
 {
-    border-bottom:  2px solid darkorange;
+    border-bottom: 2px solid darkorange;
 }
 
 .note
