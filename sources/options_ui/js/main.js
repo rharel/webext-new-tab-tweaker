@@ -1,7 +1,8 @@
 (function()
 {
     // Set in define().
-    const options =
+    let configuration;
+    const options_ui =
     {
         categories:   null,
         new_tab:      null,
@@ -50,38 +51,38 @@
     function get()
     {
         return {
-            version: NTT.Configuration.Version.CURRENT,
+            version: configuration.version.CURRENT,
 
             notification:
             {
-                new_features: options.notification.get_new_features()
+                new_features: options_ui.notification.get_new_features()
             },
-            new_tab: options.new_tab.get(),
+            new_tab: options_ui.new_tab.get(),
             options_ui:
             {
-                theme: options.theme.get()
+                theme: options_ui.theme.get()
             }
         };
     }
-    function set(cfg)
+    function set(options)
     {
-        options.notification.set_new_features(cfg.notification.new_features);
-        options.new_tab.set(cfg.new_tab);
-        options.theme.set(cfg.options_ui.theme);
+        options_ui.notification.set_new_features(options.notification.new_features);
+        options_ui.new_tab.set(options.new_tab);
+        options_ui.theme.set(options.options_ui.theme);
     }
 
     function reset()
     {
-        set(NTT.Configuration.create_default());
+        set(configuration.create_default());
         display_success();
     }
 
     function save()
     {
-        const cfg = get();
+        const options = get();
 
         display_success();
-        NTT.Configuration.Storage.save(cfg)
+        configuration.storage.save(options)
             .catch(() => display_error(ErrorMessage.CONFIGURATION_SAVE));
     }
 
@@ -99,26 +100,26 @@
             save();
         });
 
-        options.notification.initialize();
-        options.notification.add_change_listener(save);
+        options_ui.notification.initialize();
+        options_ui.notification.add_change_listener(save);
 
-        options.new_tab.initialize();
-        options.new_tab.add_change_listener(save);
+        options_ui.new_tab.initialize();
+        options_ui.new_tab.add_change_listener(save);
 
-        options.theme.initialize();
-        options.theme.add_change_listener(save);
+        options_ui.theme.initialize();
+        options_ui.theme.add_change_listener(save);
         {
-            const Version = NTT.Configuration.Version;
-            DOM.version.textContent = Version.as_string(Version.CURRENT);
+            const version = configuration.version;
+            DOM.version.textContent = version.as_string(version.CURRENT);
         }
 
-        options.dialogs.initialize();
-        options.categories.initialize();
+        options_ui.dialogs.initialize();
+        options_ui.categories.initialize();
 
-        NTT.Configuration.Storage.load().then
+        configuration.storage.load().then
         (
             // On fulfillment:
-            cfg => set(cfg),
+            options => set(options),
             // On rejection:
             () => display_error(ErrorMessage.CONFIGURATION_LOAD)
         );
@@ -128,23 +129,33 @@
     {
         paths:
         {
-            "after_page_load":      "common/after_page_load",
-            "animation_options":    "common/animation_options",
-            "numeric_utilities":    "common/numeric_utilities",
-            "subscription_service": "common/subscription_service",
-            "dialogs":              "common/dialogs"
+            "common":    "../../common/js",
+            "common_ui": "./common",
         }
     });
-    requirejs(["after_page_load", "dialogs",
-               "./option_categories", "./notifications", "./themes",
-               "./new_tab/main"],
-    function(after_page_load, dialogs, categories, notifications, themes, new_tab)
+    requirejs(
+    [
+        "common/after_page_load",
+        "common/configuration",
+
+        "common_ui/dialogs",
+
+        "./option_categories",
+        "./notifications",
+        "./themes",
+        "./new_tab/main"
+    ],
+    function(after_page_load, configuration_module,
+             dialogs,
+             categories, notifications, themes, new_tab)
     {
-        options.dialogs      = dialogs;
-        options.categories   = categories;
-        options.notification = notifications;
-        options.theme        = themes;
-        options.new_tab      = new_tab;
+        configuration = configuration_module;
+
+        options_ui.dialogs      = dialogs;
+        options_ui.categories   = categories;
+        options_ui.notification = notifications;
+        options_ui.theme        = themes;
+        options_ui.new_tab      = new_tab;
 
         after_page_load.do(initialize);
     });

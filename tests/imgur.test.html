@@ -9,16 +9,13 @@
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
 
-    <script>
-		NTT = { OptionsUI: { NewTab: { Wallpaper: {} }} };
-    </script>
-    <script src="../sources/options_ui/js/new_tab/wallpaper/imgur.js"></script>
+    <script src="../sources/common/js/require.js"></script>
 </head>
 <body>
 <div id="mocha"></div>
 <script>
 	const assert = chai.assert;
-    const Imgur = NTT.OptionsUI.NewTab.Wallpaper.Imgur;
+    let imgur;
 
 	mocha.setup('bdd');
 
@@ -30,18 +27,18 @@
                 "http://imgur.com/a/my_album",
                 "https://imgur.com/a/my_album"
             ]
-                .forEach(url => assert(Imgur.is_valid_album_url(url)));
+                .forEach(url => assert(imgur.is_valid_album_url(url)));
 			[
 				"httpp://imgur.com/a/my_album",
 				"http//imgur.com/a/my_album",
 				"http:/imgur.com/a/my_album",
 				"httpimgur.com/a/my_album",
 			]
-				.forEach(url => assert(!Imgur.is_valid_album_url(url)));
+				.forEach(url => assert(!imgur.is_valid_album_url(url)));
 		});
 		it('should accept URLs without protocol', function()
         {
-        	assert(Imgur.is_valid_album_url("imgur.com/a/my_album"));
+        	assert(imgur.is_valid_album_url("imgur.com/a/my_album"));
         });
 		it('should accept URLs with and without www. prefix', function()
         {
@@ -49,13 +46,13 @@
 				"www.imgur.com/a/my_album",
 				"imgur.com/a/my_album",
 			]
-				.forEach(url => assert(Imgur.is_valid_album_url(url)));
+				.forEach(url => assert(imgur.is_valid_album_url(url)));
 			[
 				"wwww.imgur.com/a/my_album",
 				"ww.imgur.com/a/my_album",
 				"wwwimgur.com/a/my_album",
 			]
-				.forEach(url => assert(!Imgur.is_valid_album_url(url)));
+				.forEach(url => assert(!imgur.is_valid_album_url(url)));
         });
 		it('should only accept URLs from the imgur domain', function()
         {
@@ -63,7 +60,7 @@
 				"google.com/a/my_album",
 				"yahoo.com/a/my_album",
 			]
-				.forEach(url => assert(!Imgur.is_valid_album_url(url)));
+				.forEach(url => assert(!imgur.is_valid_album_url(url)));
         });
 		it('should only accept URLs for albums', function()
         {
@@ -71,7 +68,7 @@
 				"imgur.com/b/my_album",
 				"imgur.com/c/my_album",
 			]
-				.forEach(url => assert(!Imgur.is_valid_album_url(url)));
+				.forEach(url => assert(!imgur.is_valid_album_url(url)));
         });
 	});
     describe('album hash extraction from URL', function()
@@ -88,12 +85,17 @@
 			]
 				.forEach(url =>
             {
-                assert.strictEqual("my_album", Imgur.extract_album_hash(url));
+                assert.strictEqual("my_album", imgur.extract_album_hash(url));
             });
         });
     });
 
-	mocha.run();
+    require(["../sources/options_ui/js/new_tab/wallpaper/imgur"],
+    function(imgur_module)
+    {
+        imgur = imgur_module;
+        mocha.run();
+    });
 </script>
 </body>
 </html>

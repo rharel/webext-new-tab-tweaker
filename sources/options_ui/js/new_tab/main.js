@@ -2,7 +2,7 @@
 {
     // Set in define().
     let change_listeners;
-    const options =
+    const options_ui =
     {
         behavior:     null,
         redirection:  null,
@@ -13,50 +13,56 @@
     function get()
     {
         return {
-            behavior: options.behavior.get(),
+            behavior: options_ui.behavior.get(),
 
             redirect:
             {
-                url: options.redirection.get()
+                url: options_ui.redirection.get()
             },
             custom_page:
             {
-                background: options.background.get(),
-                wallpaper:  options.wallpaper.get()
+                background: options_ui.background.get(),
+                wallpaper:  options_ui.wallpaper.get()
             }
         };
     }
-    function set(cfg)
+    function set(options)
     {
-        options.behavior.set(cfg.behavior);
-        options.redirection.set(cfg.redirect.url);
-        options.background.set(cfg.custom_page.background);
-        options.wallpaper.set(cfg.custom_page.wallpaper);
+        options_ui.behavior.set(options.behavior);
+        options_ui.redirection.set(options.redirect.url);
+        options_ui.background.set(options.custom_page.background);
+        options_ui.wallpaper.set(options.custom_page.wallpaper);
     }
 
     function initialize()
     {
-        options.behavior.initialize();
-        options.behavior.add_change_listener(change_listeners.notify);
+        options_ui.behavior.initialize();
+        options_ui.behavior.add_change_listener(change_listeners.notify);
 
-        options.redirection.initialize();
-        options.redirection.add_change_listener(change_listeners.notify);
+        options_ui.redirection.initialize();
+        options_ui.redirection.add_change_listener(change_listeners.notify);
 
-        options.background.initialize();
-        options.background.add_change_listener(change_listeners.notify);
+        options_ui.background.initialize();
+        options_ui.background.add_change_listener(change_listeners.notify);
 
-        options.wallpaper.initialize();
-        options.wallpaper.add_change_listener(change_listeners.notify);
+        options_ui.wallpaper.initialize();
+        options_ui.wallpaper.add_change_listener(change_listeners.notify);
     }
 
-    define(["subscription_service",
-            "./behavior", "./redirection", "./background/main", "./wallpaper/main"],
+    define(
+    [
+        "common_ui/subscription_service",
+        "./behavior",
+        "./redirection",
+        "./background/main",
+        "./wallpaper/main"
+    ],
     function(subscription_service, behavior, redirection, background, wallpaper)
     {
-        options.behavior    = behavior;
-        options.redirection = redirection;
-        options.background  = background;
-        options.wallpaper   = wallpaper;
+        options_ui.behavior    = behavior;
+        options_ui.redirection = redirection;
+        options_ui.background  = background;
+        options_ui.wallpaper   = wallpaper;
 
         change_listeners  = subscription_service.setup();
 

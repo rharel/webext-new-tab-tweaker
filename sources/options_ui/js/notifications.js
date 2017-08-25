@@ -24,7 +24,7 @@
         DOM.new_features.addEventListener('change', change_listeners.notify);
     }
 
-    define(["subscription_service"],
+    define(["common_ui/subscription_service"],
     function(subscription_service)
     {
         change_listeners  = subscription_service.setup();

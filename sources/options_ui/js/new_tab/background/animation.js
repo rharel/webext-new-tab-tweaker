@@ -1,6 +1,6 @@
 (function()
 {
-    define(["animation_options"],
+    define(["common_ui/animation_options"],
     function(animation_options)
     {
         return animation_options.setup_from_ids(

@@ -59,7 +59,7 @@
         );
     }
 
-    define(["numeric_utilities", "subscription_service"],
+    define(["./numeric_utilities", "./subscription_service"],
     function(numeric_utilities, subscription_service)
     {
         clamp = numeric_utilities.clamp;

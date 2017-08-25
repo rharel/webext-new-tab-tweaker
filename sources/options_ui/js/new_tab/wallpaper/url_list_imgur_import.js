@@ -82,7 +82,12 @@
         DOM.import_urls.addEventListener('click', on_import_confirmation);
     }
 
-    define(["dialogs", "./imgur", "./url_list"],
+    define(
+    [
+        "common_ui/dialogs",
+        "./imgur",
+        "./url_list"
+    ],
     function(dialogs_module, imgur_module, url_list_module)
     {
         dialog         = dialogs_module;

@@ -41,7 +41,7 @@
         options.animation.add_change_listener(change_listeners.notify);
     }
 
-    define(["subscription_service", "./animation"],
+    define(["common_ui/subscription_service", "./animation"],
     function(subscription_service, animation)
     {
         options.animation = animation;

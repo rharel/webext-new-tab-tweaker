@@ -1,8 +1,7 @@
 (function() {
-    const Theme = NTT.Configuration.Theme;
-
     // Set in define().
     let change_listeners;
+    let Theme;
 
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
@@ -54,9 +53,14 @@
         });
     }
 
-    define(["subscription_service"],
-    function(subscription_service)
+    define(
+    [
+        "common/configuration",
+        "common_ui/subscription_service"
+    ],
+    function(configuration, subscription_service)
     {
+        Theme = configuration.Theme;
         change_listeners  = subscription_service.setup();
 
         return {

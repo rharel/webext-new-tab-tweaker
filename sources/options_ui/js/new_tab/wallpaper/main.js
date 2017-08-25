@@ -72,20 +72,22 @@
         options.url_list_imgur_import.initialize();
     }
 
-    define(["subscription_service",
-            "./animation",
-            "./url_list",
-            "./url_list_download",
-            "./url_list_image_preview",
-            "./url_list_imgur_import"],
+    define(
+    [
+        "common_ui/subscription_service",
+        "./animation",
+        "./url_list",
+        "./url_list_download",
+        "./url_list_image_preview",
+        "./url_list_imgur_import"
+    ],
     function(subscription_service,
-             animation,
-             url_list, url_list_download, url_list_image_preivew, url_list_imgur_import)
+             animation, url_list, url_list_download, url_list_image_preview, url_list_imgur_import)
     {
         options.animation              = animation;
         options.url_list               = url_list;
         options.url_list_download      = url_list_download;
-        options.url_list_image_preview = url_list_image_preivew;
+        options.url_list_image_preview = url_list_image_preview;
         options.url_list_imgur_import  = url_list_imgur_import;
 
         change_listeners = subscription_service.setup();

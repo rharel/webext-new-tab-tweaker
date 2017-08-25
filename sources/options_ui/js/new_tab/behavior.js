@@ -1,8 +1,7 @@
 (function()
 {
-    const TabBehavior = NTT.Configuration.TabBehavior;
-
     // Set in define().
+    let TabBehavior;
     let change_listeners;
 
     // This will contain DOM elements proceeding a call to initialize().
@@ -82,9 +81,10 @@
         });
     }
 
-    define(["subscription_service"],
-    function(subscription_service)
+    define(["common/configuration", "common_ui/subscription_service"],
+    function(configuration, subscription_service)
     {
+        TabBehavior      = configuration.TabBehavior;
         change_listeners = subscription_service.setup();
 
         return {
