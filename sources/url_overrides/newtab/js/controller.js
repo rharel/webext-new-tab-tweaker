@@ -78,10 +78,10 @@
                     if (xhr.status === 200)  // success
                     {
                         const content_type = xhr.getResponseHeader("Content-Type");
-                        if (content_type !== "text/plain")
+                        if (!content_type.startsWith("text/plain"))
                         {
-                            console.log(`Expected text/plain response from ${source},` +
-                                        `got ${content_type} instead.`);
+                            console.log(`Expected plaintext response from ${source},` +
+                                        `got '${content_type}' instead.`);
                         }
                         else
                         {
