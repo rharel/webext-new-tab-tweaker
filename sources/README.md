@@ -31,6 +31,7 @@ Contains resources which are directly related to the new-tab page override.
 ### 1.6.0
 
  * Adds a wallpaper preview box to the options page.
+ * Adds support for plain-text wallpaper URLs (only from localhost).
  
 ### 1.5.2
 

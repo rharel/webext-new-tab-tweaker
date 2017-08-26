@@ -14,7 +14,7 @@
     //
     // It is used to avoid displaying the same wallpaper consecutively, when the wallpaper URL list
     // contains more than one item.
-    const PREVIOUS_WALLPAPER_INDEX = "previous-wallpaper-index@new-tab-tweaker";
+    const PREVIOUS_WALLPAPER = "previous-wallpaper@new-tab-tweaker";
 
     // Fades-in the background color over the specified duration (in seconds).
     function fade_in_background(color, duration)
@@ -37,17 +37,69 @@
         }
     }
 
+    // Returns true if the given URL points to an image.
+    function is_image(url)
+    {
+        return url.startsWith("data:") ||
+               /\.(bmp|gif|jpg|jpeg|png|svg)$/.test(url);
+    }
+    // Selects a random wallpaper image URL.
+    // The list of URLs in options may contain URLs of two kinds:
+    //      1. Those linking to an image directly.
+    //      2. Those linking to a dynamic plain-text list of direct image URLs to choose from.
+    function select_wallpaper(urls, on_success)
+    {
+        let previously_selected = localStorage.getItem(PREVIOUS_WALLPAPER);
+        function select_random_item(items)
+        {
+            if (items.length === 1) { return items[0]; }
+            else
+            {
+                let index = rng.integer_in_range(0, items.length - 1);
+                if (items[index] === previously_selected)
+                {
+                    index = (index + 1) % items.length;
+                }
+                return items[index];
+            }
+        }
+
+        const source = select_random_item(urls);
+        if (is_image(source)) { on_success(source); }
+        else
+        {
+            // Fetch resource, and if it is plain-text, interpret it as a list of image URLs,
+            // each on a new line.
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () =>
+            {
+                if (xhr.readyState === XMLHttpRequest.DONE)
+                {
+                    if (xhr.status === 200)  // success
+                    {
+                        const content_type = xhr.getResponseHeader("Content-Type");
+                        if (content_type !== "text/plain")
+                        {
+                            console.log(`Expected text/plain response from ${source},` +
+                                        `got ${content_type} instead.`);
+                        }
+                        else
+                        {
+                            on_success(select_random_item(xhr.responseText.split('\n')));
+                        }
+                    }
+                    else { console.log(`Could not fetch resource at ${source}`); }
+                }
+            };
+            xhr.open("GET", source);
+            xhr.send();
+        }
+    }
     // Loads the specified image and invokes a callback when done.
     // The callback receives the loaded image as its parameter.
     function load_wallpaper(url, on_load)
     {
-        DOM.wallpaper.addEventListener('load', () =>
-        {
-            if (DOM.wallpaper.src === url)
-            {
-                on_load(DOM.wallpaper);
-            }
-        });
+        DOM.wallpaper.addEventListener('load', () => on_load(DOM.wallpaper));
         DOM.wallpaper.src = url;
     }
     // Re-sizes the wallpaper image so that it is as large possible without exceeding the current
@@ -115,29 +167,13 @@
             if (!wp.is_enabled || wp.urls.length === 0) { return; }
 
             DOM.wallpaper = new Image();
-            DOM.wallpaper.id = "wallpaper";
+            DOM.wallpaper.id  = "wallpaper";
             DOM.wallpaper.src = "/icons/main_128.png";
             DOM.background.appendChild(DOM.wallpaper);
 
-            let index, url;
+            select_wallpaper(wp.urls, url =>
             {
-                if (wp.urls.length === 1) { index = 0; }
-                else
-                {
-                    let previous_index = parseInt(localStorage.getItem(PREVIOUS_WALLPAPER_INDEX));
-                    if (previous_index >= wp.urls.length) { previous_index = 0; }
-
-                    index = rng.integer_in_range(0, wp.urls.length - 1);
-                    if (index === previous_index)
-                    {
-                        index = (index + 1) % wp.urls.length;
-                    }
-                }
-                url = wp.urls[index];
-            }
-            load_wallpaper(
-                url,
-                () =>
+                load_wallpaper(url, () =>
                 {
                     fit_wallpaper_to_window();
                     fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0);
@@ -146,9 +182,9 @@
                     {
                         fit_wallpaper_to_window();
                     });
-                }
-            );
-            localStorage.setItem(PREVIOUS_WALLPAPER_INDEX, index);
+                });
+                localStorage.setItem(PREVIOUS_WALLPAPER, url);
+            });
         }
     }
     function initialize()
