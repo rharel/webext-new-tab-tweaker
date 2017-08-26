@@ -1,7 +1,5 @@
 const
 	gulp = require('gulp'),
-	clean = require('gulp-clean'),
-	concat = require('gulp-concat'),
 	open = require('gulp-open'),
 	zip = require('gulp-zip');
 
