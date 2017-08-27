@@ -64,7 +64,7 @@
 
         configuration.version =
         {
-            CURRENT: create(1, 6, 0, 5),
+            CURRENT: create(1, 6, 0, 6),
             HAS_RELEASE_NOTES: false,
 
             create:    create,
