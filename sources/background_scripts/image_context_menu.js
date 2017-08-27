@@ -40,6 +40,7 @@
             {
                 options.new_tab.custom_page.wallpaper.urls = [info.srcUrl];
                 configuration.storage.save(options);
+                NewTabTweaker.Notifications.notify(SET_WALLPAPER_IMAGE_ITEM_ID, "The image was set as wallpaper.");
             }
         });
         // Adds context image to the wallpaper image collection.
@@ -54,7 +55,12 @@
                 {
                     existing_urls.push(candidate_url);
                     configuration.storage.save(options);
+                    NewTabTweaker.Notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Added wallpaper to wallpaper collection.");
                 }
+                else
+                {
+				    NewTabTweaker.Notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Wallpaper already exists in wallpaper collection.");
+				}
             }
         });
 

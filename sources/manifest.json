@@ -31,7 +31,8 @@
   [
     "storage",
     "contextMenus",
-
+    "notifications",
+    
     "http://localhost/*",
     "https://api.imgur.com/3/album/*"
   ],
@@ -41,7 +42,8 @@
     "scripts":
     [
       "common/js/require.js",
-      "background_scripts/main.js"
+      "background_scripts/main.js",
+      "background_scripts/notifications.js"
     ]
   },
   "options_ui":
