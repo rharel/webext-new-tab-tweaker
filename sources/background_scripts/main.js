@@ -2,11 +2,11 @@ requirejs.config(
 {
     paths:
     {
-        "common": "../common/js",
+        "common": "common/js",
     }
 });
 requirejs(
 [
     "common/configuration",
-    "./image_context_menu"
+    "background_scripts/image_context_menu"
 ]);
