@@ -40,7 +40,7 @@
 			{
 				configuration.new_tab.custom_page.wallpaper.urls = [info.srcUrl];
 				NTT.Configuration.Storage.save(configuration);
-				NTT.Notifications.notify(NEW_TAB_TWEAKER_ITEM_ID, "The image was set as wallpaper.");
+				NTT.Notifications.notify(SET_WALLPAPER_IMAGE_ITEM_ID, "The image was set as wallpaper.");
 			}
 		});
 		// Adds context image to the wallpaper image collection.
@@ -55,7 +55,9 @@
 					existing_urls.push(info.srcUrl);
 					NTT.Configuration.Storage.save(configuration);
 					NTT.Notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Added wallpaper to wallpaper collection.");
-				}else{
+				}
+				else
+				{
 					NTT.Notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Wallpaper already exists in wallpaper collection.");
 				}
 			}
