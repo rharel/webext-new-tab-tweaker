@@ -107,26 +107,24 @@
     }
 
     define(["common/configuration", "background_scripts/notifications"],
-        function(configuration_module)
-        {
-            configuration = configuration_module;
+	function(configuration_module, notifications_module)
+	{
+		// Configuration
+		configuration = configuration_module;
 
-            browser.storage.onChanged.addListener((changes, area) =>
-            {
-                if (area === "local" &&
-                    changes.hasOwnProperty(configuration.storage.KEY))
-                {
-                    update_context_menu_item_visibility();
-                }
-            });
-            update_context_menu_item_visibility();
-        },
-        function(notifications_module)
-        {
-            console.log("background_scripts/notifications...");
-            console.log("... -> " + notifications_module + " <- ...");
-            notifications = notifications_module;
-        }
+		browser.storage.onChanged.addListener((changes, area) =>
+		{
+			if (area === "local" &&
+				changes.hasOwnProperty(configuration.storage.KEY))
+			{
+				update_context_menu_item_visibility();
+			}
+		});
+		update_context_menu_item_visibility();
+		
+		// Notifications
+		notifications = notifications_module;
+	}
     );
 
 })();
