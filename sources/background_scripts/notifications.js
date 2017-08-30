@@ -1,9 +1,9 @@
 (function() {
     const active_ids = [];
-    const readingSpeed = 55;
+    const reading_speed = 55;
 
-    const addonName = browser.runtime.getManifest().name;
-    const iconUrl = browser.extension.getURL("/icons/main_64.png");
+    const addon_name = browser.runtime.getManifest().name;
+    const icon_url = browser.extension.getURL("/icons/main_64.png");
     
     // Display a notification
     // Close existing message if a message with the same identifier already exists
@@ -13,8 +13,8 @@
         browser.notifications.create(id,
         {
             type: "basic",
-            iconUrl: iconUrl,
-            title: addonName,
+            iconUrl: icon_url,
+            title: addon_name,
             message: message
         });
 
@@ -25,7 +25,7 @@
         {
             // Clear the first (oldest) notification
             browser.notifications.clear(active_ids.shift());
-        }, message.length * readingSpeed);
+        }, message.length * reading_speed);
     }
     
     define({ notify: notify });
