@@ -1,9 +1,9 @@
 (function() {
-    let active_ids: [];
-    
+    const active_ids = [];
+    const readingSpeed = 55;
+
     const addonName = browser.runtime.getManifest().name;
     const iconUrl = browser.extension.getURL("/icons/main_64.png");
-    const readingSpeed = 55;
     
     // Display a notification
     // Close existing message if a message with the same identifier already exists

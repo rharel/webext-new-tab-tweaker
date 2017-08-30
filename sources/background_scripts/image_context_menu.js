@@ -106,28 +106,27 @@
         });
     }
 
-    define(["common/configuration"],
-    function(configuration_module)
-    {
-        configuration = configuration_module;
-
-        browser.storage.onChanged.addListener((changes, area) =>
+    define(["common/configuration", "background_scripts/notifications"],
+        function(configuration_module)
         {
-            if (area === "local" &&
-                changes.hasOwnProperty(configuration.storage.KEY))
+            configuration = configuration_module;
+
+            browser.storage.onChanged.addListener((changes, area) =>
             {
-                update_context_menu_item_visibility();
-            }
-        });
-        update_context_menu_item_visibility();
-    });
-    
-    define(["background_scripts/notifications"],
-    function(notifications_module)
-    {
-		console.log("background_scripts/notifications...");
-		console.log("... -> " + notifications_module + " <- ...");
-        notifications = notifications_module;
-    });
-    
+                if (area === "local" &&
+                    changes.hasOwnProperty(configuration.storage.KEY))
+                {
+                    update_context_menu_item_visibility();
+                }
+            });
+            update_context_menu_item_visibility();
+        },
+        function(notifications_module)
+        {
+            console.log("background_scripts/notifications...");
+            console.log("... -> " + notifications_module + " <- ...");
+            notifications = notifications_module;
+        }
+    );
+
 })();
