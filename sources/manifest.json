@@ -42,8 +42,7 @@
     "scripts":
     [
       "common/js/require.js",
-      "background_scripts/main.js",
-      "background_scripts/notifications.js"
+      "background_scripts/main.js"
     ]
   },
   "options_ui":

@@ -7,7 +7,8 @@
     let context_items_are_active = false;
     let configuration = null;
     let options       = null;
-
+    let notifications = null;
+    
     // Adds image context menu items for the setting/addition of the custom new tab page's
     // wallpapers.
     function create_context_menu_items()
@@ -39,8 +40,11 @@
             if (info.menuItemId === SET_WALLPAPER_IMAGE_ITEM_ID)
             {
                 options.new_tab.custom_page.wallpaper.urls = [info.srcUrl];
-                configuration.storage.save(options);
-                NewTabTweaker.Notifications.notify(SET_WALLPAPER_IMAGE_ITEM_ID, "The image was set as wallpaper.");
+                configuration.storage.save(options).then(
+                    () => notifications.notify(SET_WALLPAPER_IMAGE_ITEM_ID, "The image was set as wallpaper."), // Notify success
+                    () => notifications.notify(SET_WALLPAPER_IMAGE_ITEM_ID, "Failed to set image as wallpaper.") // Notify failure
+                );
+                
             }
         });
         // Adds context image to the wallpaper image collection.
@@ -54,13 +58,15 @@
                 if (!existing_urls.includes(candidate_url))
                 {
                     existing_urls.push(candidate_url);
-                    configuration.storage.save(options);
-                    NewTabTweaker.Notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Added wallpaper to wallpaper collection.");
+                    configuration.storage.save(options).then(
+                         () => notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Added wallpaper to wallpaper collection."), // Notify success
+                         () => notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Failed to add wallpaper to wallpaper collection.") // Notify failure
+                    );
                 }
                 else
                 {
-				    NewTabTweaker.Notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Wallpaper already exists in wallpaper collection.");
-				}
+                    notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Wallpaper already exists in wallpaper collection.");
+                }
             }
         });
 
@@ -115,4 +121,13 @@
         });
         update_context_menu_item_visibility();
     });
+    
+    define(["background_scripts/notifications"],
+    function(notifications_module)
+    {
+		console.log("background_scripts/notifications...");
+		console.log("... -> " + notifications_module + " <- ...");
+        notifications = notifications_module;
+    });
+    
 })();
