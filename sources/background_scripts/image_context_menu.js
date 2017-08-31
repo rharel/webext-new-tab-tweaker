@@ -10,7 +10,7 @@
     let context_items_are_active = false;
     let options = null;
 
-    // Invoked when the setting a wallpaper.
+    // Invoked when setting a wallpaper.
     function on_wallpaper_setting(info)
     {
         options.new_tab.custom_page.wallpaper.urls = [info.srcUrl];
