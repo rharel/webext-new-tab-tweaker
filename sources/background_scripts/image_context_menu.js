@@ -145,14 +145,14 @@
     }
 
     define(["common/configuration", "background_scripts/notifications"],
-	function(configuration_module, notifications_module)
-	{
-		configuration = configuration_module;
+    function(configuration_module, notifications_module)
+    {
+        configuration = configuration_module;
         notifications = notifications_module;
 
-		listen_to_context_menu();
-		listen_to_storage();
+        listen_to_context_menu();
+        listen_to_storage();
 
         update_context_menu_item_visibility();
-	});
+    });
 })();
