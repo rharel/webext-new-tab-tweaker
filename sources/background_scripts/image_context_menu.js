@@ -7,7 +7,8 @@
     let context_items_are_active = false;
     let configuration = null;
     let options       = null;
-
+    let notifications = null;
+    
     // Adds image context menu items for the setting/addition of the custom new tab page's
     // wallpapers.
     function create_context_menu_items()
@@ -39,7 +40,11 @@
             if (info.menuItemId === SET_WALLPAPER_IMAGE_ITEM_ID)
             {
                 options.new_tab.custom_page.wallpaper.urls = [info.srcUrl];
-                configuration.storage.save(options);
+                configuration.storage.save(options).then(
+                    () => notifications.notify(SET_WALLPAPER_IMAGE_ITEM_ID, "The image was set as wallpaper."), // Notify success
+                    () => notifications.notify(SET_WALLPAPER_IMAGE_ITEM_ID, "Failed to set image as wallpaper.") // Notify failure
+                );
+                
             }
         });
         // Adds context image to the wallpaper image collection.
@@ -53,7 +58,14 @@
                 if (!existing_urls.includes(candidate_url))
                 {
                     existing_urls.push(candidate_url);
-                    configuration.storage.save(options);
+                    configuration.storage.save(options).then(
+                         () => notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Added wallpaper to wallpaper collection."), // Notify success
+                         () => notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Failed to add wallpaper to wallpaper collection.") // Notify failure
+                    );
+                }
+                else
+                {
+                    notifications.notify(ADD_WALLPAPER_IMAGE_ITEM_ID, "Wallpaper already exists in wallpaper collection.");
                 }
             }
         });
@@ -94,19 +106,25 @@
         });
     }
 
-    define(["common/configuration"],
-    function(configuration_module)
-    {
-        configuration = configuration_module;
+    define(["common/configuration", "background_scripts/notifications"],
+	function(configuration_module, notifications_module)
+	{
+		// Configuration
+		configuration = configuration_module;
 
-        browser.storage.onChanged.addListener((changes, area) =>
-        {
-            if (area === "local" &&
-                changes.hasOwnProperty(configuration.storage.KEY))
-            {
-                update_context_menu_item_visibility();
-            }
-        });
-        update_context_menu_item_visibility();
-    });
+		browser.storage.onChanged.addListener((changes, area) =>
+		{
+			if (area === "local" &&
+				changes.hasOwnProperty(configuration.storage.KEY))
+			{
+				update_context_menu_item_visibility();
+			}
+		});
+		update_context_menu_item_visibility();
+		
+		// Notifications
+		notifications = notifications_module;
+	}
+    );
+
 })();
