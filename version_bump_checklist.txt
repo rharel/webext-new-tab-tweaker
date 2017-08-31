@@ -4,4 +4,3 @@ package.json
 sources/manifest.json
 sources/README.md
 sources/common/js/configuration.js
-tests/version.test.html
