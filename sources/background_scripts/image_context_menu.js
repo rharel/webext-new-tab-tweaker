@@ -37,11 +37,11 @@
             configuration.storage.save(options).then(
                  () => notifications.notify(
                      ADD_WALLPAPER_IMAGE_ITEM_ID,
-                     "Added wallpaper to wallpaper collection."
+                     "Added wallpaper to collection."
                  ),
                  () => notifications.notify(
                      ADD_WALLPAPER_IMAGE_ITEM_ID,
-                     "Failed to add wallpaper to wallpaper collection."
+                     "Failed to add wallpaper to collection."
                  )
             );
         }
@@ -49,7 +49,7 @@
         {
             notifications.notify(
                 ADD_WALLPAPER_IMAGE_ITEM_ID,
-                "Wallpaper already exists in wallpaper collection."
+                "Wallpaper already exists in collection."
             );
         }
     }
