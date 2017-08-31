@@ -8,10 +8,26 @@
     {
         return /^(https?:\/\/)?(www\.)?imgur\.com\/a\/.+$/.test(url);
     }
+    // Returns true iff the specified gallery URL is valid.
+    function is_valid_gallery_url(url)
+    {
+        return /^(https?:\/\/)?(www\.)?imgur\.com\/gallery\/.+$/.test(url);
+    }
+    // Returns true iff the specified URL is a valid album/gallery URL.
+    function is_valid_resource_url(url)
+    {
+        return is_valid_album_url(url) || is_valid_gallery_url(url);
+    }
+
     // Extracts the album hash from an album URL.
     function extract_album_hash(url)
     {
         return url.replace(/^(https?:\/\/)?(www\.)?imgur\.com\/a\//, '');
+    }
+    // Extracts the gallery hash from a gallery URL.
+    function extract_gallery_hash(url)
+    {
+        return url.replace(/^(https?:\/\/)?(www\.)?imgur\.com\/gallery\//, '');
     }
 
     // Gets a list of all image URLs of the specified album through an XHR.
@@ -48,6 +64,20 @@
         xhr.open("GET", `https://api.imgur.com/3/album/${album_hash}/images`);
         xhr.setRequestHeader("Authorization", `Client-ID ${CLIENT_ID}`);
         xhr.send();
+    }
+    // Gets a list of all image URLs of the specified album through an XHR.
+    // On success, invokes the specified callback with the retrieved urls.
+    function get_image_urls(resource_url, on_success, on_error)
+    {
+        resource_url = resource_url.trim();
+
+        if (!is_valid_album_url(resource_url) &&
+            !is_valid_gallery_url()
+             on_error !== undefined)
+        {
+            on_error();
+        }
+
     }
 
     define({

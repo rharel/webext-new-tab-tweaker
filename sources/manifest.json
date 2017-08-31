@@ -34,7 +34,8 @@
     "notifications",
     
     "http://localhost/*",
-    "https://api.imgur.com/3/album/*"
+    "https://api.imgur.com/3/album/*",
+    "https://api.imgur.com/3/gallery/*"
   ],
 
   "background":
