@@ -9,7 +9,7 @@
         // To accommodate non-native speakers we shall assume the lower bound.
         //
         // 1. https://en.wikipedia.org/wiki/Words_per_minute#Reading_and_comprehension
-        const cpm  = 863 - 234;
+        const cpm = 863 - 234;
         return 60000 / cpm;
     })();
     // Computes the number of ms it takes to read a given text.
