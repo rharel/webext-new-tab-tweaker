@@ -32,6 +32,7 @@ Contains resources which are directly related to the new-tab page override.
 
  * Adds a wallpaper preview box to the options page.
  * Adds support for plain-text wallpaper URLs (only from localhost).
+ * Adds feedback for context menu actions through notifications.
  
 ### 1.5.2
 
