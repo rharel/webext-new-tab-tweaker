@@ -16,6 +16,9 @@
     // contains more than one item.
     const PREVIOUS_WALLPAPER = "previous-wallpaper@new-tab-tweaker";
 
+    // The pattern identifying plaintext image list sources.
+    const LIST_SOURCE_PATTERN = /^\s*\[list\]\s*/;
+
     // Fades-in the background color over the specified duration (in seconds).
     function fade_in_background(color, duration)
     {
@@ -40,8 +43,7 @@
     // Returns true if the given URL points to an image.
     function is_image(url)
     {
-        return url.startsWith("data:") ||
-               /\.(bmp|gif|jpg|jpeg|png|svg)$/.test(url);
+        return !LIST_SOURCE_PATTERN.test(url);
     }
     // Selects a random wallpaper image URL.
     // The list of URLs in options may contain URLs of two kinds:
@@ -64,10 +66,11 @@
             }
         }
 
-        const source = select_random_item(urls);
+        let source = select_random_item(urls);
         if (is_image(source)) { on_success(source); }
         else
         {
+            source = source.replace(LIST_SOURCE_PATTERN, '');
             // Fetch resource, and if it is plain-text, interpret it as a list of image URLs,
             // each on a new line.
             const xhr = new XMLHttpRequest();
