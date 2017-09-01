@@ -27,18 +27,18 @@
                 "http://imgur.com/a/my_album",
                 "https://imgur.com/a/my_album"
             ]
-                .forEach(url => assert(imgur.is_valid_album_url(url)));
+                .forEach(url => assert(imgur.is_album_url(url)));
 			[
 				"httpp://imgur.com/a/my_album",
 				"http//imgur.com/a/my_album",
 				"http:/imgur.com/a/my_album",
 				"httpimgur.com/a/my_album",
 			]
-				.forEach(url => assert(!imgur.is_valid_album_url(url)));
+				.forEach(url => assert(!imgur.is_album_url(url)));
 		});
 		it('should accept URLs without protocol', function()
         {
-        	assert(imgur.is_valid_album_url("imgur.com/a/my_album"));
+        	assert(imgur.is_album_url("imgur.com/a/my_album"));
         });
 		it('should accept URLs with and without www. prefix', function()
         {
@@ -46,13 +46,13 @@
 				"www.imgur.com/a/my_album",
 				"imgur.com/a/my_album",
 			]
-				.forEach(url => assert(imgur.is_valid_album_url(url)));
+				.forEach(url => assert(imgur.is_album_url(url)));
 			[
 				"wwww.imgur.com/a/my_album",
 				"ww.imgur.com/a/my_album",
 				"wwwimgur.com/a/my_album",
 			]
-				.forEach(url => assert(!imgur.is_valid_album_url(url)));
+				.forEach(url => assert(!imgur.is_album_url(url)));
         });
 		it('should only accept URLs from the imgur domain', function()
         {
@@ -60,32 +60,30 @@
 				"google.com/a/my_album",
 				"yahoo.com/a/my_album",
 			]
-				.forEach(url => assert(!imgur.is_valid_album_url(url)));
-        });
-		it('should only accept URLs for albums', function()
-        {
-			[
-				"imgur.com/b/my_album",
-				"imgur.com/c/my_album",
-			]
-				.forEach(url => assert(!imgur.is_valid_album_url(url)));
+				.forEach(url => assert(!imgur.is_album_url(url)));
         });
 	});
-    describe('album hash extraction from URL', function()
+    describe('resource hash extraction from URL', function()
     {
     	it('should extract hash across protocols and with or without www. prefix', function()
         {
 			[
-				"http://www.imgur.com/a/my_album",
-				"http://imgur.com/a/my_album",
-				"https://www.imgur.com/a/my_album",
-				"https://imgur.com/a/my_album",
-				"www.imgur.com/a/my_album",
-				"imgur.com/a/my_album"
+				"http://www.imgur.com/a/hash",
+				"http://imgur.com/a/hash",
+				"https://www.imgur.com/a/hash",
+				"https://imgur.com/a/hash",
+				"www.imgur.com/a/hash",
+				"imgur.com/a/hash",
+                
+                "http://www.imgur.com/gallery/hash",
+                "http://imgur.com/gallery/hash",
+                "https://www.imgur.com/gallery/hash",
+                "https://imgur.com/gallery/hash",
+                "www.imgur.com/gallery/hash",
 			]
 				.forEach(url =>
             {
-                assert.strictEqual("my_album", imgur.extract_album_hash(url));
+                assert.strictEqual("hash", imgur.extract_resource_hash(url));
             });
         });
     });

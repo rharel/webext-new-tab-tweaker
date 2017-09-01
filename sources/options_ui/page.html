@@ -138,7 +138,7 @@
                         <a id="open-wallpaper-url-import-dialog-button"
                            class="link-button"
                            title="Import wallpaper URLs from an Imgur album">
-                            Import from Imgur album...
+                            Import from Imgur...
                         </a>
                         <br>
                         <a id="download-wallpaper-urls"
@@ -222,15 +222,15 @@
             <div id="dialog-content">
                 <div id="wallpaper-url-import-dialog">
                     <header>Import URLs from Imgur</header>
-                    <label for="imgur-album-url">
-                        Album:
+                    <label for="imgur-resource-url">
+                        Album/gallery:
                     </label>
-                    <input id="imgur-album-url" type="url"
-                           pattern="(https?:\/\/)?(www\.)?imgur\.com\/a\/.+"
+                    <input id="imgur-resource-url" type="url"
+                           pattern="(https?:\/\/)?(www\.)?imgur\.com\/(a|gallery)\/.+"
                            size="32" maxlength="100"
                            placeholder="http://imgur.com/a/"
-                           autocomplete="off" title="Album URL">
-                    <div id="imgur-album-info"></div>
+                           autocomplete="off" title="Album/gallery URL">
+                    <div id="imgur-resource-info"></div>
                     <a id="import-wallpaper-urls-button" class="link-button">
                         Import?
                     </a>
