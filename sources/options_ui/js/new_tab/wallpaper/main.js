@@ -5,6 +5,7 @@
     const options =
     {
         animation:              null,
+        scaling:                null,
         url_list:               null,
         url_list_download:      null,
         url_list_image_preview: null,
@@ -25,6 +26,7 @@
 
             urls: options.url_list.get(),
 
+            scaling:            options.scaling.get(),
             do_animate:         options.animation.is_enabled(),
             animation_duration: options.animation.get_duration()
         };
@@ -34,6 +36,7 @@
         DOM.is_enabled.checked = cfg.is_enabled;
 
         options.url_list.set(cfg.urls);
+        options.scaling.set(cfg.scaling);
 
         if (cfg.do_animate) { options.animation.enable();  }
         else                { options.animation.disable(); }
@@ -64,6 +67,9 @@
         options.animation.initialize();
         options.animation.add_change_listener(change_listeners.notify);
 
+        options.scaling.initialize();
+        options.scaling.add_change_listener(change_listeners.notify);
+
         options.url_list.initialize();
         options.url_list.add_change_listener(change_listeners.notify);
 
@@ -76,15 +82,18 @@
     [
         "common_ui/subscription_service",
         "./animation",
+        "./scaling",
         "./url_list",
         "./url_list_download",
         "./url_list_image_preview",
         "./url_list_imgur_import"
     ],
     function(subscription_service,
-             animation, url_list, url_list_download, url_list_image_preview, url_list_imgur_import)
+             animation, scaling,
+             url_list, url_list_download, url_list_image_preview, url_list_imgur_import)
     {
         options.animation              = animation;
+        options.scaling                = scaling;
         options.url_list               = url_list;
         options.url_list_download      = url_list_download;
         options.url_list_image_preview = url_list_image_preview;

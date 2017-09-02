@@ -31,6 +31,7 @@ Contains resources which are directly related to the new-tab page override.
 ### 1.6.0
 
  * Adds a wallpaper preview box to the options page.
+ * Adds a new wallpaper scaling option: 'fill'.
  * Adds support for plain-text wallpaper URLs (only from localhost).
  * Allow wallpaper imports from Imgur galleries (in addition to albums).
  * Adds feedback for context menu actions through notifications.

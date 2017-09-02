@@ -96,6 +96,17 @@
         };
         configuration.Theme = Theme;
 
+        // Enumerates (wallpaper) scaling methods.
+        const Scaling =
+        {
+            // Tightly fit inside bounds.
+            Fit: "fit",
+
+            // Fill bounds.
+            Fill: "fill"
+        };
+        configuration.Scaling = Scaling;
+
         // The default configuration.
         configuration.create_default = function()
         {
@@ -129,6 +140,7 @@
 
                             urls: [],
 
+                            scaling: Scaling.Fit,
                             do_animate: true,
                             animation_duration: 1.5
                         }
@@ -161,6 +173,12 @@
                 wp.animation_duration = Math.max(wp.animation_duration, 0.1);
 
                 cfg.options_ui = { theme: configuration.Theme.Light };
+            },
+            "1.5": cfg => // migrates 1.5 to 1.6
+            {
+                cfg.version = version.create(1, 6);
+
+                cfg.new_tab.custom_page.wallpaper.scaling = configuration.Scaling.Fit;
             }
         };
         // Updates the configuration object layout.

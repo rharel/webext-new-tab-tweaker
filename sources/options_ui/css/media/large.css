@@ -81,7 +81,7 @@ html
 #redirection-options  { display: none; }
 #custom-page-options  { display: none; }
 
-textarea, input, img
+textarea, input, select, img
 {
     border: 0.1rem solid;
 }
@@ -90,25 +90,17 @@ textarea
     padding: 0.5rem;
     font-size: 0.75em;
 }
-input
-{
-    font-size: 1em;
-}
-/*input[type="radio"], input[type="checkbox"]*/
-input
+input, select
 {
     display:  inline-block;
     vertical-align: middle;
-}
-input[type="color"]
-{
+
     font-size: 1em;
 }
 input[type="number"]
 {
     width:  4.8rem;
     height: 1em;
-    font-size: 1em;
 }
 input:disabled
 {

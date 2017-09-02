@@ -31,7 +31,7 @@ body
 {
     border-left: 4px solid darkorange;
 }
-textarea, input, img
+textarea, input, select, img
 {
     border-color: dimgray;
 }

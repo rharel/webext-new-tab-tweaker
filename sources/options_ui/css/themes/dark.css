@@ -36,7 +36,7 @@ body
 {
     color: #e6e6e6;
 }
-textarea, input, img
+textarea, input, select, img
 {
     border-color:     dimgray;
     background-color: #252525;

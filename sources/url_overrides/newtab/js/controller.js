@@ -1,6 +1,7 @@
-(function() {
+(function()
+{
     // Set in define().
-    let configuration, rng;
+    let configuration, rng, scaling;
 
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
@@ -143,6 +144,57 @@
         }
     }
 
+    // Applies redirection behavior.
+    function apply_redirection_options(options)
+    {
+        let url = options.new_tab.redirect.url;
+
+        if (!url.startsWith("http://") &&
+            !url.startsWith("https://"))
+        {
+            url = `http://${url}`
+        }
+
+        window.location.replace(url);
+    }
+    // Applies custom page behavior.
+    function apply_custom_page_options(options)
+    {
+        const bg = options.new_tab.custom_page.background;
+        fade_in_background(bg.color, bg.do_animate ? bg.animation_duration : 0);
+
+        const wp = options.new_tab.custom_page.wallpaper;
+        if (!wp.is_enabled || wp.urls.length === 0) { return; }
+
+        DOM.wallpaper = new Image();
+        DOM.wallpaper.id  = "wallpaper";
+        DOM.wallpaper.src = "/icons/main_128.png";
+        DOM.background.appendChild(DOM.wallpaper);
+
+        select_wallpaper(wp.urls, url =>
+        {
+            load_wallpaper(url, () =>
+            {
+                const scale_image =
+                    scaling.hasOwnProperty(wp.scaling) ?
+                    scaling[wp.scaling] : scaling.fit;
+                function update_wallpaper_scale()
+                {
+                    const bounds =
+                    {
+                        width:  window.innerWidth,
+                        height: window.innerHeight
+                    };
+                    scale_image(DOM.wallpaper, bounds);
+                }
+                update_wallpaper_scale();
+                window.addEventListener('resize', () => { update_wallpaper_scale(); });
+
+                fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0);
+            });
+            localStorage.setItem(PREVIOUS_WALLPAPER, url);
+        });
+    }
     // Applies the specified configuration to the page.
     function apply_options(options)
     {
@@ -151,43 +203,11 @@
         if (options.new_tab.behavior === TabBehavior.Redirect &&
             options.new_tab.redirect.url !== window.location)
         {
-            let url = options.new_tab.redirect.url;
-
-            if (!url.startsWith("http://") &&
-                !url.startsWith("https://"))
-            {
-                url = `http://${url}`
-            }
-
-            window.location.replace(url);
+            apply_redirection_options(options);
         }
         else if (options.new_tab.behavior === TabBehavior.DisplayCustomPage)
         {
-            const bg = options.new_tab.custom_page.background;
-            fade_in_background(bg.color, bg.do_animate ? bg.animation_duration : 0);
-
-            const wp = options.new_tab.custom_page.wallpaper;
-            if (!wp.is_enabled || wp.urls.length === 0) { return; }
-
-            DOM.wallpaper = new Image();
-            DOM.wallpaper.id  = "wallpaper";
-            DOM.wallpaper.src = "/icons/main_128.png";
-            DOM.background.appendChild(DOM.wallpaper);
-
-            select_wallpaper(wp.urls, url =>
-            {
-                load_wallpaper(url, () =>
-                {
-                    fit_wallpaper_to_window();
-                    fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0);
-
-                    window.addEventListener('resize', () =>
-                    {
-                        fit_wallpaper_to_window();
-                    });
-                });
-                localStorage.setItem(PREVIOUS_WALLPAPER, url);
-            });
+            apply_custom_page_options(options);
         }
     }
     function initialize()
@@ -216,14 +236,16 @@
         "common/after_page_load",
         "common/configuration",
 
-        "./rng"
+        "./rng",
+        "./scaling"
     ],
     function(after_page_load,
              configuration_module,
-             rng_module)
+             rng_module, scaling_module)
     {
         configuration = configuration_module;
         rng           = rng_module;
+        scaling       = scaling_module;
 
         after_page_load.do(initialize);
     });
