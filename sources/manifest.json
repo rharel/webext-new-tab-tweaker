@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name":    "New Tab Tweaker",
-  "version": "1.6.0b8",
+  "version": "1.6.0",
 
   "author":      "Raoul Harel",
   "description": "Have new tabs redirect to a specified URL or display a custom page.",
