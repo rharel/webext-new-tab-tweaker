@@ -28,6 +28,9 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.7.0
+ * Adds a new wallpaper scaling option: 'automatic'.
+ 
 ### 1.6.0
 
  * Adds a wallpaper preview box to the options page.

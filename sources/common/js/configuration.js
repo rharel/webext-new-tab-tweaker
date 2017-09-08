@@ -99,6 +99,9 @@
         // Enumerates (wallpaper) scaling methods.
         const Scaling =
         {
+            // Chooses the best method based on the dimensions of the image vs. those of the screen.
+            Automatic: "automatic",
+
             // Tightly fit inside bounds.
             Fit: "fit",
 
@@ -140,7 +143,7 @@
 
                             urls: [],
 
-                            scaling: Scaling.Fit,
+                            scaling: Scaling.Automatic,
                             do_animate: true,
                             animation_duration: 1.5
                         }

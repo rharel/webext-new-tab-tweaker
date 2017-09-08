@@ -159,7 +159,7 @@
             {
                 const scale_image =
                     scaling.hasOwnProperty(wp.scaling) ?
-                    scaling[wp.scaling] : scaling.fit;
+                    scaling[wp.scaling] : scaling.automatic;
                 function update_wallpaper_scale()
                 {
                     const bounds =
@@ -170,7 +170,7 @@
                     scale_image(DOM.wallpaper, bounds);
                 }
                 update_wallpaper_scale();
-                window.addEventListener('resize', () => { update_wallpaper_scale(); });
+                window.addEventListener('resize', update_wallpaper_scale);
 
                 fade_in_wallpaper(wp.do_animate ? wp.animation_duration : 0);
             });
