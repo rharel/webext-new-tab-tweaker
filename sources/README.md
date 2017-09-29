@@ -30,6 +30,7 @@ Contains resources which are directly related to the new-tab page override.
 
 ### 1.7.0
  * Adds a new wallpaper scaling option: 'automatic'.
+ * Adds the options to show/hide top sites.
  
 ### 1.6.0
 
