@@ -52,8 +52,9 @@
         configuration.storage.load().then(apply_options);
 
         DOM.customize_page_button = document.getElementById('customize-button');
-        DOM.customize_page_button.addEventListener('click', () =>
+        DOM.customize_page_button.addEventListener('click', event =>
         {
+            event.stopPropagation();
             browser.runtime.openOptionsPage();
         });
     }
