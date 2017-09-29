@@ -7,6 +7,7 @@ body
 {
     color:  dodgerblue;
     cursor: pointer;
+    text-decoration: none;
 }
 .link-button:hover
 {

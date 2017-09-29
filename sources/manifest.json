@@ -32,6 +32,7 @@
     "contextMenus",
     "notifications",
     "storage",
+    "topSites",
 
     "http://localhost/*",
     "https://api.imgur.com/3/album/*",

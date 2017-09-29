@@ -110,6 +110,20 @@
         };
         configuration.Scaling = Scaling;
 
+        // Enumerates top site visibility conditions.
+        const TopSitesVisibility =
+        {
+            // Show always.
+            Show: "show-always",
+
+            // Show only after the user indicates so.
+            ShowOnRequest: "show-on-request",
+
+            // Hide always.
+            Hide: "hide-always"
+        };
+        configuration.TopSitesVisibility = TopSitesVisibility;
+
         // The default configuration.
         configuration.create_default = function()
         {
@@ -146,6 +160,10 @@
                             scaling: Scaling.Automatic,
                             do_animate: true,
                             animation_duration: 1.5
+                        },
+                        top_sites:
+                        {
+                            visibility: TopSitesVisibility.Show
                         }
                     }
                 },
@@ -182,6 +200,13 @@
                 cfg.version = version.create(1, 6);
 
                 cfg.new_tab.custom_page.wallpaper.scaling = configuration.Scaling.Fit;
+            },
+            "1.6": cfg => // migrates 1.6 to 1.7
+            {
+                cfg.version = version.create(1, 7);
+
+                cfg.new_tab.custom_page.top_sites.visibility =
+                    configuration.TopSitesVisibility.ShowOnRequest;
             }
         };
         // Updates the configuration object layout.

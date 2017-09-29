@@ -42,9 +42,34 @@ body
     height: auto;
 }
 
+#top-sites-list
+{
+    position: fixed;
+    left: 10%;
+    top:  0;
+
+    width:  80%;
+    height: 80%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    transition: opacity 0.25s ease;
+
+    display:         flex;
+    flex-direction:  column;
+}
+#top-sites-list > .button-container > .link-button
+{
+    display: inline-block;
+
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
 #options-ribbon
 {
-    position: absolute;
+    position: fixed;
     left:   0;
     bottom: 0;
 
