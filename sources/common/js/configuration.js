@@ -106,7 +106,10 @@
             Fit: "fit",
 
             // Fill bounds.
-            Fill: "fill"
+            Fill: "fill",
+
+            // No scaling.
+            None: "none",
         };
         configuration.Scaling = Scaling;
 

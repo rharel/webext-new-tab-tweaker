@@ -1,5 +1,12 @@
 (function()
 {
+    // No scaling, image is centered.
+    function none(image)
+    {
+        image.style.width  = `${image.naturalWidth}px`;
+        image.style.height = `${image.naturalHeight}px`;
+    }
+
     // Scales the image so that it fits tightly in the specified bounds.
     function fit(image, bounds)
     {
@@ -39,6 +46,7 @@
     }
 
     define({
+        none:      none,
         fit:       fit,
         fill:      fill,
         automatic: automatic
