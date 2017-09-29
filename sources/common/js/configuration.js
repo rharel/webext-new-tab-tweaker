@@ -166,7 +166,7 @@
                         },
                         top_sites:
                         {
-                            visibility: TopSitesVisibility.Show
+                            visibility: TopSitesVisibility.ShowOnRequest
                         }
                     }
                 },
