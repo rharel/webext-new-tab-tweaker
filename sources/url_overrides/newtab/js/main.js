@@ -6,7 +6,9 @@
     // This will contain DOM elements proceeding a call to initialize().
     const DOM =
     {
-        customize_page_button: null
+        background: null,
+        ui:         null,
+        open_options_button: null
     };
 
     // Applies redirection behavior.
@@ -44,19 +46,42 @@
             apply_custom_page_options(options.new_tab.custom_page);
         }
     }
+
+    function toggle_ui_visibility()
+    {
+        const style = DOM.ui.style;
+
+        if (style.display !== "block")
+        {
+            style.display = "block";
+            // Allow the DOM some time to update before initiating animation,
+            // otherwise it may be skipped.
+            setTimeout(() => { style.opacity = 1; }, 10);
+        }
+        else
+        {
+            style.display = "none";
+            style.opacity = 0;
+        }
+    }
+
     function initialize()
     {
         background.initialize();
         wallpaper.initialize();
+        top_sites.initialize();
 
         configuration.storage.load().then(apply_options);
 
-        DOM.customize_page_button = document.getElementById('customize-button');
-        DOM.customize_page_button.addEventListener('click', event =>
+        DOM.background          = document.getElementById('background');
+        DOM.ui                  = document.getElementById('ui');
+        DOM.open_options_button = document.getElementById('open-options-button');
+        DOM.open_options_button.addEventListener('click', () =>
         {
-            event.stopPropagation();
             browser.runtime.openOptionsPage();
         });
+
+        DOM.background.addEventListener('click', toggle_ui_visibility);
     }
 
     requirejs.config(
