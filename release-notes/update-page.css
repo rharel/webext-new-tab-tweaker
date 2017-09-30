@@ -71,3 +71,8 @@ a:hover
     font-style:  italic;
     white-space: nowrap;
 }
+
+@media (max-width: 768px)
+{
+    #content { width: 90%; }
+}
