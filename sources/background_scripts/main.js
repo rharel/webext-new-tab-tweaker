@@ -21,7 +21,7 @@ browser.runtime.onInstalled.addListener(details =>
         {
             storage.load().then(options =>
             {
-                const version  = configuration.version;
+                const version = configuration.version;
 
                 if (version.HAS_RELEASE_NOTES && options.notification.new_features)
                 {
