@@ -1,7 +1,7 @@
 (function()
 {
     // No scaling, image is centered.
-    function none(image)
+    function do_not_scale(image)
     {
         image.style.width  = `${image.naturalWidth}px`;
         image.style.height = `${image.naturalHeight}px`;
@@ -31,10 +31,13 @@
     // If the difference between the wallpaper's and screen's aspect ratios is less than this, then
     // they should be considered 'close enough' to each other to use fill-scaling.
     const ASPECT_RATIO_SIMILARITY_THRESHOLD = 0.5;
+    // If a fit/fill scaling would cause the image to be enlarged by more than this factor,
+    // then it is best to use no scaling at all.
+    const MAXIMUM_SCALING_THRESHOLD = 1.5;
 
     // Chooses the best method based on the relation between image dimensions and the specified
     // bounds.
-    function automatic(image, bounds)
+    function auto_scale(image, bounds)
     {
         const aspect_ratio_difference = Math.abs(
             (bounds.width       / bounds.height      ) -
@@ -43,12 +46,20 @@
         if (aspect_ratio_difference <
             ASPECT_RATIO_SIMILARITY_THRESHOLD) { fill(image, bounds); }
         else                                   { fit(image, bounds);  }
+
+        const scaling_factor = image.className === 'wide' ?
+                               bounds.width  / image.naturalWidth :
+                               bounds.height / image.naturalHeight;
+        if (scaling_factor > MAXIMUM_SCALING_THRESHOLD)
+        {
+            do_not_scale(image);
+        }
     }
 
     define({
-        none:      none,
+        none:      do_not_scale,
         fit:       fit,
         fill:      fill,
-        automatic: automatic
+        automatic: auto_scale
     });
 })();
