@@ -73,7 +73,13 @@
             {
                 DOM.list.style.display = "none";
                 DOM.list.style.opacity = 0;
-                DOM.background.addEventListener('click', toggle_visibility);
+                DOM.background.addEventListener('click', () =>
+                {
+                    toggle_visibility();
+
+                    // Sometimes the top sites would be selected by the click, we don't want that:
+                    document.getSelection().removeAllRanges();
+                });
             }
             else
             {

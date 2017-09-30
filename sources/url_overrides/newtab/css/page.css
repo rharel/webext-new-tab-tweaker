@@ -58,6 +58,8 @@ body
     overflow-y: auto;
 
     transition: opacity 0.25s ease;
+
+    -moz-user-select: none;
 }
 #top-sites-list > .button-container > .link-button
 {
