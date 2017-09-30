@@ -64,8 +64,8 @@
 
         configuration.version =
         {
-            CURRENT: create(1, 7, 0, 3),
-            HAS_RELEASE_NOTES: false,
+            CURRENT: create(1, 7, 0, 0),
+            HAS_RELEASE_NOTES: true,
 
             create:    create,
             is_valid:  is_valid,
@@ -208,8 +208,10 @@
             {
                 cfg.version = version.create(1, 7);
 
-                cfg.new_tab.custom_page.top_sites.visibility =
-                    configuration.TopSitesVisibility.ShowOnRequest;
+                cfg.new_tab.custom_page.top_sites =
+                {
+                    visibility: configuration.TopSitesVisibility.ShowOnRequest
+                };
             }
         };
         // Updates the configuration object layout.
