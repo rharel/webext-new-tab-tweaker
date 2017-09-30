@@ -156,9 +156,9 @@
                         },
                         wallpaper:
                         {
-                            is_enabled: false,
+                            is_enabled: true,
 
-                            urls: [],
+                            urls: ["https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pleiades_large.jpg/1280px-Pleiades_large.jpg"],
 
                             scaling: Scaling.Automatic,
                             do_animate: true,
