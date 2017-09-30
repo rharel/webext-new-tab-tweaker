@@ -59,12 +59,12 @@
                 }
 
                 const anchor = document.createElement('a');
-                anchor.classList   = "link-button";
+                anchor.className   = "link-button";
                 anchor.href        = item.url;
                 anchor.textContent = title;
 
                 const container = document.createElement('div');
-                container.classList = "button-container";
+                container.className = "button-container";
                 container.appendChild(anchor);
 
                 DOM.list.appendChild(container);
