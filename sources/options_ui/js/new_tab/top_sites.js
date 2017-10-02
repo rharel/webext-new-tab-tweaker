@@ -38,13 +38,13 @@
 
     function initialize()
     {
-        DOM.show            = document.getElementById('show-top-sites-button');
-        DOM.show_on_request = document.getElementById('show-top-sites-on-request-button');
-        DOM.hide            = document.getElementById('hide-top-sites-button');
+        DOM.show            = document.getElementById("show-top-sites-button");
+        DOM.show_on_request = document.getElementById("show-top-sites-on-request-button");
+        DOM.hide            = document.getElementById("hide-top-sites-button");
 
         [DOM.show, DOM.show_on_request, DOM.hide].forEach(item =>
         {
-            item.addEventListener('change', change_listeners.notify);
+            item.addEventListener("change", change_listeners.notify);
         });
     }
 

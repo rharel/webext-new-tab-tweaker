@@ -20,10 +20,10 @@
 
     function initialize()
     {
-        DOM.urls     = document.getElementById('wallpaper-urls');
-        DOM.download = document.getElementById('download-wallpaper-urls');
+        DOM.urls     = document.getElementById("wallpaper-urls");
+        DOM.download = document.getElementById("download-wallpaper-urls");
 
-        DOM.download.addEventListener('click', download_as_text);
+        DOM.download.addEventListener("click", download_as_text);
     }
 
     define({ initialize: initialize });

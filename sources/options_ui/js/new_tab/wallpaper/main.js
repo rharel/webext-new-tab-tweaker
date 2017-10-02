@@ -55,10 +55,10 @@
 
     function initialize()
     {
-        DOM.is_enabled = document.getElementById('do-display-wallpaper');
-        DOM.panels     = document.querySelectorAll('.requires-wallpaper');
+        DOM.is_enabled = document.getElementById("do-display-wallpaper");
+        DOM.panels     = document.querySelectorAll(".requires-wallpaper");
 
-        DOM.is_enabled.addEventListener('change', () =>
+        DOM.is_enabled.addEventListener("change", () =>
         {
             update_wallpaper_option_panels_visibility();
             change_listeners.notify();

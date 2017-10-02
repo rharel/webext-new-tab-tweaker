@@ -16,7 +16,7 @@
     // Extracts a resource (album/gallery) hash from a URL.
     function extract_resource_hash(url)
     {
-        return url.replace(/^(https?:\/\/)?(www\.)?imgur\.com\/(a|gallery)\//, '');
+        return url.replace(/^(https?:\/\/)?(www\.)?imgur\.com\/(a|gallery)\//, "");
     }
 
     // Extracts image URLs from the API response for an album's images query.

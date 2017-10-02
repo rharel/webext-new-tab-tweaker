@@ -34,8 +34,8 @@
 
     function initialize()
     {
-        DOM.color = document.getElementById('bg-color');
-        DOM.color.addEventListener('input', change_listeners.notify);
+        DOM.color = document.getElementById("bg-color");
+        DOM.color.addEventListener("input", change_listeners.notify);
 
         options.animation.initialize();
         options.animation.add_change_listener(change_listeners.notify);

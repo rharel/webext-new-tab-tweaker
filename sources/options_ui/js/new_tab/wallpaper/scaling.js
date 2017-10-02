@@ -26,8 +26,8 @@
 
     function initialize()
     {
-        DOM.scaling = document.getElementById('wallpaper-scaling');
-        DOM.scaling.addEventListener('change', change_listeners.notify);
+        DOM.scaling = document.getElementById("wallpaper-scaling");
+        DOM.scaling.addEventListener("change", change_listeners.notify);
     }
 
     define(["common_ui/subscription_service"],

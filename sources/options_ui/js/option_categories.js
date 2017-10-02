@@ -36,14 +36,14 @@
 
     function initialize()
     {
-        DOM.new_tab.radio = document.getElementById('new-tab-option-category-button');
-        DOM.new_tab.panel = document.getElementById('new-tab-options');
+        DOM.new_tab.radio = document.getElementById("new-tab-option-category-button");
+        DOM.new_tab.panel = document.getElementById("new-tab-options");
 
-        DOM.notification.radio = document.getElementById('notification-option-category-button');
-        DOM.notification.panel = document.getElementById('notification-options');
+        DOM.notification.radio = document.getElementById("notification-option-category-button");
+        DOM.notification.panel = document.getElementById("notification-options");
 
-        DOM.advanced.radio = document.getElementById('advanced-option-category-button');
-        DOM.advanced.panel = document.getElementById('advanced-options');
+        DOM.advanced.radio = document.getElementById("advanced-option-category-button");
+        DOM.advanced.panel = document.getElementById("advanced-options");
 
         DOM.panel_of = {};
         DOM.panel_of[DOM.new_tab.radio.id]      = DOM.new_tab.panel;
@@ -58,7 +58,7 @@
         ];
         DOM.radio_buttons.forEach(item =>
         {
-            item.addEventListener('click', update_category_panel_visibility);
+            item.addEventListener("click", update_category_panel_visibility);
         });
         update_category_panel_visibility();
     }

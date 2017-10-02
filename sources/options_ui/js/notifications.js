@@ -20,8 +20,8 @@
 
     function initialize ()
     {
-        DOM.new_features = document.getElementById('do-notify-about-new-features');
-        DOM.new_features.addEventListener('change', change_listeners.notify);
+        DOM.new_features = document.getElementById("do-notify-about-new-features");
+        DOM.new_features.addEventListener("change", change_listeners.notify);
     }
 
     define(["common_ui/subscription_service"],

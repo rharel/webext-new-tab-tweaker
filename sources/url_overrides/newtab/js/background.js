@@ -37,7 +37,7 @@
 
     function initialize()
     {
-        DOM.background = document.getElementById('background');
+        DOM.background = document.getElementById("background");
     }
 
     define({

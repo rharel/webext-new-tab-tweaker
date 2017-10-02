@@ -26,13 +26,13 @@
 
         function initialize()
         {
-            activation_checkbox.addEventListener('change', () =>
+            activation_checkbox.addEventListener("change", () =>
             {
                 on_activation_change();
                 change_listeners.notify();
             });
-            duration_input.addEventListener('input', change_listeners.notify);
-            duration_input.addEventListener('change', () =>
+            duration_input.addEventListener("input", change_listeners.notify);
+            duration_input.addEventListener("change", () =>
             {
                 duration_input.value = get_duration();
             });

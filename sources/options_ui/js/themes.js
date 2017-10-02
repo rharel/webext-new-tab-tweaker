@@ -39,13 +39,13 @@
 
     function initialize()
     {
-        DOM.theme = document.getElementById('theme');
-        DOM.light = document.getElementById('light-theme-button');
-        DOM.dark  = document.getElementById('dark-theme-button');
+        DOM.theme = document.getElementById("theme");
+        DOM.light = document.getElementById("light-theme-button");
+        DOM.dark  = document.getElementById("dark-theme-button");
 
         [DOM.light, DOM.dark].forEach(item =>
         {
-            item.addEventListener('change', () =>
+            item.addEventListener("change", () =>
             {
                 update_theme_stylesheet();
                 change_listeners.notify();

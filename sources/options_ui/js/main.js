@@ -88,13 +88,13 @@
 
     function initialize()
     {
-        DOM.version = document.getElementById('version');
+        DOM.version = document.getElementById("version");
 
-        DOM.error.panel   = document.getElementById('errors');
-        DOM.error.message = document.getElementById('error-message');
+        DOM.error.panel   = document.getElementById("errors");
+        DOM.error.message = document.getElementById("error-message");
 
-        DOM.restore_default_options = document.getElementById('restore-default-options-button');
-        DOM.restore_default_options.addEventListener('click', () =>
+        DOM.restore_default_options = document.getElementById("restore-default-options-button");
+        DOM.restore_default_options.addEventListener("click", () =>
         {
             reset();
             save();

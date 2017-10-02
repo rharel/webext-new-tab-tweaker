@@ -3,7 +3,7 @@
     // No scaling, image is centered.
     function do_not_scale(image)
     {
-        image.className    = '';
+        image.className    = "";
         image.style.width  = `${image.naturalWidth}px`;
         image.style.height = `${image.naturalHeight}px`;
     }
@@ -15,8 +15,8 @@
               image_aspect_ratio  = image.naturalWidth / image.naturalHeight;
 
         if (bounds_aspect_ratio >
-            image_aspect_ratio) { image.className = 'tall'; }
-        else                    { image.className = 'wide'; }
+            image_aspect_ratio) { image.className = "tall"; }
+        else                    { image.className = "wide"; }
     }
     // Scales the image so that it fills the specified bounds.
     function fill(image, bounds)
@@ -25,8 +25,8 @@
               image_aspect_ratio  = image.naturalWidth / image.naturalHeight;
 
         if (bounds_aspect_ratio >
-            image_aspect_ratio) { image.className = 'wide'; }
-        else                    { image.className = 'tall'; }
+            image_aspect_ratio) { image.className = "wide"; }
+        else                    { image.className = "tall"; }
     }
 
     // If the difference between the wallpaper's and screen's aspect ratios is less than this, then
@@ -48,7 +48,7 @@
             ASPECT_RATIO_SIMILARITY_THRESHOLD) { fill(image, bounds); }
         else                                   { fit(image, bounds);  }
 
-        const scaling_factor = image.className === 'wide' ?
+        const scaling_factor = image.className === "wide" ?
                                bounds.width  / image.naturalWidth :
                                bounds.height / image.naturalHeight;
         if (scaling_factor > MAXIMUM_SCALING_THRESHOLD)

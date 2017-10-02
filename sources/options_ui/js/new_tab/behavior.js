@@ -56,11 +56,11 @@
 
     function initialize()
     {
-        DOM.redirection.radio = document.getElementById('redirect-button');
-        DOM.redirection.panel = document.getElementById('redirection-options');
+        DOM.redirection.radio = document.getElementById("redirect-button");
+        DOM.redirection.panel = document.getElementById("redirection-options");
 
-        DOM.custom_page.radio = document.getElementById('display-custom-page-button');
-        DOM.custom_page.panel = document.getElementById('custom-page-options');
+        DOM.custom_page.radio = document.getElementById("display-custom-page-button");
+        DOM.custom_page.panel = document.getElementById("custom-page-options");
 
         DOM.panel_of = {};
         DOM.panel_of[DOM.redirection.radio.id] = DOM.redirection.panel;
@@ -73,7 +73,7 @@
         ];
         DOM.radio_buttons.forEach(item =>
         {
-            item.addEventListener('change', () =>
+            item.addEventListener("change", () =>
             {
                 update_option_panel_visibility();
                 change_listeners.notify();

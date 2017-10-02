@@ -44,15 +44,15 @@
 
     function initialize()
     {
-        DOM.urls          = document.getElementById('wallpaper-urls');
-        DOM.preview_image = document.getElementById('wallpaper-preview-image');
-        DOM.preview       = document.getElementById('wallpaper-preview');
+        DOM.urls          = document.getElementById("wallpaper-urls");
+        DOM.preview_image = document.getElementById("wallpaper-preview-image");
+        DOM.preview       = document.getElementById("wallpaper-preview");
 
-        ['click', 'keyup', 'input'].forEach(event =>
+        ["click", "keyup", "input"].forEach(event =>
         {
             DOM.urls.addEventListener(event, update_preview)
         });
-        DOM.preview_image.addEventListener('load', () =>
+        DOM.preview_image.addEventListener("load", () =>
         {
             DOM.preview.href = DOM.preview_image.src;
             setTimeout(() => { DOM.preview.style.opacity = "1"; }, 50);

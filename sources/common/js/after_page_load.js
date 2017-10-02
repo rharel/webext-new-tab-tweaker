@@ -5,7 +5,7 @@
         do: function(target)
         {
             if (document.readyState === "complete") { target(); }
-            else { window.addEventListener('load', target); }
+            else { window.addEventListener("load", target); }
         }
     });
 })();

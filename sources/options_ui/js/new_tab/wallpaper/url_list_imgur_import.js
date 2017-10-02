@@ -62,13 +62,13 @@
 
     function initialize()
     {
-        DOM.open_dialog   = document.getElementById('open-wallpaper-url-import-dialog-button');
-        DOM.dialog        = document.getElementById('wallpaper-url-import-dialog');
-        DOM.resource_url  = document.getElementById('imgur-resource-url');
-        DOM.resource_info = document.getElementById('imgur-resource-info');
-        DOM.import_urls   = document.getElementById('import-wallpaper-urls-button');
+        DOM.open_dialog   = document.getElementById("open-wallpaper-url-import-dialog-button");
+        DOM.dialog        = document.getElementById("wallpaper-url-import-dialog");
+        DOM.resource_url  = document.getElementById("imgur-resource-url");
+        DOM.resource_info = document.getElementById("imgur-resource-info");
+        DOM.import_urls   = document.getElementById("import-wallpaper-urls-button");
 
-        DOM.open_dialog.addEventListener('click', () =>
+        DOM.open_dialog.addEventListener("click", () =>
         {
             candidate_urls = [];
 
@@ -78,8 +78,8 @@
 
             dialog.open(DOM.dialog);
         });
-        DOM.resource_url.addEventListener('input', on_resource_selection);
-        DOM.import_urls.addEventListener('click', on_import_confirmation);
+        DOM.resource_url.addEventListener("input", on_resource_selection);
+        DOM.import_urls.addEventListener("click", on_import_confirmation);
     }
 
     define(

@@ -36,8 +36,8 @@
 
     function initialize()
     {
-        DOM.urls = document.getElementById('wallpaper-urls');
-        DOM.urls.addEventListener('input', change_listeners.notify);
+        DOM.urls = document.getElementById("wallpaper-urls");
+        DOM.urls.addEventListener("input", change_listeners.notify);
     }
 
     define(["common_ui/subscription_service"],

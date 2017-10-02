@@ -14,8 +14,8 @@
 
     function initialize()
     {
-        DOM.url = document.getElementById('redirection-url');
-        DOM.url.addEventListener('input', change_listeners.notify);
+        DOM.url = document.getElementById("redirection-url");
+        DOM.url.addEventListener("input", change_listeners.notify);
     }
 
     define(["common_ui/subscription_service"],

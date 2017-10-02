@@ -40,7 +40,7 @@
     {
         if (options.visibility === Visibility.Hide) { return; }
 
-        DOM.list    = document.createElement('div');
+        DOM.list    = document.createElement("div");
         DOM.list.id = "top-sites-list";
 
         browser.topSites.get().then(items =>
@@ -51,7 +51,7 @@
                 const item = items[i];
 
                 // Use the item's URL is there is no meaningful title.
-                let title = (!item.title || item.title.trim() === '') ?
+                let title = (!item.title || item.title.trim() === "") ?
                               item.url : item.title;
                 // Truncate long titles:
                 if (title.length > MAXIMUM_TITLE_SIZE)
@@ -68,18 +68,18 @@
                             title.substring(suffix_start, title.length);
                 }
 
-                const anchor = document.createElement('a');
+                const anchor = document.createElement("a");
                 anchor.className   = "link-button";
                 anchor.href        = item.url;
                 anchor.textContent = title;
 
                 const favicon = new Image();
                 favicon.style.visibility = "hidden";
-                favicon.addEventListener('load', () => { favicon.style.visibility = "visible"; });
+                favicon.addEventListener("load", () => { favicon.style.visibility = "visible"; });
                 favicon.src = `${anchor.origin}/favicon.ico`;
                 anchor.insertBefore(favicon, anchor.firstChild);
 
-                const container = document.createElement('div');
+                const container = document.createElement("div");
                 container.className = "button-container";
                 container.appendChild(anchor);
 
@@ -89,7 +89,7 @@
             {
                 DOM.list.style.display = "none";
                 DOM.list.style.opacity = 0;
-                DOM.background.addEventListener('click', () =>
+                DOM.background.addEventListener("click", () =>
                 {
                     toggle_visibility();
 
@@ -108,7 +108,7 @@
 
     function initialize()
     {
-        DOM.background = document.getElementById('background');
+        DOM.background = document.getElementById("background");
     }
 
     define(["common/configuration"], function(configuration)

@@ -49,7 +49,7 @@
         if (is_image(source)) { on_success(source); }
         else
         {
-            source = source.replace(LIST_SOURCE_PATTERN, '');
+            source = source.replace(LIST_SOURCE_PATTERN, "");
             // Fetch resource, and if it is plain-text, interpret it as a list of image URLs,
             // each on a new line.
             const xhr = new XMLHttpRequest();
@@ -67,7 +67,7 @@
                         }
                         else
                         {
-                            on_success(select_random_item(xhr.responseText.split('\n')));
+                            on_success(select_random_item(xhr.responseText.split("\n")));
                         }
                     }
                     else { console.warn(`Could not fetch resource at ${source}`); }
@@ -81,7 +81,7 @@
     // The callback receives the loaded image as its parameter.
     function load_wallpaper(url, on_load)
     {
-        DOM.wallpaper.addEventListener('load', () => on_load(DOM.wallpaper));
+        DOM.wallpaper.addEventListener("load", () => on_load(DOM.wallpaper));
         DOM.wallpaper.src = url;
     }
     // Fades-in the wallpaper image over the specified duration (in seconds).
@@ -129,7 +129,7 @@
                     scale_image(DOM.wallpaper, bounds);
                 }
                 update_wallpaper_scale();
-                window.addEventListener('resize', update_wallpaper_scale);
+                window.addEventListener("resize", update_wallpaper_scale);
 
                 fade_in_wallpaper(options.do_animate ? options.animation_duration : 0);
             });
@@ -139,7 +139,7 @@
 
     function initialize()
     {
-        DOM.background = document.getElementById('background');
+        DOM.background = document.getElementById("background");
     }
 
     define(["./rng", "./scaling"],

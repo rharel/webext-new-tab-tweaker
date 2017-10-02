@@ -73,15 +73,15 @@
 
         configuration.storage.load().then(apply_options);
 
-        DOM.background          = document.getElementById('background');
-        DOM.ui                  = document.getElementById('ui');
-        DOM.open_options_button = document.getElementById('open-options-button');
-        DOM.open_options_button.addEventListener('click', () =>
+        DOM.background          = document.getElementById("background");
+        DOM.ui                  = document.getElementById("ui");
+        DOM.open_options_button = document.getElementById("open-options-button");
+        DOM.open_options_button.addEventListener("click", () =>
         {
             browser.runtime.openOptionsPage();
         });
 
-        DOM.background.addEventListener('click', toggle_ui_visibility);
+        DOM.background.addEventListener("click", toggle_ui_visibility);
     }
 
     requirejs.config(

@@ -34,16 +34,16 @@
 
 	function initialize()
 	{
-		DOM.shadow  = document.getElementById('dialog-shadow');
-		DOM.content = document.getElementById('dialog-content');
+		DOM.shadow  = document.getElementById("dialog-shadow");
+		DOM.content = document.getElementById("dialog-content");
 
 		// Close the dialog if the user clicks on anything but the dialog
 		// content.
-		DOM.shadow.addEventListener('click', close);
+		DOM.shadow.addEventListener("click", close);
 
 		// Clicking the shadow closes the dialog, so don't allow clicks on the
 		// content to bubble up to the shadow.
-		DOM.content.addEventListener('click', event => event.stopPropagation());
+		DOM.content.addEventListener("click", event => event.stopPropagation());
 	}
 
 	define({
