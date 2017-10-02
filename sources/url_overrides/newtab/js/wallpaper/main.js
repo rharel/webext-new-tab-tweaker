@@ -62,15 +62,15 @@
                         const content_type = xhr.getResponseHeader("Content-Type");
                         if (!content_type.startsWith("text/plain"))
                         {
-                            console.log(`Expected plaintext response from ${source},` +
-                                        `got '${content_type}' instead.`);
+                            console.warn(`Expected plaintext response from ${source},` +
+                                         `got '${content_type}' instead.`);
                         }
                         else
                         {
                             on_success(select_random_item(xhr.responseText.split('\n')));
                         }
                     }
-                    else { console.log(`Could not fetch resource at ${source}`); }
+                    else { console.warn(`Could not fetch resource at ${source}`); }
                 }
             };
             xhr.open("GET", source);
