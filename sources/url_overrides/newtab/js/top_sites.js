@@ -73,6 +73,12 @@
                 anchor.href        = item.url;
                 anchor.textContent = title;
 
+                const favicon = new Image();
+                favicon.style.visibility = "hidden";
+                favicon.addEventListener('load', () => { favicon.style.visibility = "visible"; });
+                favicon.src = `${anchor.origin}/favicon.ico`;
+                anchor.insertBefore(favicon, anchor.firstChild);
+
                 const container = document.createElement('div');
                 container.className = "button-container";
                 container.appendChild(anchor);

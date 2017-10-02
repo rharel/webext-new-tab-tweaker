@@ -68,6 +68,16 @@ body
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.75);
 }
+#top-sites-list > .button-container > .link-button > img
+{
+    display: inline-block;
+
+    margin-right: 1rem;
+    width:  1em;
+    height: 1em;
+
+    vertical-align: middle;
+}
 
 #ui
 {
