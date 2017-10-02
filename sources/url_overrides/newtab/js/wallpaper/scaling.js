@@ -3,6 +3,7 @@
     // No scaling, image is centered.
     function do_not_scale(image)
     {
+        image.className    = '';
         image.style.width  = `${image.naturalWidth}px`;
         image.style.height = `${image.naturalHeight}px`;
     }
