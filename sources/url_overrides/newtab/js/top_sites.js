@@ -12,9 +12,11 @@
 
     // The maximum number of sites to list.
     const MAXIMUM_LIST_SIZE = 20;
-    // The maximum number of characters in a site's title. Titles longer than this are truncated and
-    // are suffixed with an ellipsis (...).
+    // The maximum number of characters in a site's title. The middle part of titles longer than
+    // this is truncated.
     const MAXIMUM_TITLE_SIZE = 100;
+    /// The truncated part of long titles is replaced by this.
+    const TRUNCATION_SYMBOL = "...";
 
     function toggle_visibility()
     {
@@ -54,7 +56,16 @@
                 // Truncate long titles:
                 if (title.length > MAXIMUM_TITLE_SIZE)
                 {
-                    title = title.substring(0, MAXIMUM_TITLE_SIZE) + "...";
+                    // The title's total length post truncation should equal MAXIMUM_TITLE_SIZE.
+                    // The truncated title begins with the original's prefix, followed by the
+                    // truncation symbol, and ends with the original's suffix.
+
+                    const segment_size = (MAXIMUM_TITLE_SIZE - TRUNCATION_SYMBOL.length) / 2;
+                    const prefix_end   = Math.ceil(segment_size);
+                    const suffix_start = MAXIMUM_TITLE_SIZE - Math.floor(segment_size);
+
+                    title = title.substring(0, prefix_end) + TRUNCATION_SYMBOL +
+                            title.substring(suffix_start, title.length);
                 }
 
                 const anchor = document.createElement('a');
