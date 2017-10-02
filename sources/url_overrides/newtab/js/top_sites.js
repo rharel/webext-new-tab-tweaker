@@ -19,7 +19,6 @@
     function toggle_visibility()
     {
         const style = DOM.list.style;
-        console.log(style.display);
         if (style.display !== "flex")
         {
             style.display = "flex";
