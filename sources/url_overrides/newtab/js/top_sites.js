@@ -50,7 +50,7 @@
             {
                 const item = items[i];
 
-                // Use the item's URL is there is no meaningful title.
+                // Use the item's URL if there is no meaningful title.
                 let title = (!item.title || item.title.trim() === "") ?
                               item.url : item.title;
                 // Truncate long titles:
