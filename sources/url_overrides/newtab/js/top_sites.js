@@ -62,7 +62,7 @@
 
                     const segment_size = (MAXIMUM_TITLE_SIZE - TRUNCATION_SYMBOL.length) / 2;
                     const prefix_end   = Math.ceil(segment_size);
-                    const suffix_start = MAXIMUM_TITLE_SIZE - Math.floor(segment_size);
+                    const suffix_start = title.length - Math.floor(segment_size);
 
                     title = title.substring(0, prefix_end) + TRUNCATION_SYMBOL +
                             title.substring(suffix_start, title.length);
