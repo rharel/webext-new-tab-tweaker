@@ -30,8 +30,8 @@
 
     // Truncates the specified title.
     //
-    // The middle part of titles longer than this is truncated and replaced by the specified
-    // symbol.
+    // The middle part of titles longer than the specified length is truncated and replaced by the
+    // specified symbol.
     function truncate_title(title, target_length = 100, truncation_symbol = "...")
     {
         if (target_length <= 0)                        { return "";                }
