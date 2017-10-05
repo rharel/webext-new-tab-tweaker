@@ -71,8 +71,6 @@
         wallpaper.initialize();
         top_sites.initialize();
 
-        configuration.storage.load().then(apply_options);
-
         DOM.background          = document.getElementById("background");
         DOM.ui                  = document.getElementById("ui");
         DOM.open_options_button = document.getElementById("open-options-button");
@@ -82,6 +80,8 @@
         });
 
         DOM.background.addEventListener("click", toggle_ui_visibility);
+
+        configuration.storage.load().then(apply_options);
     }
 
     requirejs.config(
