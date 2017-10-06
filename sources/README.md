@@ -28,6 +28,9 @@ Contains resources which are directly related to the new-tab page override.
 
 ## Changelog
 
+### 1.7.1
+ * Adds favicons to top sites.
+ 
 ### 1.7.0
  * Improves the new tab UI design to be more touch friendly.
  * Adds new wallpaper scaling options: 'automatic' and 'none'.
