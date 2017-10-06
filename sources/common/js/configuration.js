@@ -102,14 +102,17 @@
             // Chooses the best method based on the dimensions of the image vs. those of the screen.
             Automatic: "automatic",
 
-            // Tightly fit inside bounds.
-            Fit: "fit",
-
             // Fill bounds.
             Fill: "fill",
 
+            // Tightly fit inside bounds.
+            Fit: "fit",
+
             // No scaling.
             None: "none",
+
+            // Stretch over bounds.
+            Stretch: "stretch"
         };
         configuration.Scaling = Scaling;
 

@@ -8,6 +8,12 @@
         image.style.height = `${image.naturalHeight}px`;
     }
 
+    // Stretch the image over the entire bounds.
+    function stretch(image, bounds)
+    {
+        image.className = "stretched";
+    }
+
     // Scales the image so that it fits tightly in the specified bounds.
     function fit(image, bounds)
     {
@@ -59,6 +65,7 @@
 
     define({
         none:      do_not_scale,
+        stretch:   stretch,
         fit:       fit,
         fill:      fill,
         automatic: auto_scale
